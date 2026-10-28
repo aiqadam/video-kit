@@ -16,11 +16,14 @@ for each step. If your tool loads skills from its own folder (`.claude/skills`,
 `.agents/skills`, `.opencode/skills` and the like), the same files can be copied there;
 the copy in `skills/` is the one to edit.
 
+The stack, with versions, keys and licenses, is in `docs/stack.md`.
+
 ## Layout
 
 ```
 AGENTS.md                 this file (CLAUDE.md and GEMINI.md point here)
 skills/video-kit/         the workflow and references, for any agent
+docs/stack.md             what the kit is made of and how a video flows through it
 kit.mjs                   the command line: node kit.mjs <command>
 runtime/kit.js, kit.css   motion runtime the scenes use (window.kit)
 lib/                      timeline, sync, voice, sound, media, checks

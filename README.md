@@ -10,6 +10,7 @@ It works with any agent that can read files and run commands (Claude Code, Codex
 OpenCode, Cursor, Gemini CLI and others) on macOS, Windows and Linux. The whole stack
 is open source: rendering by [HyperFrames](https://github.com/heygen-com/hyperframes)
 (Apache-2.0), motion by the kit's own runtime (MIT), ffmpeg installed with the packages.
+What each part does, what is optional and what needs a key: [docs/stack.md](docs/stack.md).
 
 ## What you get
 
