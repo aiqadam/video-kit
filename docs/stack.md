@@ -84,8 +84,9 @@ first build and makes a preview. `check` lists CC BY credits that no scene shows
 
 ## License of this repository
 
-MIT, except `tts/piper/run.py` (GPL-3.0-or-later), the example's fonts (OFL) and voice
-files (provider's terms); see the README. GPL and LGPL tools (ffmpeg, ffprobe, Piper) are
+MIT, except `tts/piper/run.py` (GPL-3.0-or-later), the examples' fonts (OFL), voice
+files (provider's terms) and the AI Qadam logo in `videos/kit-promo/` (brand asset); see
+the README. GPL and LGPL tools (ffmpeg, ffprobe, Piper) are
 installed by the user and run as separate programs, so they do not change the license of
 the kit or of the videos made with it.
 
@@ -102,7 +103,7 @@ the kit or of the videos made with it.
 
 | To | You need |
 | -- | -------- |
-| render the example | Node 22+, `npm install`, internet on the first build (footage, music, Chrome) |
+| render an example | Node 22+, `npm install`, internet on the first build (footage, music, Chrome) |
 | make a new video without voice | the same |
 | voice it | a key (OpenRouter or ElevenLabs) or a local engine |
 | check voice takes | `OPENROUTER_API_KEY` |

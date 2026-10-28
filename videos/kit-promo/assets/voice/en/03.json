@@ -1,0 +1,10 @@
+{
+  "text": "First, it writes down every claim, and where it came from.",
+  "provider": "openrouter",
+  "voiceId": "Iapetus",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "bf5d8dd42cbfa609",
+  "duration": 3.348,
+  "words": [],
+  "heard": "First, it writes down every claim and where it came from."
+}

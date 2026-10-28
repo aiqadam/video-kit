@@ -1,0 +1,172 @@
+<template>
+  <div id="root" data-composition-id="brief">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      /* shared by every step scene: eyebrow, step counter, caption, file panel */
+      .kp-eyebrow {
+        position: absolute;
+        left: 120px;
+        top: 80px;
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .kp-steps {
+        position: absolute;
+        right: 120px;
+        top: 66px;
+        display: flex;
+        align-items: flex-end;
+        gap: 24px;
+      }
+      .kp-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 5px;
+      }
+      .kp-bars i {
+        display: block;
+        width: 14px;
+        background: var(--faint);
+      }
+      .kp-bars i.done {
+        background: #1f5755;
+      }
+      .kp-bars i.on {
+        background: var(--accent);
+      }
+      .kp-label {
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .kp-label b {
+        font-weight: 500;
+        color: var(--accent);
+      }
+      .kp-cap {
+        position: absolute;
+        left: 120px;
+        top: 330px;
+        width: 580px;
+      }
+      .kp-num {
+        font-family: var(--mono);
+        font-size: 34px;
+        font-weight: 500;
+        color: var(--accent);
+      }
+      .kp-word {
+        margin-top: 4px;
+        font-family: var(--display);
+        font-size: 124px;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        line-height: 1.05;
+      }
+      .kp-sub {
+        margin-top: 18px;
+        font-size: 38px;
+        line-height: 1.3;
+        color: var(--muted);
+      }
+      .kp-panel {
+        position: absolute;
+        left: 740px;
+        top: 200px;
+        width: 1060px;
+        height: 720px;
+        background: var(--panel);
+        border: 1px solid var(--faint);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .kp-file {
+        height: 64px;
+        padding: 0 32px;
+        border-bottom: 1px solid var(--faint);
+        font-family: var(--mono);
+        font-size: 28px;
+        line-height: 64px;
+        color: var(--muted);
+      }
+
+      #brief-body {
+        padding: 36px 40px;
+      }
+      #brief-h {
+        font-family: var(--mono);
+        font-size: 30px;
+        color: var(--muted);
+        margin-bottom: 22px;
+      }
+      .brief-row {
+        display: flex;
+        gap: 28px;
+        align-items: flex-start;
+        padding: 22px 0;
+        border-top: 1px solid var(--faint);
+      }
+      .brief-fact {
+        flex: 1;
+        font-size: 32px;
+        line-height: 1.3;
+      }
+      .brief-src {
+        width: 380px;
+        padding: 8px 14px;
+        border: 2px solid var(--accent);
+        border-radius: 8px;
+        font-family: var(--mono);
+        font-size: 28px;
+        line-height: 1.3;
+        color: var(--accent);
+      }
+    </style>
+    <div class="kp-eyebrow" id="brief-eyebrow">AI Qadam · Video Kit</div>
+    <div class="kp-steps" id="brief-steps">
+      <div class="kp-bars"><i style="height: 12px"></i><i style="height: 18px"></i><i style="height: 24px"></i><i style="height: 30px"></i><i style="height: 36px"></i><i style="height: 42px"></i><i style="height: 48px"></i></div>
+      <div class="kp-label">Step <b>01</b> / 07</div>
+    </div>
+    <div class="kp-cap" id="brief-cap">
+      <div class="kp-num">01</div>
+      <div class="kp-word">Brief</div>
+      <div class="kp-sub">every fact, with its source</div>
+    </div>
+    <div class="kp-panel" id="brief-panel">
+      <div class="kp-file">videos/kit-promo/brief.md</div>
+      <div id="brief-body">
+        <div id="brief-h">## Facts</div>
+        <div class="brief-row" id="brief-r1"><div class="brief-fact">"Qadam" is Uzbek for "step"</div><div class="brief-src" id="brief-c1">en.wiktionary.org/ wiki/qadam</div></div>
+        <div class="brief-row" id="brief-r2"><div class="brief-fact">Voice lines and all timing live in video.json</div><div class="brief-src" id="brief-c2">README.md, "One file for timing"</div></div>
+        <div class="brief-row" id="brief-r3"><div class="brief-fact">Every voice take is transcribed back and checked against the script</div><div class="brief-src" id="brief-c3">README.md, "Voiceover"</div></div>
+        <div class="brief-row" id="brief-r4"><div class="brief-fact">Open source, MIT</div><div class="brief-src" id="brief-c4">LICENSE</div></div>
+      </div>
+    </div>
+    <script>
+      window.__timelines["brief"] = kit.scene("brief", function (t, s) {
+        var BAR = 1.92;
+        var bars = s.$("#brief-steps").querySelectorAll("i");
+        for (var b = 0; b < bars.length; b++) bars[b].className = b === 0 ? "on" : "";
+
+        kit.reveal(s.$("#brief-cap"), t, 0, { y: 24, len: 0.4 });
+        kit.reveal(s.$("#brief-panel"), t, 0.1, { y: 40, len: 0.45 });
+        // a fact on every half bar; its source lands a beat later
+        for (var i = 1; i <= 4; i++) {
+          var at = 0.5 + (i - 1) * (BAR / 2);
+          kit.reveal(s.$("#brief-r" + i), t, at, { y: 16, len: 0.3 });
+          kit.pop(s.$("#brief-c" + i), t, at + 0.48, { base: 0.85 });
+        }
+      });
+    </script>
+  </div>
+</template>

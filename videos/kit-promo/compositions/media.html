@@ -1,0 +1,215 @@
+<template>
+  <div id="root" data-composition-id="media">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      /* shared by every step scene: eyebrow, step counter, caption */
+      .kp-eyebrow {
+        position: absolute;
+        left: 120px;
+        top: 80px;
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .kp-steps {
+        position: absolute;
+        right: 120px;
+        top: 66px;
+        display: flex;
+        align-items: flex-end;
+        gap: 24px;
+      }
+      .kp-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 5px;
+      }
+      .kp-bars i {
+        display: block;
+        width: 14px;
+        background: var(--faint);
+      }
+      .kp-bars i.done {
+        background: #1f5755;
+      }
+      .kp-bars i.on {
+        background: var(--accent);
+      }
+      .kp-label {
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .kp-label b {
+        font-weight: 500;
+        color: var(--accent);
+      }
+      .kp-num {
+        font-family: var(--mono);
+        font-size: 34px;
+        font-weight: 500;
+        color: var(--accent);
+      }
+      .kp-word {
+        margin-top: 4px;
+        font-family: var(--display);
+        font-size: 124px;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        line-height: 1.05;
+      }
+      .kp-sub {
+        margin-top: 18px;
+        font-size: 38px;
+        line-height: 1.3;
+        color: var(--muted);
+      }
+
+      /* underneath: what the shot is made of */
+      #media-cap {
+        position: absolute;
+        left: 120px;
+        top: 190px;
+      }
+      #media-code {
+        position: absolute;
+        left: 120px;
+        top: 520px;
+        width: 1000px;
+        font-family: var(--mono);
+        font-size: 28px;
+        line-height: 1.5;
+        white-space: pre;
+        color: var(--muted);
+      }
+      #media-code .media-file {
+        color: var(--ink);
+      }
+      .media-hl {
+        display: inline-block;
+        padding: 0 8px;
+        margin-left: -8px;
+        border-radius: 6px;
+      }
+      /* on top: the example's shot, wiped away */
+      #media-shot {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: #0b0807;
+      }
+      #media-clip {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #media-grade {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(8, 5, 3, 0.7) 0%, rgba(8, 5, 3, 0) 22%),
+          radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
+      }
+      /* the example's own caption, as tutun-lounge sets it */
+      #media-ex {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 400px;
+        text-align: center;
+        font-family: 'Oswald', sans-serif;
+        font-size: 170px;
+        font-weight: 700;
+        line-height: 0.95;
+        text-transform: uppercase;
+        color: #ff9a3c;
+        text-shadow: 0 0 60px rgba(255, 120, 40, 0.5);
+      }
+      #media-where {
+        position: absolute;
+        left: 120px;
+        bottom: 80px;
+        font-family: var(--mono);
+        font-size: 28px;
+        color: rgba(246, 239, 230, 0.8);
+      }
+      #media-edge {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        margin-left: -2px;
+        background: var(--accent);
+      }
+    </style>
+
+    <div id="media-cap">
+      <div class="kp-num">03</div>
+      <div class="kp-word">Media</div>
+      <div class="kp-sub">by reference, credited</div>
+    </div>
+    <div id="media-code"><span class="media-file">compositions/ritual.html</span>
+&lt;video src="assets/fetched/clips/coal-macro.mp4"
+       data-start="11.163" data-duration="2.791" …&gt;
+
+<span class="media-file">assets/sources.json</span>
+{ "file": "clips/coal-macro.mp4",
+  <span class="media-hl" id="media-author">"author": "Samer Daboul",</span>
+  <span class="media-hl" id="media-license">"license": "Pexels License (free to use, …)",</span>
+  "trim": [2, 6] }</div>
+
+    <div id="media-shot">
+      <video id="media-clip" class="clip" src="assets/fetched/clips/coal-macro.mp4" data-start="0" data-duration="5.76" data-playback-rate="0.7" data-track-index="1" muted playsinline></video>
+      <div id="media-grade"></div>
+      <div id="media-ex">До ровного жара</div>
+      <div id="media-where">videos/tutun-lounge · the kit's example</div>
+    </div>
+    <div id="media-edge"></div>
+
+    <div class="kp-eyebrow" id="media-eyebrow">AI Qadam · Video Kit</div>
+    <div class="kp-steps" id="media-steps">
+      <div class="kp-bars"><i style="height: 12px"></i><i style="height: 18px"></i><i style="height: 24px"></i><i style="height: 30px"></i><i style="height: 36px"></i><i style="height: 42px"></i><i style="height: 48px"></i></div>
+      <div class="kp-label">Step <b>03</b> / 07</div>
+    </div>
+
+    <script>
+      window.__timelines["media"] = kit.scene("media", function (t, s) {
+        var BAR = 1.92;
+        var bars = s.$("#media-steps").querySelectorAll("i");
+        for (var b = 0; b < bars.length; b++) bars[b].className = b < 2 ? "done" : b === 2 ? "on" : "";
+
+        // bar 1: the finished shot; bar 2: an x-ray edge wipes it off the left 60%
+        kit.set(s.$("#media-shot"), { scale: kit.interp(t, [0, s.dur], [1.04, 1.0]) });
+        kit.words(s.$("#media-ex"), t, 0.15, { step: 0.08, len: 0.35 });
+        var wipe = kit.prog(t, BAR, BAR + 0.9, kit.ease.inOut);
+        var x = 1180 * wipe;
+        s.$("#media-shot").style.clipPath = "inset(0 0 0 " + x + "px)";
+        kit.set(s.$("#media-edge"), { left: x + "px", opacity: wipe > 0 && wipe < 1 ? 1 : wipe >= 1 ? 0.6 : 0 });
+        kit.set(s.$("#media-ex"), { opacity: 1 - kit.prog(t, BAR, BAR + 0.5) });
+        kit.set(s.$("#media-where"), { opacity: 1 - kit.prog(t, BAR, BAR + 0.3) });
+        kit.set(s.$("#media-eyebrow"), { opacity: kit.prog(t, BAR + 0.3, BAR + 0.7) });
+
+        kit.reveal(s.$("#media-cap"), t, BAR + 0.35, { y: 20, len: 0.4 });
+        kit.reveal(s.$("#media-code"), t, BAR + 0.5, { y: 20, len: 0.4 });
+        // the author and the license light up as the voice names them
+        [["#media-author", s.word("05", "author")], ["#media-license", s.word("05", "license")]].forEach(function (h) {
+          var at = Math.max(h[1], BAR + 1.0);
+          var p = kit.prog(t, at, at + 0.25);
+          s.$(h[0]).style.background = "rgba(60, 162, 158, " + 0.28 * p + ")";
+          s.$(h[0]).style.color = kit.color("#9fa3a4", "#fdfaf5", p);
+        });
+      });
+    </script>
+  </div>
+</template>

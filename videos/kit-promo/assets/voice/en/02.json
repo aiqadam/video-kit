@@ -1,0 +1,10 @@
+{
+  "text": "You describe it. The agent walks the steps.",
+  "provider": "openrouter",
+  "voiceId": "Iapetus",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "5f5d65ab6a089c95",
+  "duration": 2.624,
+  "words": [],
+  "heard": "You describe it, the agent walks the steps."
+}

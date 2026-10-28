@@ -66,7 +66,7 @@ Then open the folder in your coding agent and say what you need, in any language
 The agent asks for whatever is missing (facts, audience, voice) and builds it under
 `videos/<name>/`.
 
-## The example
+## The examples
 
 `videos/tutun-lounge/` is a 42-second ad for an invented hookah lounge in Tashkent:
 the ritual in close-ups (tobacco, bowl, foil, coals, the first draw), cut on the beat of a
@@ -78,6 +78,16 @@ node kit.mjs render tutun-lounge
 ```
 
 The file lands in `videos/tutun-lounge/renders/`.
+
+`videos/kit-promo/` is a 56-second video about the kit, made with the kit. "Qadam" is
+Uzbek for "step", and the video walks the seven steps of the workflow, showing its own
+brief, its own `video.json` and its own frames on screen, then pulls back to reveal the
+render you are watching. Everything is drawn in HTML except one Pexels clip and a CC BY
+track; English narration.
+
+```bash
+node kit.mjs render kit-promo
+```
 
 ## Commands
 
@@ -105,18 +115,21 @@ The kit is MIT, with these exceptions:
 
 - `tts/piper/run.py` is GPL-3.0-or-later, because it runs inside the GPL `piper-tts`
   library; it is a separate program the kit talks to.
-- `videos/tutun-lounge/assets/fonts/` are fonts under the SIL Open Font License, with the
-  license next to them.
-- `videos/tutun-lounge/assets/voice/` are voice files made with Google Gemini TTS; their
-  use follows the provider's terms.
-- Footage and music of the example are not in the repository: `sources.json` lists them
+- `videos/*/assets/fonts/` are fonts under the SIL Open Font License, with the license
+  next to them.
+- `videos/*/assets/voice/` are voice files made with Google Gemini TTS; their use follows
+  the provider's terms.
+- `videos/kit-promo/assets/brand/` is the AI Qadam logo: a brand asset, not open source,
+  used under the [AI Qadam Brand Usage Policy](https://brand.aiqadam.org/brand-use.html).
+  Do not reuse it in your own videos.
+- Footage and music of the examples are not in the repository: `sources.json` lists them
   with their own licenses (Pexels License, CC BY 4.0).
 
 The kit itself is MIT. It installs HyperFrames (Apache-2.0), ffmpeg via `ffmpeg-static` and
 `@ffprobe-installer/ffprobe` (the ffmpeg binaries are GPL; they are downloaded at
 install, not shipped here), and Inter (OFL). HyperFrames' anonymous telemetry is switched off for every
-command the kit runs. The example's footage, music and fonts are credited in
-`videos/tutun-lounge/assets/sources.json` and `CREDITS.md`. What you render is yours;
-check the licenses of the media and voices you add. The example's voice files were made with Google Gemini TTS
+command the kit runs. The examples' footage, music, fonts and logo are credited in each
+`videos/<name>/assets/sources.json` and `CREDITS.md`. What you render is yours;
+check the licenses of the media and voices you add. The examples' voice files were made with Google Gemini TTS
 through OpenRouter; they are not covered by the MIT license, and their use follows the
 provider's terms. For your own video, make the voice again with your own key.

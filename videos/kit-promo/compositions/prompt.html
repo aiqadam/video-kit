@@ -1,0 +1,97 @@
+<template>
+  <div id="root" data-composition-id="prompt">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #prompt-eyebrow {
+        position: absolute;
+        left: 120px;
+        top: 80px;
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      /* a neutral terminal: no product's chrome */
+      #prompt-term {
+        position: absolute;
+        left: 200px;
+        top: 250px;
+        width: 1520px;
+        height: 580px;
+        background: var(--panel);
+        border: 1px solid var(--faint);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      #prompt-bar {
+        height: 64px;
+        padding: 0 32px;
+        border-bottom: 1px solid var(--faint);
+        font-family: var(--mono);
+        font-size: 28px;
+        line-height: 64px;
+        color: var(--muted);
+      }
+      #prompt-body {
+        padding: 56px 64px;
+        font-family: var(--mono);
+      }
+      #prompt-ask {
+        font-size: 52px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      #prompt-ask .prompt-gt {
+        color: var(--accent);
+        margin-right: 0.5em;
+      }
+      #prompt-caret {
+        display: inline-block;
+        width: 0.55em;
+        height: 1em;
+        margin-left: 0.08em;
+        background: var(--ink);
+        vertical-align: -0.15em;
+      }
+      .prompt-out {
+        margin-top: 30px;
+        font-size: 34px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      #prompt-o1 {
+        margin-top: 64px;
+      }
+      #prompt-o2 b {
+        font-weight: 500;
+        color: var(--accent);
+      }
+    </style>
+    <div id="prompt-eyebrow">AI Qadam · Video Kit</div>
+    <div id="prompt-term">
+      <div id="prompt-bar">~/video-kit</div>
+      <div id="prompt-body">
+        <div id="prompt-ask"><span class="prompt-gt">›</span><span id="prompt-typed">Make a short video about this repo.</span><span id="prompt-caret"></span></div>
+        <div class="prompt-out" id="prompt-o1">reading README.md, AGENTS.md, skills/video-kit/</div>
+        <div class="prompt-out" id="prompt-o2">→ <b>step 01 / 07</b> · brief</div>
+      </div>
+    </div>
+    <script>
+      window.__timelines["prompt"] = kit.scene("prompt", function (t, s) {
+        kit.reveal(s.$("#prompt-term"), t, 0, { y: 30, len: 0.35 });
+        var done = kit.type(s.$("#prompt-typed"), t, 0.25, { cps: 22 });
+        // the caret blinks while waiting, stays solid while typing
+        var blink = Math.floor(t / 0.48) % 2 ? 0.1 : 1;
+        kit.set(s.$("#prompt-caret"), { opacity: done > 0 && done < 1 ? 1 : blink });
+        kit.reveal(s.$("#prompt-o1"), t, 2.2, { y: 10, len: 0.3 });
+        kit.reveal(s.$("#prompt-o2"), t, 2.88, { y: 10, len: 0.3 });
+      });
+    </script>
+  </div>
+</template>

@@ -1,0 +1,125 @@
+<template>
+  <div id="root" data-composition-id="qadam">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #qadam-eyebrow {
+        position: absolute;
+        left: 120px;
+        top: 80px;
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      /* the word and its definition; starts centred and large, settles top-left */
+      #qadam-head {
+        position: absolute;
+        left: 200px;
+        top: 150px;
+        transform-origin: 0 0;
+      }
+      #qadam-word {
+        font-family: var(--display);
+        font-size: 150px;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+      #qadam-caret {
+        display: inline-block;
+        width: 0.08em;
+        height: 0.78em;
+        margin-left: 0.06em;
+        background: var(--accent);
+        vertical-align: -0.04em;
+      }
+      #qadam-def {
+        margin-top: 22px;
+        font-family: var(--mono);
+        font-size: 30px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      #qadam-def b {
+        font-weight: 500;
+        color: var(--accent);
+      }
+      /* the staircase: seven steps of the workflow */
+      .qadam-step {
+        position: absolute;
+        width: 226px;
+        bottom: 0;
+        background: var(--panel);
+        border-top: 6px solid var(--accent);
+        border-left: 2px solid var(--bg);
+        padding: 22px 22px 0;
+      }
+      .qadam-num {
+        font-family: var(--mono);
+        font-size: 28px;
+        font-weight: 500;
+        color: var(--accent);
+      }
+      .qadam-name {
+        margin-top: 6px;
+        font-family: var(--display);
+        font-size: 42px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+    </style>
+    <div id="qadam-eyebrow">AI Qadam · Video Kit</div>
+    <div id="qadam-head">
+      <div id="qadam-word"><span id="qadam-text">qadam</span><span id="qadam-caret"></span></div>
+      <div id="qadam-def">uzbek · noun · <b>step</b></div>
+    </div>
+    <div id="qadam-stairs">
+      <div class="qadam-step" id="qadam-s1"><div class="qadam-num">01</div><div class="qadam-name">brief</div></div>
+      <div class="qadam-step" id="qadam-s2"><div class="qadam-num">02</div><div class="qadam-name">timeline</div></div>
+      <div class="qadam-step" id="qadam-s3"><div class="qadam-num">03</div><div class="qadam-name">media</div></div>
+      <div class="qadam-step" id="qadam-s4"><div class="qadam-num">04</div><div class="qadam-name">scenes</div></div>
+      <div class="qadam-step" id="qadam-s5"><div class="qadam-num">05</div><div class="qadam-name">look</div></div>
+      <div class="qadam-step" id="qadam-s6"><div class="qadam-num">06</div><div class="qadam-name">voice</div></div>
+      <div class="qadam-step" id="qadam-s7"><div class="qadam-num">07</div><div class="qadam-name">render</div></div>
+    </div>
+    <script>
+      window.__timelines["qadam"] = kit.scene("qadam", function (t, s) {
+        var BAR = 1.92, BEAT = BAR / 4;
+        var head = s.$("#qadam-head");
+
+        // bar 1: the word, big and centred, with its meaning; bar 2: it steps aside
+        var move = kit.prog(t, BAR - 0.1, BAR + 0.5, kit.ease.inOut);
+        var big = 2.1, scale = big + (1 - big) * move;
+        var w = head.offsetWidth, h = head.offsetHeight;
+        var cx = 960 - 200 - (w * big) / 2, cy = 500 - 150 - (h * big) / 2;
+        kit.set(head, { x: cx * (1 - move), y: cy * (1 - move), scale: scale });
+        kit.set(s.$("#qadam-caret"), { opacity: Math.floor(t / 0.48) % 2 ? 0.15 : 1 });
+        kit.reveal(s.$("#qadam-def"), t, 0.9, { y: 12, len: 0.4 });
+        kit.reveal(s.$("#qadam-eyebrow"), t, 0.2, { y: 0, len: 0.5 });
+
+        // bars 2–3: seven steps rise into a staircase, one on each beat; the step just
+        // landed carries the light, the ones below keep a dimmer edge until the whole
+        // flight lights up together after the seventh
+        var all = kit.prog(t, BAR + 0.24 + 6 * BEAT + 0.2, BAR + 0.24 + 6 * BEAT + 0.6);
+        for (var i = 0; i < 7; i++) {
+          var at = BAR + 0.24 + i * BEAT;
+          var p = kit.spring(t - at, { stiffness: 210, damping: 22 });
+          var el = s.$("#qadam-s" + (i + 1));
+          var top = 900 - i * 92;
+          el.style.left = 150 + i * 226 + "px";
+          el.style.height = 1080 - top + "px";
+          kit.set(el, { opacity: t >= at ? Math.min(1, (t - at) / 0.1) : 0, y: (1 - p) * 140 });
+          var fresh = 1 - kit.prog(t, at + BEAT, at + BEAT + 0.3);
+          var lit = Math.max(0.3 + 0.7 * fresh, all);
+          el.style.borderTopColor = kit.color("#163b3a", "#3ca29e", lit);
+        }
+      });
+    </script>
+  </div>
+</template>

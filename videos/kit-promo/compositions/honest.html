@@ -1,0 +1,94 @@
+<template>
+  <div id="root" data-composition-id="honest">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #honest-eyebrow {
+        position: absolute;
+        left: 120px;
+        top: 80px;
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      /* the same neutral terminal as the prompt scene */
+      #honest-term {
+        position: absolute;
+        left: 120px;
+        top: 200px;
+        width: 1680px;
+        height: 700px;
+        background: var(--panel);
+        border: 1px solid var(--faint);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      #honest-bar {
+        height: 64px;
+        padding: 0 32px;
+        border-bottom: 1px solid var(--faint);
+        font-family: var(--mono);
+        font-size: 28px;
+        line-height: 64px;
+        color: var(--muted);
+      }
+      #honest-body {
+        padding: 44px 56px;
+        font-family: var(--mono);
+        font-size: 32px;
+        line-height: 1.6;
+        color: var(--muted);
+        white-space: pre;
+      }
+      #honest-body .honest-gt {
+        color: var(--accent);
+      }
+      #honest-file {
+        color: var(--ink);
+      }
+      /* the line that matters, set large */
+      #honest-last {
+        position: absolute;
+        transform-origin: 0 50%;
+        left: 56px;
+        right: 56px;
+        top: 420px;
+        font-family: var(--display);
+        font-size: 76px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1.12;
+      }
+      #honest-last .accent {
+        color: var(--accent);
+      }
+    </style>
+    <div id="honest-eyebrow">AI Qadam · Video Kit</div>
+    <div id="honest-term">
+      <div id="honest-bar">~/video-kit</div>
+      <div id="honest-body"><span class="honest-gt">›</span> node kit.mjs render kit-promo
+<span id="honest-l1"><span id="honest-file">videos/kit-promo/renders/kit-promo-en.mp4</span></span>
+<span id="honest-l2">  length 55.80 s (video.json: 55.68 s)</span>
+<span id="honest-l3">  loudness -16.1 LUFS integrated, true peak -2 dBFS</span></div>
+      <div id="honest-last">Measured, not listened to: watch and listen before sending it anywhere.</div>
+    </div>
+    <script>
+      window.__timelines["honest"] = kit.scene("honest", function (t, s) {
+        var BAR = 1.92;
+        kit.reveal(s.$("#honest-term"), t, 0, { y: 30, len: 0.35 });
+        // a slow push-in keeps the last line alive while it is read
+        kit.set(s.$("#honest-last"), { scale: kit.interp(t, [BAR, s.dur], [1, 1.04], kit.ease.linear) });
+        kit.reveal(s.$("#honest-l1"), t, 0.3, { y: 0, len: 0.2 });
+        kit.reveal(s.$("#honest-l2"), t, 0.5, { y: 0, len: 0.2 });
+        kit.reveal(s.$("#honest-l3"), t, 0.7, { y: 0, len: 0.2 });
+        kit.words(s.$("#honest-last"), t, BAR - 0.6, { step: 0.07, len: 0.35, accent: ["watch", "listen"] });
+      });
+    </script>
+  </div>
+</template>

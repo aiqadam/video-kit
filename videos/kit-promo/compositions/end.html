@@ -1,0 +1,104 @@
+<template>
+  <div id="root" data-composition-id="end">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      /* the official lockup, flat and unchanged */
+      #end-logo {
+        position: absolute;
+        left: 250px;
+        top: 250px;
+        width: 420px;
+        height: 421px;
+      }
+      #end-text {
+        position: absolute;
+        left: 780px;
+        top: 330px;
+      }
+      #end-eyebrow {
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      #end-url {
+        margin-top: 22px;
+        font-family: var(--display);
+        font-size: 68px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        white-space: nowrap;
+      }
+      #end-url b {
+        font-weight: 600;
+        color: var(--accent);
+      }
+      #end-sub {
+        margin-top: 22px;
+        font-size: 40px;
+        color: var(--muted);
+      }
+      /* the step counter, all seven done */
+      #end-steps {
+        margin-top: 56px;
+        display: flex;
+        align-items: flex-end;
+        gap: 24px;
+      }
+      #end-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 5px;
+      }
+      #end-bars i {
+        display: block;
+        width: 14px;
+        background: var(--accent);
+      }
+      #end-done {
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      #end-credit {
+        position: absolute;
+        left: 120px;
+        right: 120px;
+        bottom: 70px;
+        font-size: 28px;
+        color: var(--muted);
+      }
+    </style>
+    <img id="end-logo" src="assets/brand/logo-full-dark.svg" alt="AI Qadam" />
+    <div id="end-text">
+      <div id="end-eyebrow">AI Qadam · Build</div>
+      <div id="end-url">github.com/<b>aiqadam/video-kit</b></div>
+      <div id="end-sub">Open source · MIT · any coding agent</div>
+      <div id="end-steps">
+        <div id="end-bars"><i style="height: 12px"></i><i style="height: 18px"></i><i style="height: 24px"></i><i style="height: 30px"></i><i style="height: 36px"></i><i style="height: 42px"></i><i style="height: 48px"></i></div>
+        <div id="end-done">7 / 7 steps</div>
+      </div>
+    </div>
+    <div id="end-credit">Music: “Realizer” Kevin MacLeod (incompetech.com), CC BY 4.0 · Footage: Samer Daboul, Pexels</div>
+    <script>
+      window.__timelines["end"] = kit.scene("end", function (t, s) {
+        kit.reveal(s.$("#end-logo"), t, 0.1, { y: 20, len: 0.6 });
+        kit.reveal(s.$("#end-eyebrow"), t, 0.35, { y: 12, len: 0.4 });
+        kit.reveal(s.$("#end-url"), t, 0.5, { y: 18, len: 0.45 });
+        kit.reveal(s.$("#end-sub"), t, 0.9, { y: 12, len: 0.4 });
+        var bars = s.$("#end-bars").children;
+        for (var i = 0; i < bars.length; i++) kit.reveal(bars[i], t, 1.3 + i * 0.06, { y: 14, len: 0.25 });
+        kit.reveal(s.$("#end-done"), t, 1.8, { y: 0, len: 0.3 });
+        kit.reveal(s.$("#end-credit"), t, 1.2, { y: 0, len: 0.5 });
+      });
+    </script>
+  </div>
+</template>

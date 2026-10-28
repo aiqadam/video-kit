@@ -1,0 +1,10 @@
+{
+  "text": "In Uzbek, qadam means a step.",
+  "provider": "openrouter",
+  "voiceId": "Iapetus",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "fda051d67d1b1f91",
+  "duration": 2.692,
+  "words": [],
+  "heard": "In Uzbek, qadam means a step."
+}

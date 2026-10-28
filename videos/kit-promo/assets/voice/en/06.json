@@ -1,0 +1,10 @@
+{
+  "text": "Scenes are plain HTML. The agent looks at the frames before you do.",
+  "provider": "openrouter",
+  "voiceId": "Iapetus",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "1ae03a7b4143cd2f",
+  "duration": 4.645,
+  "words": [],
+  "heard": "Scenes are plain HTML. The agent looks at the frames before you do."
+}

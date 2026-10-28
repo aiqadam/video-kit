@@ -1,0 +1,10 @@
+{
+  "text": "Every voice take is transcribed back and checked against the script.",
+  "provider": "openrouter",
+  "voiceId": "Iapetus",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "46db8298233b5818",
+  "duration": 3.288,
+  "words": [],
+  "heard": "Every voice take is transcribed back and checked against the script."
+}

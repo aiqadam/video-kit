@@ -1,0 +1,22 @@
+[
+  {
+    "file": "music/realizer.mp3",
+    "url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Realizer.mp3",
+    "page": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1900024",
+    "author": "Kevin MacLeod (incompetech.com)",
+    "license": "CC BY 4.0",
+    "credit": "\"Realizer\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "file": "clips/coal-macro.mp4",
+    "url": "https://www.pexels.com/download/video/8316467/",
+    "page": "https://www.pexels.com/video/close-up-video-of-burning-charcoal-8316467/",
+    "author": "Samer Daboul",
+    "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
+    "trim": [
+      2,
+      6
+    ],
+    "width": 1920
+  }
+]

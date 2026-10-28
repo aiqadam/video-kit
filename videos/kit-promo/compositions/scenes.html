@@ -1,0 +1,225 @@
+<template>
+  <div id="root" data-composition-id="scenes">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      /* shared by every step scene: eyebrow, step counter, caption, file panel */
+      .kp-eyebrow {
+        position: absolute;
+        left: 120px;
+        top: 80px;
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .kp-steps {
+        position: absolute;
+        right: 120px;
+        top: 66px;
+        display: flex;
+        align-items: flex-end;
+        gap: 24px;
+      }
+      .kp-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 5px;
+      }
+      .kp-bars i {
+        display: block;
+        width: 14px;
+        background: var(--faint);
+      }
+      .kp-bars i.done {
+        background: #1f5755;
+      }
+      .kp-bars i.on {
+        background: var(--accent);
+      }
+      .kp-label {
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .kp-label b {
+        font-weight: 500;
+        color: var(--accent);
+      }
+      .kp-cap {
+        position: absolute;
+        left: 120px;
+        top: 330px;
+        width: 580px;
+      }
+      .kp-num {
+        font-family: var(--mono);
+        font-size: 34px;
+        font-weight: 500;
+        color: var(--accent);
+      }
+      .kp-word {
+        margin-top: 4px;
+        font-family: var(--display);
+        font-size: 124px;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        line-height: 1.05;
+      }
+      .kp-sub {
+        margin-top: 18px;
+        font-size: 38px;
+        line-height: 1.3;
+        color: var(--muted);
+      }
+      .kp-panel {
+        position: absolute;
+        left: 740px;
+        top: 200px;
+        width: 1060px;
+        height: 720px;
+        background: var(--panel);
+        border: 1px solid var(--faint);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .kp-file {
+        height: 64px;
+        padding: 0 32px;
+        border-bottom: 1px solid var(--faint);
+        font-family: var(--mono);
+        font-size: 28px;
+        line-height: 64px;
+        color: var(--muted);
+      }
+
+      #scenes-code {
+        padding: 34px 40px 0;
+        font-family: var(--mono);
+        font-size: 30px;
+        line-height: 1.6;
+        white-space: pre;
+        color: var(--muted);
+      }
+      #scenes-code .scenes-k {
+        color: #8fb8b6;
+      }
+      /* step 05: this video's own frames, two rows of contact sheet */
+      #scenes-sheet {
+        position: absolute;
+        left: 40px;
+        top: 104px;
+        display: grid;
+        grid-template-columns: repeat(3, 312px);
+        gap: 20px;
+      }
+      .scenes-frame {
+        position: relative;
+        width: 312px;
+        height: 176px;
+        border-radius: 6px;
+        overflow: hidden;
+        background: var(--bg);
+        outline: 3px solid transparent;
+      }
+      .scenes-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .scenes-tick {
+        position: absolute;
+        right: 10px;
+        bottom: 8px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: #0b0d0e;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 40px;
+        text-align: center;
+      }
+    </style>
+    <div class="kp-eyebrow" id="scenes-eyebrow">AI Qadam · Video Kit</div>
+    <div class="kp-steps" id="scenes-steps">
+      <div class="kp-bars"><i style="height: 12px"></i><i style="height: 18px"></i><i style="height: 24px"></i><i style="height: 30px"></i><i style="height: 36px"></i><i style="height: 42px"></i><i style="height: 48px"></i></div>
+      <div class="kp-label">Step <b id="scenes-n">04</b> / 07</div>
+    </div>
+    <div class="kp-cap" id="scenes-cap4">
+      <div class="kp-num">04</div>
+      <div class="kp-word">Scenes</div>
+      <div class="kp-sub">plain HTML, every frame from&nbsp;t</div>
+    </div>
+    <div class="kp-cap" id="scenes-cap5">
+      <div class="kp-num">05</div>
+      <div class="kp-word">Look</div>
+      <div class="kp-sub">frames checked before you see them</div>
+    </div>
+    <div class="kp-panel" id="scenes-panel">
+      <div class="kp-file" id="scenes-file4">videos/kit-promo/compositions/scenes.html</div>
+      <div id="scenes-code">&lt;div id="scenes-sheet"&gt;…&lt;/div&gt;
+&lt;script&gt;
+  window.__timelines["scenes"] =
+    kit.scene("scenes", <span class="scenes-k">function (t, s)</span> {
+      var LOOK = 2.88;
+      kit.reveal(s.$("#scenes-sheet"), t, LOOK);
+      …
+    });
+&lt;/script&gt;</div>
+      <div id="scenes-sheet">
+        <div class="scenes-frame"><img src="assets/frames/qadam.jpg" alt="" /><div class="scenes-tick">✓</div></div>
+        <div class="scenes-frame"><img src="assets/frames/prompt.jpg" alt="" /><div class="scenes-tick">✓</div></div>
+        <div class="scenes-frame"><img src="assets/frames/brief.jpg" alt="" /><div class="scenes-tick">✓</div></div>
+        <div class="scenes-frame"><img src="assets/frames/timeline.jpg" alt="" /><div class="scenes-tick">✓</div></div>
+        <div class="scenes-frame"><img src="assets/frames/media.jpg" alt="" /><div class="scenes-tick">✓</div></div>
+        <div class="scenes-frame"><img src="assets/frames/scenes.jpg" alt="" /><div class="scenes-tick">✓</div></div>
+        <div class="scenes-frame"><img src="assets/frames/voice.jpg" alt="" /><div class="scenes-tick">✓</div></div>
+        <div class="scenes-frame"><img src="assets/frames/render.jpg" alt="" /><div class="scenes-tick">✓</div></div>
+        <div class="scenes-frame"><img src="assets/frames/honest.jpg" alt="" /><div class="scenes-tick">✓</div></div>
+      </div>
+    </div>
+    <script>
+      window.__timelines["scenes"] =
+        kit.scene("scenes", function (t, s) {
+          var LOOK = 2.88;
+          var look = t >= LOOK;
+          var bars = s.$("#scenes-steps").querySelectorAll("i");
+          var n = look ? 5 : 4;
+          for (var b = 0; b < bars.length; b++) bars[b].className = b < n - 1 ? "done" : b === n - 1 ? "on" : "";
+          s.$("#scenes-n").textContent = "0" + n;
+
+          // step 04: the scene's own code; step 05: the frames it renders, looked at one by one
+          kit.reveal(s.$("#scenes-cap4"), t, 0, { y: 24, len: 0.4, until: LOOK - 0.25 });
+          kit.set(s.$("#scenes-cap4"), { visibility: look ? "hidden" : "visible" });
+          kit.reveal(s.$("#scenes-cap5"), t, LOOK, { y: 24, len: 0.4 });
+          kit.set(s.$("#scenes-cap5"), { visibility: look ? "visible" : "hidden" });
+          kit.reveal(s.$("#scenes-panel"), t, 0.05, { y: 40, len: 0.45 });
+          kit.reveal(s.$("#scenes-code"), t, 0.05, { y: 0, len: 0.3, until: LOOK - 0.2 });
+          kit.set(s.$("#scenes-code"), { visibility: look ? "hidden" : "visible" });
+          kit.set(s.$("#scenes-file4"), { opacity: 1 - kit.prog(t, LOOK - 0.2, LOOK) });
+
+          kit.reveal(s.$("#scenes-sheet"), t, LOOK);
+          var frames = s.$("#scenes-sheet").children;
+          for (var i = 0; i < frames.length; i++) {
+            var at = LOOK + 0.1 + i * 0.07;
+            kit.set(frames[i], { opacity: kit.prog(t, at, at + 0.2), scale: 0.92 + 0.08 * kit.prog(t, at, at + 0.3) });
+            // the look: a light passes over each frame and leaves a tick behind
+            var seen = LOOK + 0.9 + i * 0.16;
+            var on = kit.prog(t, seen, seen + 0.08) * (1 - kit.prog(t, seen + 0.16, seen + 0.3));
+            frames[i].style.outlineColor = "rgba(60, 162, 158, " + on + ")";
+            kit.pop(frames[i].querySelector(".scenes-tick"), t, seen + 0.12, { base: 0.5 });
+          }
+        });
+    </script>
+  </div>
+</template>

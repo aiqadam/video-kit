@@ -87,6 +87,8 @@ screen, drive it with `kit.cursor`, change the UI on each tap time.
   data" on screen when the person asks for it.
 - When a later screen covers an earlier one, hide the earlier one once covered
   (`visibility: hidden`), or `check` reports overlapping text.
+- `videos/kit-promo/` is a worked example: a terminal that types, files whose lines light
+  up with the voice, an x-ray wipe, a pull-back into a player.
 
 ## Photos and footage
 

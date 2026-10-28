@@ -1,0 +1,10 @@
+{
+  "text": "Then it renders the video. This one.",
+  "provider": "openrouter",
+  "voiceId": "Iapetus",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "79d761eb544c3c9a",
+  "duration": 2.734,
+  "words": [],
+  "heard": "Then it renders a video. This one."
+}

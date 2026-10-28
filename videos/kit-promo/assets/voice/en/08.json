@@ -1,0 +1,10 @@
+{
+  "text": "And it tells you what it couldn't check.",
+  "provider": "openrouter",
+  "voiceId": "Iapetus",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "9cbf0279ace65c3d",
+  "duration": 1.991,
+  "words": [],
+  "heard": "And it tells you what it couldn't check."
+}

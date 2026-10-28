@@ -1,0 +1,215 @@
+{
+  "title": "AI Qadam Video Kit: a video about the kit, made with the kit",
+  "format": "landscape",
+  "fps": 30,
+  "lang": "en",
+  "transition": 0,
+  "maxSilence": 5,
+  "theme": {
+    "bg": "#0b0d0e",
+    "ink": "#fdfaf5",
+    "muted": "rgba(253, 250, 245, 0.62)",
+    "faint": "rgba(253, 250, 245, 0.14)",
+    "panel": "#14181a",
+    "accent": "#3ca29e",
+    "font": "'Kit Inter', sans-serif",
+    "display": "'Geist', sans-serif",
+    "mono": "'JetBrains Mono', monospace"
+  },
+  "fonts": [
+    {
+      "family": "Geist",
+      "src": "assets/fonts/geist-latin-wght-normal.woff2",
+      "weight": "100 900",
+      "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "Geist",
+      "src": "assets/fonts/geist-latin-ext-wght-normal.woff2",
+      "weight": "100 900",
+      "range": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "JetBrains Mono",
+      "src": "assets/fonts/jetbrains-mono-latin-wght-normal.woff2",
+      "weight": "100 800",
+      "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "JetBrains Mono",
+      "src": "assets/fonts/jetbrains-mono-latin-ext-wght-normal.woff2",
+      "weight": "100 800",
+      "range": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "Oswald",
+      "src": "assets/fonts/oswald-latin-wght-normal.woff2",
+      "weight": "200 700",
+      "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "Oswald",
+      "src": "assets/fonts/oswald-cyrillic-wght-normal.woff2",
+      "weight": "200 700",
+      "range": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"
+    }
+  ],
+  "voice": {
+    "provider": "openrouter",
+    "model": "google/gemini-3.8-flash-tts",
+    "voiceId": "Iapetus",
+    "instructions": "A calm, confident male voice, like a builder showing their own tool to a friend. Natural, lively pace; warm, never salesy."
+  },
+  "voiceSamples": [
+    {
+      "name": "or-eleven-george",
+      "provider": "openrouter",
+      "model": "elevenlabs/eleven-v3",
+      "voiceId": "JBFqnCBsd6RMkjVDRZzb"
+    },
+    {
+      "name": "or-eleven-brian",
+      "provider": "openrouter",
+      "model": "elevenlabs/eleven-v3",
+      "voiceId": "nPczCjzI2devNBz1zQrb"
+    },
+    {
+      "name": "gemini-charon",
+      "provider": "openrouter",
+      "model": "google/gemini-3.8-flash-tts",
+      "voiceId": "Charon",
+      "instructions": "A calm, confident male voice, like a builder showing their own tool to a friend. Natural, lively pace; warm, never salesy."
+    },
+    {
+      "name": "gemini-iapetus",
+      "provider": "openrouter",
+      "model": "google/gemini-3.8-flash-tts",
+      "voiceId": "Iapetus",
+      "instructions": "A calm, confident male voice, like a builder showing their own tool to a friend. Natural, lively pace; warm, never salesy."
+    }
+  ],
+  "music": {
+    "source": "file",
+    "file": "assets/fetched/music/realizer.mp3",
+    "start": 0.03,
+    "volume": 0.5,
+    "duck": 0.4
+  },
+  "scenes": [
+    {
+      "id": "qadam",
+      "dur": 5.76,
+      "lines": [
+        {
+          "id": "01",
+          "at": 0.3,
+          "text": "In Uzbek, qadam means a step."
+        },
+        {
+          "id": "01b",
+          "at": 3.2,
+          "text": "A video takes seven of them."
+        }
+      ]
+    },
+    {
+      "id": "prompt",
+      "dur": 3.84,
+      "lines": [
+        {
+          "id": "02",
+          "at": 0.3,
+          "text": "You describe it. The agent walks the steps."
+        }
+      ]
+    },
+    {
+      "id": "brief",
+      "dur": 5.76,
+      "lines": [
+        {
+          "id": "03",
+          "at": 0.2,
+          "text": "First, it writes down every claim, and where it came from."
+        }
+      ]
+    },
+    {
+      "id": "timeline",
+      "dur": 5.76,
+      "lines": [
+        {
+          "id": "04",
+          "at": 0.2,
+          "text": "This very sentence is a line in the timeline. You're hearing it now."
+        }
+      ]
+    },
+    {
+      "id": "media",
+      "dur": 5.76,
+      "lines": [
+        {
+          "id": "05",
+          "at": 0.2,
+          "text": "Footage and music arrive with their license and author on record."
+        }
+      ]
+    },
+    {
+      "id": "scenes",
+      "dur": 5.76,
+      "lines": [
+        {
+          "id": "06",
+          "at": 0.2,
+          "text": "Scenes are plain HTML. The agent looks at the frames before you do."
+        }
+      ]
+    },
+    {
+      "id": "voice",
+      "dur": 5.76,
+      "lines": [
+        {
+          "id": "07",
+          "at": 0.2,
+          "text": "Every voice take is transcribed back and checked against the script."
+        }
+      ]
+    },
+    {
+      "id": "render",
+      "dur": 5.76,
+      "lines": [
+        {
+          "id": "07b",
+          "at": 2.5,
+          "text": "Then it renders the video. This one."
+        }
+      ]
+    },
+    {
+      "id": "honest",
+      "dur": 5.76,
+      "lines": [
+        {
+          "id": "08",
+          "at": 0.2,
+          "text": "And it tells you what it couldn't check."
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "dur": 5.76,
+      "lines": [
+        {
+          "id": "09",
+          "at": 0.5,
+          "text": "Open source. Works with any coding agent."
+        }
+      ]
+    }
+  ]
+}

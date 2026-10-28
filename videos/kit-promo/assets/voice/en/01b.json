@@ -1,0 +1,10 @@
+{
+  "text": "A video takes seven of them.",
+  "provider": "openrouter",
+  "voiceId": "Iapetus",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "d189ea3b43a9f18f",
+  "duration": 1.777,
+  "words": [],
+  "heard": "A video takes seven of them."
+}
