@@ -14,8 +14,11 @@ After 40 seconds they should want to go tonight.
 ## Format
 - Length: 42 seconds, 15 bars of the music (86 BPM, a bar is 2.79 s); every cut on a downbeat
 - Shape: landscape 16:9, 1920×1080, 30 fps
-- Language: Russian, with an Uzbek welcome
-- Voice: short lines, low and unhurried; ElevenLabs eleven_v3
+- Language: Russian, with an Uzbek welcome ("Xush kelibsiz" on screen; spelled "Хуш
+  келибсиз" for the Russian voice so it is pronounced right)
+- Voice: a native Russian voice, low and unhurried (OpenRouter, Microsoft MAI-Voice-2.1).
+  The voice tells the evening as a story (the city slows down, the master prepares, the
+  first draw, an invitation); it never repeats the captions, which only name the steps
 - Music: "Desert City" by Kevin MacLeod (CC BY 4.0), percussion and dulcimer groove
 
 ## Facts

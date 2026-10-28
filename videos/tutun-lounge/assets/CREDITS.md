@@ -11,4 +11,7 @@ By Attribution 4.0 License, http://creativecommons.org/licenses/by/4.0/
 | ---- | ---- | ------ | ------ | ------- |
 | fonts/oswald-*.woff2 | Oswald, latin, latin-ext and cyrillic subsets (@fontsource-variable/oswald 5.3.0) | [Google Fonts](https://fonts.google.com/specimen/Oswald) | Vernon Adams, Kalapi Gajjar, Cyreal | [OFL 1.1](fonts/OFL-oswald.txt) |
 
-The voice files in voice/ are generated with ElevenLabs (model eleven_v3) for this example.
+The voice files in voice/ were generated with ElevenLabs (model eleven_v3, voice Brian) on
+a free plan, which allows non-commercial use only. They are not covered by the
+repository's MIT license; for commercial use, generate them again with your own paid
+account (`node kit.mjs voice tutun-lounge --force`).

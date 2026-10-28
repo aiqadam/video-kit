@@ -91,6 +91,24 @@ function loudness(file, from) {
   return { lufs: I ? Number(I[1]) : null, peak: TP ? Number(TP[1]) : null, tailMean: mean ? Number(mean[1]) : null };
 }
 
+/**
+ * Brings the mix to `target` LUFS with true peak at most -1.5 dB, two-pass loudnorm,
+ * picture copied untouched. video.json "loudness": false leaves the mix as rendered.
+ */
+function normalizeLoudness(file, target) {
+  const ff = (args) => spawnSync(ffmpegPath(), args, { encoding: 'utf8' });
+  const probe = ff(['-hide_banner', '-nostats', '-i', file, '-vn', '-af', `loudnorm=I=${target}:TP=-1.5:LRA=11:print_format=json`, '-f', 'null', '-']);
+  const m = /\{[^{}]*"input_i"[^{}]*\}/.exec(probe.stderr || '');
+  if (!m) return;
+  const s = JSON.parse(m[0]);
+  if (!Number.isFinite(Number(s.input_i)) || Number(s.input_i) < -70) return;
+  const tmp = file.replace(/\.mp4$/, '.norm.mp4');
+  const filter = `loudnorm=I=${target}:TP=-1.5:LRA=11:measured_I=${s.input_i}:measured_TP=${s.input_tp}:measured_LRA=${s.input_lra}:measured_thresh=${s.input_thresh}:offset=${s.target_offset}:linear=true`;
+  const r = ff(['-v', 'error', '-y', '-i', file, '-map', '0:v', '-map', '0:a', '-c:v', 'copy', '-af', filter, '-ar', '48000', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', tmp]);
+  if (r.status === 0) fs.renameSync(tmp, file);
+  else fs.rmSync(tmp, { force: true });
+}
+
 async function main() {
   const { pos, opt } = parse(process.argv.slice(2));
   const cmd = pos[0];
@@ -189,6 +207,8 @@ async function main() {
       fs.mkdirSync(path.dirname(file), { recursive: true });
       const code = await hf(['render', '-o', file, '--quality', quality, '--quiet'], v.dir);
       if (code || !fs.existsSync(file)) return code || 1;
+      const target = v.spec.loudness === undefined ? -16 : v.spec.loudness;
+      if (target !== false) normalizeLoudness(file, target);
       const len = audioSeconds(file);
       const lv = loudness(file, Math.max(0, len - 3));
       say(`\n${rel(file)}`);
@@ -211,7 +231,8 @@ async function main() {
       say(`✓ HyperFrames ${hfVersion()} (pinned; telemetry off)`);
       const r = await hf(['browser', 'ensure'], root, { capture: true });
       say(`${r.code === 0 ? '✓' : '✗'} browser for rendering${r.code === 0 ? '' : ': ' + r.out.trim().split('\n').pop()}`);
-      say(`${process.env.ELEVENLABS_API_KEY ? '✓' : '·'} ELEVENLABS_API_KEY ${process.env.ELEVENLABS_API_KEY ? 'is set' : 'is not set: videos build without a voice until it is (see .env.example)'}`);
+      const keys = ['ELEVENLABS_API_KEY', 'OPENROUTER_API_KEY'].filter((k) => process.env[k]);
+      say(`${keys.length ? '✓' : '·'} voice keys: ${keys.length ? keys.join(', ') : 'none set: videos build without a voice until one is (see .env.example)'}`);
       return major >= 22 ? 0 : 1;
     }
 

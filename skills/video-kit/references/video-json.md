@@ -45,6 +45,7 @@ HyperFrames renders; every other command syncs first.
 | `scenes[].id` | lowercase letters, digits, dashes; the scene file is `compositions/<id>.html` unless `src` says otherwise |
 | `scenes[].dur` | the scene's length including its share of the crossfade |
 | `lines[]` | `id` (unique in the video), `at` (seconds from the scene start), `text` (a string, or one per language) |
+| `loudness` | target for the final mix in LUFS, default −16 (social, web); `false` keeps the mix as rendered |
 | `sfx[]` | `at`, `sound` (`tap`, `key`, `pop`, `whoosh`, `success`, or a file path), `gain` |
 
 ## The arithmetic

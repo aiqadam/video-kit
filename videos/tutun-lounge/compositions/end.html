@@ -76,22 +76,26 @@
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 120px;
+        bottom: 160px;
         text-align: center;
         font-size: 34px;
         font-weight: 500;
         letter-spacing: 0.06em;
         text-transform: uppercase;
       }
-      #end-note {
+      #end-note,
+      #end-music {
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 66px;
+        bottom: 104px;
         text-align: center;
         font-size: 28px;
         font-weight: 300;
         color: var(--muted);
+      }
+      #end-music {
+        bottom: 58px;
       }
     </style>
     <div id="end-cam"><video id="end-copper" class="clip end-video" src="assets/fetched/clips/copper.mp4" data-start="0" data-duration="8.372" data-track-index="1" muted playsinline></video></div>
@@ -102,6 +106,7 @@
     <div id="end-welcome">Xush kelibsiz · каждый вечер с 18:00</div>
     <div id="end-warn">Курение вредит вашему здоровью</div>
     <div id="end-note">Пример AI Qadam Video Kit: заведение и всё сказанное о нём вымышлены</div>
+    <div id="end-music">Music: “Desert City” Kevin MacLeod (incompetech.com) · CC BY 4.0</div>
     <script>
       window.__timelines["end"] = kit.scene("end", function (t, s) {
         kit.set(s.$("#end-cam"), { scale: kit.interp(t, [0, s.dur], [1.08, 1.0]) });
@@ -113,6 +118,7 @@
         kit.set(s.$("#end-age"), { opacity: 1 });
         kit.set(s.$("#end-warn"), { opacity: 1 });
         kit.set(s.$("#end-note"), { opacity: 1 });
+        kit.set(s.$("#end-music"), { opacity: 1 });
       });
     </script>
   </div>

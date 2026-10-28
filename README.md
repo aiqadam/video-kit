@@ -1,5 +1,7 @@
 # AI Qadam Video Kit
 
+An [AI Qadam Build](https://build.aiqadam.org) project.
+
 Make promo, pitch and product videos by talking to a coding agent. You describe the
 video; the agent writes a brief, lays out the scenes in HTML, records the voiceover,
 checks the frames and renders an MP4.
@@ -16,8 +18,8 @@ is open source: rendering by [HyperFrames](https://github.com/heygen-com/hyperfr
 - **One file for timing.** `video.json` holds the scenes, voice lines and sounds, each
   relative to its scene, so lengthening a scene never desynchronises the voice.
 - **Product screens drawn in code** and acted out: taps, typing, screen changes.
-- **Voiceover** with ElevenLabs by default (any language the model has, Uzbek included
-  with `eleven_v3`); other providers plug in.
+- **Voiceover** with ElevenLabs, or through OpenRouter (native voices for many languages:
+  Microsoft MAI-Voice, Gemini TTS, MiniMax, Fish Audio and more); other providers plug in.
 - **Music and interface sounds generated** to the video's length, or your own track.
   The music dips under the voice by itself.
 - **Checks** for timing, overlaps, missing translations, uncredited assets, plus
@@ -42,8 +44,9 @@ npx github:aiqadam/video-kit init my-videos
 cd my-videos && npm install
 ```
 
-For a voiceover, copy `.env.example` to `.env` and put your
-[ElevenLabs key](https://elevenlabs.io/app/developers/api-keys) in it. Without a key
+For a voiceover, copy `.env.example` to `.env` and put an
+[ElevenLabs key](https://elevenlabs.io/app/developers/api-keys) or an
+[OpenRouter key](https://openrouter.ai/settings/keys) in it. Without a key
 everything works except the voice: lines are timed by an estimate and stay silent.
 
 Then open the folder in your coding agent and say what you need, in any language:
@@ -79,6 +82,11 @@ node kit.mjs render <video> [--lang xx] [--quality draft|standard|high] [-o file
 node kit.mjs doctor                        check Node, ffmpeg, browser, key
 ```
 
+## Contributing
+
+Issues and pull requests are welcome. Sign off your commits (`git commit -s`, the
+[DCO](https://developercertificate.org/)); see `CONTRIBUTING.md`.
+
 ## Licenses
 
 The kit is MIT. It installs HyperFrames (Apache-2.0), ffmpeg via `ffmpeg-static` and
@@ -86,4 +94,6 @@ The kit is MIT. It installs HyperFrames (Apache-2.0), ffmpeg via `ffmpeg-static`
 install, not shipped here), and Inter (OFL). HyperFrames' anonymous telemetry is switched off for every
 command the kit runs. The example's photos and fonts are credited in
 `videos/tutun-lounge/assets/CREDITS.md` and `sources.json`. What you render is yours; check the licenses of
-the media and voices you add.
+the media and voices you add. The example's voice files were made on an ElevenLabs free
+plan, which allows non-commercial use only; they are not covered by the MIT license. For
+anything commercial, make the voice again with your own paid account.

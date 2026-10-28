@@ -32,6 +32,36 @@ ElevenLabs library works by its id; premade voices work on free plans. Set it in
   eleven_v3 detects the language per line.
 - The narrator should not be silent for long: gaps under about 5 s.
 
+### Choosing a voice for a language
+
+ElevenLabs' premade voices are native English speakers: in Russian, Uzbek or Kazakh they
+sound foreign. Native voices from the ElevenLabs library need a paid plan through the
+API ("Free users cannot use library voices via the API"). With a free plan, use
+OpenRouter for other languages. Make two or three samples of the first lines and let the
+person choose by ear; you cannot hear them.
+
+### OpenRouter
+
+One key (`OPENROUTER_API_KEY`) reaches many speech models:
+
+```json
+"voice": { "provider": "openrouter", "model": "microsoft/mai-voice-2.1", "voiceId": "ru-RU-Lev:MAI-Voice-2.1" }
+"voice": { "provider": "openrouter", "model": "google/gemini-3.8-flash-tts", "voiceId": "Charon",
+           "instructions": "Speak slowly, low and warm, relaxed, like late at night." }
+```
+
+| Model | Good for |
+| ----- | -------- |
+| `microsoft/mai-voice-2.1` | native voices per language (`ru-RU-Lev`, `ru-RU-Masha`, …) |
+| `google/gemini-3.8-flash-tts` | any language, delivery steered by `instructions` |
+| `elevenlabs/eleven-v3` | the ElevenLabs premade voices, billed through OpenRouter |
+| `minimax/speech-2.8-hd`, `fish-audio/s2.1-pro` | expressive narration |
+
+The current list with voices and prices:
+`https://openrouter.ai/api/v1/models?output_modalities=speech`. `speed` changes the pace
+where the model supports it. OpenRouter returns no word timings, so `s.word()` falls back
+to the line start.
+
 ### Other providers
 
 `lib/voice.mjs` has a `PROVIDERS` table. A provider is
@@ -56,6 +86,6 @@ typed letter, a pop when a number lands, a whoosh on a fast cut. Few and exact.
 
 ## Checking sound
 
-`render` prints integrated loudness, true peak and the level of the last 3 s. Aim for
+`render` normalises the finished mix to `loudness` (default −16 LUFS, true peak −1.5 dB) and prints integrated loudness, true peak and the level of the last 3 s. Aim for
 about −16 to −14 LUFS with true peak below −1 dB. A last-3-seconds level far below the
 rest means the music stopped early. You cannot hear the mix; say so.
