@@ -101,7 +101,18 @@ Issues and pull requests are welcome. Sign off your commits (`git commit -s`, th
 
 ## Licenses
 
-The kit is MIT. It installs HyperFrames (Apache-2.0), ffmpeg via `ffmpeg-static` and
+The kit is MIT, with these exceptions:
+
+- `tts/piper/run.py` is GPL-3.0-or-later, because it runs inside the GPL `piper-tts`
+  library; it is a separate program the kit talks to.
+- `videos/tutun-lounge/assets/fonts/` are fonts under the SIL Open Font License, with the
+  license next to them.
+- `videos/tutun-lounge/assets/voice/` are voice files made with Google Gemini TTS; their
+  use follows the provider's terms.
+- Footage and music of the example are not in the repository: `sources.json` lists them
+  with their own licenses (Pexels License, CC BY 4.0).
+
+The kit itself is MIT. It installs HyperFrames (Apache-2.0), ffmpeg via `ffmpeg-static` and
 `@ffprobe-installer/ffprobe` (the ffmpeg binaries are GPL; they are downloaded at
 install, not shipped here), and Inter (OFL). HyperFrames' anonymous telemetry is switched off for every
 command the kit runs. The example's footage, music and fonts are credited in

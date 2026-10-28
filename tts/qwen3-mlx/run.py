@@ -1,4 +1,6 @@
-"""Qwen3-TTS worker for AI Qadam Video Kit (MIT).
+"""Qwen3-TTS worker for AI Qadam Video Kit.
+
+SPDX-License-Identifier: MIT
 
 Reads one JSON request per line on stdin, writes a WAV file and answers one JSON line:
   {"text", "out", "model", "language", "instructions", "voiceId"} -> {"ok": true} | {"error": "..."}

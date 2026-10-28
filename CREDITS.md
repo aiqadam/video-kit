@@ -7,6 +7,6 @@
 | [Inter](https://rsms.me/inter/) via [@fontsource-variable/inter](https://fontsource.org/fonts/inter) | default typeface | OFL-1.1 |
 | [ElevenLabs](https://elevenlabs.io), [OpenRouter](https://openrouter.ai) | voice providers (an account and key of your own) | service terms |
 | [mlx-audio](https://github.com/Blaizzy/mlx-audio), [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS) | optional local voice engine on Apple Silicon, installed by `tts setup` | MIT; model Apache-2.0 |
-| [Piper](https://github.com/OHF-Voice/piper1-gpl) | optional local voice engine on any OS, installed by `tts setup` | GPL-3.0 (a tool you run, not part of the kit); voices per MODEL_CARD |
+| [Piper](https://github.com/OHF-Voice/piper1-gpl) | optional local voice engine on any OS, installed by `tts setup` | GPL-3.0 (a tool you run, not part of the kit; `tts/piper/run.py` that imports it is GPL-3.0-or-later); voices per MODEL_CARD |
 
 The example video's footage, music and fonts are credited in `videos/tutun-lounge/assets/sources.json` and `CREDITS.md`.

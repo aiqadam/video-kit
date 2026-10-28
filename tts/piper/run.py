@@ -1,4 +1,9 @@
-"""Piper worker for AI Qadam Video Kit (MIT).
+"""Piper worker for AI Qadam Video Kit.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+This file imports piper-tts (GPL-3.0) in the same process, so it is licensed under the
+GPL-3.0-or-later, unlike the rest of the kit (MIT). It runs as a separate program that
+the kit talks to over stdin/stdout.
 
 Reads one JSON request per line on stdin and answers one JSON line:
   {"text", "out", "model", "speed"} -> {"ok": true} | {"error": "..."}
