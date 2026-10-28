@@ -1,0 +1,33 @@
+{
+  "title": "new-video",
+  "format": "landscape",
+  "fps": 30,
+  "lang": "en",
+  "transition": 0.3,
+  "maxSilence": 5,
+  "theme": {
+    "bg": "#101014",
+    "ink": "#f4f2ee",
+    "muted": "rgba(244, 242, 238, 0.62)",
+    "accent": "#e0a43c"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v3"
+  },
+  "music": { "source": "synth", "style": "calm", "volume": 0.4 },
+  "scenes": [
+    {
+      "id": "title",
+      "dur": 5,
+      "lines": [{ "id": "01", "at": 0.6, "text": "Meet the product, in one sentence." }],
+      "sfx": [{ "at": 0.3, "sound": "whoosh", "gain": 0.5 }]
+    },
+    {
+      "id": "end",
+      "dur": 4,
+      "lines": [{ "id": "02", "at": 0.5, "text": "Try it today." }]
+    }
+  ]
+}

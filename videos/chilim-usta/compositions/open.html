@@ -1,0 +1,85 @@
+<template>
+  <div id="root" data-composition-id="open">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #open-mat {
+        position: absolute;
+        left: -10%;
+        top: 0;
+        width: 120%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.22;
+      }
+      #open-shade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, var(--bg) 30%, rgba(21, 17, 13, 0.55) 70%, rgba(21, 17, 13, 0.2));
+      }
+      #open-card {
+        position: absolute;
+        left: 1110px;
+        top: 140px;
+        width: 620px;
+        height: 800px;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+      }
+      #open-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform-origin: 50% 60%;
+      }
+      #open-text {
+        position: absolute;
+        left: 160px;
+        top: 330px;
+        width: 860px;
+      }
+      #open-kicker {
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        color: var(--accent);
+      }
+      #open-title {
+        margin-top: 18px;
+        font-family: var(--display);
+        font-size: 168px;
+        font-weight: 700;
+        line-height: 1;
+      }
+      #open-sub {
+        margin-top: 34px;
+        font-size: 46px;
+        color: var(--muted);
+      }
+    </style>
+    <img id="open-mat" src="assets/photos/huqqa-mat.jpg" alt="" />
+    <div id="open-shade"></div>
+    <div id="open-card"><img id="open-photo" src="assets/photos/glass-vessel.jpg" alt="Glass hookah base" /></div>
+    <div id="open-text">
+      <div id="open-kicker">ТАШКЕНТ · МАСТЕРСКАЯ</div>
+      <div id="open-title">Chilim Usta</div>
+      <div id="open-sub">Кальяны ручной работы на заказ</div>
+    </div>
+    <script>
+      window.__timelines["open"] = kit.scene("open", function (t, s) {
+        // the card is on screen from the first frame (it is the thumbnail); the camera creeps in
+        kit.set(s.$("#open-photo"), { scale: kit.interp(t, [0, s.dur], [1.04, 1.16]) });
+        kit.set(s.$("#open-card"), { y: kit.interp(t, [0, s.dur], [16, -16]) });
+        kit.set(s.$("#open-mat"), { x: kit.interp(t, [0, s.dur], [0, -60]) });
+        kit.reveal(s.$("#open-kicker"), t, 0.3);
+        kit.words(s.$("#open-title"), t, 0.6, { step: 0.18, accent: ["Usta"] });
+        kit.reveal(s.$("#open-sub"), t, 1.6);
+      });
+    </script>
+  </div>
+</template>

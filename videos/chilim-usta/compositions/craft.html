@@ -1,0 +1,97 @@
+<template>
+  <div id="root" data-composition-id="craft">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      .craft-shot {
+        position: absolute;
+        inset: 0;
+        visibility: hidden;
+      }
+      .craft-shot img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .craft-shade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(10, 8, 6, 0.86) 0%, rgba(10, 8, 6, 0.35) 38%, rgba(10, 8, 6, 0) 60%);
+      }
+      .craft-caption {
+        position: absolute;
+        left: 140px;
+        bottom: 120px;
+      }
+      .craft-num {
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        color: var(--accent);
+      }
+      .craft-word {
+        margin-top: 12px;
+        font-family: var(--display);
+        font-size: 120px;
+        font-weight: 700;
+        line-height: 1.05;
+      }
+      #craft-uz {
+        margin-top: 22px;
+        font-size: 46px;
+        color: var(--ink);
+      }
+      #craft-uz span {
+        color: var(--muted);
+      }
+      #craft-img-glass {
+        object-position: 50% 62%;
+      }
+    </style>
+    <div class="craft-shot" id="craft-shot-1">
+      <img id="craft-img-glass" src="assets/photos/glass-vessel.jpg" alt="Blown glass" />
+      <div class="craft-shade"></div>
+      <div class="craft-caption">
+        <div class="craft-num">01 / 03</div>
+        <div class="craft-word" id="craft-w1">Выдувное стекло</div>
+      </div>
+    </div>
+    <div class="craft-shot" id="craft-shot-2">
+      <img id="craft-img-lagan" src="assets/photos/ceramic-lagan.jpg" alt="Ceramics" />
+      <div class="craft-shade"></div>
+      <div class="craft-caption">
+        <div class="craft-num">02 / 03</div>
+        <div class="craft-word" id="craft-w2">Керамика</div>
+      </div>
+    </div>
+    <div class="craft-shot" id="craft-shot-3">
+      <img id="craft-img-bowl" src="assets/photos/atlas-bowl.jpg" alt="Atlas pattern" />
+      <div class="craft-shade"></div>
+      <div class="craft-caption">
+        <div class="craft-num">03 / 03</div>
+        <div class="craft-word" id="craft-w3">Роспись «атлас»</div>
+        <div id="craft-uz">Qo‘lda yasalgan <span>· сделано руками</span></div>
+      </div>
+    </div>
+    <script>
+      window.__timelines["craft"] = kit.scene("craft", function (t, s) {
+        // three shots, each pushes in slowly; cuts fly through the frame
+        var shots = [[0, 3.0], [3.0, 6.0], [6.0, s.dur]];
+        var imgs = ["#craft-img-glass", "#craft-img-lagan", "#craft-img-bowl"];
+        shots.forEach(function (b, i) {
+          var last = i === shots.length - 1;
+          kit.beat(s.$("#craft-shot-" + (i + 1)), t, b[0], b[1], { enter: i === 0 ? 1.08 : 0.86, last: last });
+          kit.set(s.$(imgs[i]), { scale: kit.interp(t, b, [1.02, 1.12]) });
+          kit.words(s.$("#craft-w" + (i + 1)), t, b[0] + 0.25, { step: 0.12 });
+        });
+        kit.reveal(s.$("#craft-uz"), t, 6.0);
+      });
+    </script>
+  </div>
+</template>

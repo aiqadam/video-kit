@@ -1,0 +1,61 @@
+# Voice and sound
+
+## Voice
+
+`node kit.mjs voice <name> [--lang xx] [--force id,id]` makes every line whose text,
+voice or model changed, into `assets/voice/<lang>/<id>.mp3` plus `<id>.json` (text,
+length, word timings). Unchanged lines are kept, so editing one line costs one request.
+Each file is normalised to −16 LUFS.
+
+The key comes from `ELEVENLABS_API_KEY` in `.env` at the repository root, or from the
+environment. An ElevenLabs key starts with `sk_`; a key *ID* does not work.
+
+### ElevenLabs models
+
+| Model | Use |
+| ----- | --- |
+| `eleven_v3` (default) | most natural, 70+ languages, including Uzbek, Kazakh and other languages `multilingual_v2` lacks |
+| `eleven_multilingual_v2` | 29 languages, very stable; good for long English or Russian narration |
+| `eleven_flash_v2_5` | fast and cheap drafts |
+
+Voices: the default is George (`JBFqnCBsd6RMkjVDRZzb`). Any voice from the person's
+ElevenLabs library works by its id; premade voices work on free plans. Set it in
+`video.json` → `voice.voiceId`, per language (`voice.ru.voiceId`) or per line.
+
+### Writing lines that sound right
+
+- Write numbers as words when the reading matters ("one thousand five hundred", not
+  "1,500"; "twenty twenty-six" or "two thousand twenty-six", as the person prefers).
+- Spell brand names phonetically if they are misread ("Nai-kee", "Ky-row"), and write
+  abbreviations as letters with hyphens ("A-M-L").
+- One sentence or two per line. Lines in another language are fine inside one video;
+  eleven_v3 detects the language per line.
+- The narrator should not be silent for long: gaps under about 5 s.
+
+### Other providers
+
+`lib/voice.mjs` has a `PROVIDERS` table. A provider is
+`async (text, options) → {audio: Buffer (mp3), words: [{w, start, end}]}`.
+To add one (OpenAI, Google, Azure, a local model), write that function, register it
+under a name, and set `voice.provider` in `video.json`. Keys go in `.env`.
+
+## Music
+
+- `"music": {"source": "synth", "style": "calm"}` generates a quiet ambient bed to the
+  video's length; `"hijaz"` gives Central Asian and Middle Eastern colour. It is a
+  placeholder that stays out of the voice's way, not a composed track.
+- `"music": {"source": "file", "file": "assets/music/track.mp3"}` uses the person's track
+  (credit it). It is trimmed to the video and faded at the end.
+- The music dips under the voice automatically (`duck`, default 0.35 of its level).
+
+## Interface sounds
+
+`sfx` entries in `video.json` place `tap`, `key`, `pop`, `whoosh` and `success`, or a
+file. Every sound needs a cause on screen at the same moment: a tap on a tap, a key per
+typed letter, a pop when a number lands, a whoosh on a fast cut. Few and exact.
+
+## Checking sound
+
+`render` prints integrated loudness, true peak and the level of the last 3 s. Aim for
+about −16 to −14 LUFS with true peak below −1 dB. A last-3-seconds level far below the
+rest means the music stopped early. You cannot hear the mix; say so.

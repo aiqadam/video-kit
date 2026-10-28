@@ -1,0 +1,38 @@
+<template>
+  <div id="root" data-composition-id="title">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg);
+      }
+      #title-box {
+        text-align: center;
+      }
+      #title-head {
+        font-family: var(--display);
+        font-size: 128px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      #title-sub {
+        margin-top: 28px;
+        font-size: 44px;
+        color: var(--muted);
+      }
+    </style>
+    <div id="title-box">
+      <div id="title-head">Your product</div>
+      <div id="title-sub">One line on what it does</div>
+    </div>
+    <script>
+      window.__timelines["title"] = kit.scene("title", function (t, s) {
+        kit.words(s.$("#title-head"), t, 0.3, { accent: ["product"] });
+        kit.reveal(s.$("#title-sub"), t, 1.2);
+      });
+    </script>
+  </div>
+</template>

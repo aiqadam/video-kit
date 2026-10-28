@@ -1,0 +1,26 @@
+<template>
+  <div id="root" data-composition-id="end">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg);
+      }
+      #end-mark {
+        font-family: var(--display);
+        font-size: 96px;
+        font-weight: 800;
+        color: var(--accent);
+      }
+    </style>
+    <div id="end-mark">yourproduct.com</div>
+    <script>
+      window.__timelines["end"] = kit.scene("end", function (t, s) {
+        kit.pop(s.$("#end-mark"), t, 0.3);
+      });
+    </script>
+  </div>
+</template>
