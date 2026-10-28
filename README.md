@@ -24,6 +24,9 @@ is open source: rendering by [HyperFrames](https://github.com/heygen-com/hyperfr
   is transcribed back and checked against the script.
 - **Music and interface sounds generated** to the video's length, or your own track.
   The music dips under the voice by itself.
+- **Media by reference**: `media search` (Wikimedia Commons, Openverse) and `media add`
+  (Pexels by clip number, Commons, Openverse, any URL with its license): the license and
+  author are recorded, the file is fetched and trimmed, and a preview is made to look at.
 - **Checks** for timing, overlaps, missing translations, uncredited assets, plus
   HyperFrames' layout, contrast and audio checks; the render reports its loudness.
 - **Any shape**: landscape, portrait, square, or a custom size.
@@ -83,6 +86,7 @@ node kit.mjs stills <video> [scene@sec …]  PNG frames and a contact sheet
 node kit.mjs voice <video> [--force id]    make new or changed voice lines
 node kit.mjs preview <video>               scrub through it in the browser
 node kit.mjs render <video> [--lang xx] [--quality draft|standard|high] [-o file]
+node kit.mjs media search <words> | add <video> <ref>   find and add licensed media
 node kit.mjs tts list | setup <engine>      free local voice engines
 node kit.mjs doctor                        check Node, ffmpeg, browser, keys, engines
 ```

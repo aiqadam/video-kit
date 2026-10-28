@@ -7,6 +7,7 @@ import { KIT_ROOT, KitError, loadVideo, workspaceRoot, FORMATS, rel } from '../l
 import { sync } from '../lib/sync.mjs';
 import { fetchSources } from '../lib/fetch.mjs';
 import { engines, setupEngine, engineReady } from '../lib/local-tts.mjs';
+import { search as mediaSearch, addMedia, openverseRegister } from '../lib/media.mjs';
 import { checkVideo } from '../lib/check.mjs';
 import { generateVoice, audioSeconds } from '../lib/voice.mjs';
 import { hf, hfVersion, ffmpegPath, ffprobePath, loadEnv } from '../lib/tools.mjs';
@@ -26,6 +27,13 @@ const HELP = `AI Qadam Video Kit
   video-kit render <video> [--lang] [--quality draft|standard|high] [-o file]
                                    the finished MP4, with its loudness measured
   video-kit sync <video> [--lang]  fetch outside media, regenerate index.html (the other commands do this)
+  video-kit media search <words> [--source commons|openverse] [--type video|image|audio]
+                                   find licensed media with an open API
+  video-kit media add <video> <ref> [--as clips/x.mp4] [--trim 2,6] [--author ..] [--page ..]
+                                   ref: pexels:<id>, commons:File:<name>, openverse:audio/<id>, URL
+                                   adds it to assets/sources.json, fetches it, makes a preview
+  video-kit media openverse-register --email <address>
+                                   free Openverse keys, saved to .env
   video-kit tts list | setup <engine>
                                    local voice engines (free, offline): list them, or install one
   video-kit doctor                 check Node, ffmpeg, the browser and the voice key
@@ -219,6 +227,43 @@ async function main() {
       say(`  loudness ${lv.lufs ?? '?'} LUFS integrated, true peak ${lv.peak ?? '?'} dBFS, last 3 s mean ${lv.tailMean ?? '?'} dB`);
       say('  Measured, not listened to: watch and listen before sending it anywhere.');
       return 0;
+    }
+
+    case 'media': {
+      const sub = pos[1];
+      if (sub === 'search') {
+        const query = pos.slice(2).join(' ');
+        if (!query) throw new KitError('What to look for: node kit.mjs media search "hookah coals" --type video');
+        const items = await mediaSearch(query, { source: opt.source || 'commons', type: opt.type || 'video', limit: Number(opt.limit) || 10 });
+        if (!items.length) say('Nothing found.');
+        for (const it of items) {
+          say(`${it.ref}`);
+          say(`    ${[it.size, it.duration, it.license, it.author].filter(Boolean).join(' · ')}`);
+          say(`    ${it.page}`);
+        }
+        return 0;
+      }
+      if (sub === 'add') {
+        if (!pos[2] || !pos[3]) throw new KitError('node kit.mjs media add <video> <ref>, e.g. media add my-video pexels:8316467 --trim 2,6');
+        const v = loadVideo(pos[2]);
+        const r = await addMedia(v.dir, pos[3], { as: opt.as, trim: opt.trim, crop: opt.crop, width: opt.width, author: opt.author, page: opt.page, license: opt.license, name: opt.name });
+        say(`Added ${r.entry.file} (${r.info || 'image'}) · ${r.entry.license}${r.entry.author ? ' · ' + r.entry.author : ''}`);
+        say(`  in scenes: assets/fetched/${r.entry.file}`);
+        if (r.preview) say(`  preview: ${rel(r.preview)} (three frames: look before using it)`);
+        if (r.entry.warn) say(`  ⚠ ${r.entry.warn}`);
+        return 0;
+      }
+      if (sub === 'openverse-register') {
+        if (typeof opt.email !== 'string') throw new KitError('node kit.mjs media openverse-register --email you@example.org');
+        const k = await openverseRegister(opt.email);
+        const envFile = path.join(root, '.env');
+        const lines = (fs.existsSync(envFile) ? fs.readFileSync(envFile, 'utf8') : '').split(/\r?\n/).filter((l) => l && !/^OPENVERSE_CLIENT_(ID|SECRET)=/.test(l));
+        lines.push(`OPENVERSE_CLIENT_ID=${k.client_id}`, `OPENVERSE_CLIENT_SECRET=${k.client_secret}`);
+        fs.writeFileSync(envFile, lines.join('\n') + '\n', { mode: 0o600 });
+        say(`Registered "${k.name}". Keys saved to .env. Openverse sends a confirmation email to ${opt.email}: confirm it for the full limits.`);
+        return 0;
+      }
+      throw new KitError('node kit.mjs media search | add | openverse-register (see `node kit.mjs help`)');
     }
 
     case 'tts': {

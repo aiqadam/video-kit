@@ -1,5 +1,32 @@
 # Photos, footage, fonts and logos
 
+## Finding and adding media from the command line
+
+```
+node kit.mjs media search "hookah coals" --type video          # Wikimedia Commons, no key
+node kit.mjs media search "oriental lounge" --source openverse --type audio   # needs keys
+node kit.mjs media add <video> pexels:8316467 --trim 2,6 --author "Samer Daboul"
+node kit.mjs media add <video> "commons:File:How to prepare for Hookah.webm" --trim 3,9
+node kit.mjs media add <video> openverse:audio/<id>
+node kit.mjs media add <video> https://… --license "CC BY 4.0" --author … --page …
+```
+
+`add` writes the entry into `assets/sources.json` with its license, author and page,
+downloads and trims it, and for a video makes `<file>.preview.jpg` with three frames:
+read it before using the clip (burned-in subtitles, watermarks, faces, logos show up
+there). Commons and Openverse give the license and author themselves; for Pexels pass
+`--author` from the clip's page.
+
+**Pexels has no open search** (new API keys are paused, and its pages are behind bot
+protection: do not try to get around it). Search with your own web tools, e.g. read
+`https://www.pexels.com/search/videos/<words>/`; the number at the end of a clip's URL is
+its id for `pexels:<id>`. The download itself is the public download link and works.
+
+**Openverse** search needs a free registration per user:
+`node kit.mjs media openverse-register --email you@example.org` saves the keys to `.env`
+(confirm the email Openverse sends). Anonymous search does not answer. Do not share keys
+between users or commit them.
+
 ## Footage and music you may not redistribute
 
 Stock licenses (Pexels, Pixabay, Mixkit) allow use in a video but not handing out the
