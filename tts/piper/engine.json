@@ -1,0 +1,8 @@
+{
+  "name": "piper",
+  "about": "Piper (runs on Windows, macOS and Linux, CPU only): fast and plain; voices are downloaded by name, e.g. ru_RU-denis-medium, ru_RU-dmitri-medium, en_US-lessac-medium",
+  "platforms": ["darwin-arm64", "darwin-x64", "linux-x64", "linux-arm64", "win32-x64"],
+  "python": ">=3.9,<3.14",
+  "defaultModel": "ru_RU-denis-medium",
+  "license": "piper-tts GPL-3.0 (a tool you run, not part of the kit); check each voice's MODEL_CARD: ru_RU denis and dmitri are MIT with CC0 data, ru_RU ruslan is non-commercial"
+}

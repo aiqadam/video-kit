@@ -20,6 +20,7 @@
     "bin",
     "lib",
     "runtime",
+    "tts",
     "skills",
     "templates",
     "videos",

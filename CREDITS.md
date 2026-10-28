@@ -5,6 +5,8 @@
 | [HyperFrames](https://github.com/heygen-com/hyperframes) | renders HTML to video; checks, stills, preview | Apache-2.0 |
 | [ffmpeg-static](https://github.com/eugeneware/ffmpeg-static), [@ffprobe-installer/ffprobe](https://github.com/SavageCore/node-ffprobe-installer) | download ffmpeg and ffprobe at install | packages GPL-3.0 / LGPL-2.1; ffmpeg binaries GPL |
 | [Inter](https://rsms.me/inter/) via [@fontsource-variable/inter](https://fontsource.org/fonts/inter) | default typeface | OFL-1.1 |
-| [ElevenLabs](https://elevenlabs.io) | default voice provider (an account and key of your own) | service terms |
+| [ElevenLabs](https://elevenlabs.io), [OpenRouter](https://openrouter.ai) | voice providers (an account and key of your own) | service terms |
+| [mlx-audio](https://github.com/Blaizzy/mlx-audio), [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS) | optional local voice engine on Apple Silicon, installed by `tts setup` | MIT; model Apache-2.0 |
+| [Piper](https://github.com/OHF-Voice/piper1-gpl) | optional local voice engine on any OS, installed by `tts setup` | GPL-3.0 (a tool you run, not part of the kit); voices per MODEL_CARD |
 
 The example video's footage, music and fonts are credited in `videos/tutun-lounge/assets/sources.json` and `CREDITS.md`.

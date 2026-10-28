@@ -82,6 +82,27 @@ The current list with voices and prices:
 where the model supports it. OpenRouter returns no word timings, so `s.word()` falls back
 to the line start.
 
+### Local engines: free, offline, no account
+
+`node kit.mjs tts list` shows them; `node kit.mjs tts setup <engine>` creates a Python
+virtual environment under `.kit/tts/<engine>/` (needs Python 3.10–3.13 on the machine)
+and installs the engine. The model downloads on first use and stays cached.
+
+```json
+"voice": { "provider": "local", "engine": "qwen3-mlx",
+           "instructions": "A warm, low female voice with a smile; natural, lively pace." }
+"voice": { "provider": "local", "engine": "piper", "model": "ru_RU-dmitri-medium" }
+```
+
+| Engine | Runs on | Sounds | License of what you make |
+| ------ | ------- | ------ | ------------------------ |
+| `qwen3-mlx` (Qwen3-TTS 1.7B VoiceDesign) | Apple Silicon Macs | close to cloud voices; the voice is described in words; 10 languages, no Uzbek | Apache-2.0 model: commercial use allowed |
+| `piper` | Windows, macOS, Linux, CPU | plain but clear, very fast | per voice: `ru_RU-denis`/`dmitri` MIT with CC0 data; `ru_RU-ruslan` non-commercial; read the voice's MODEL_CARD |
+
+A new engine is a folder in `tts/` with `engine.json`, `requirements.txt` and a `run.py`
+that reads one JSON request per line on stdin (`text`, `out`, `model`, `language`,
+`instructions`, `voiceId`, `speed`), writes a WAV to `out` and answers `{"ok": true}`.
+
 ### Other providers
 
 `lib/voice.mjs` has a `PROVIDERS` table. A provider is

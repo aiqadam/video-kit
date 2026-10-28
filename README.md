@@ -18,8 +18,10 @@ is open source: rendering by [HyperFrames](https://github.com/heygen-com/hyperfr
 - **One file for timing.** `video.json` holds the scenes, voice lines and sounds, each
   relative to its scene, so lengthening a scene never desynchronises the voice.
 - **Product screens drawn in code** and acted out: taps, typing, screen changes.
-- **Voiceover** with ElevenLabs, or through OpenRouter (native voices for many languages:
-  Microsoft MAI-Voice, Gemini TTS, MiniMax, Fish Audio and more); other providers plug in.
+- **Voiceover** three ways: ElevenLabs; OpenRouter (one key for Microsoft MAI-Voice with
+  native voices per language, Gemini TTS, MiniMax, Fish Audio and more); or free local
+  engines (Qwen3-TTS on Apple Silicon, Piper anywhere) with no account at all. Every take
+  is transcribed back and checked against the script.
 - **Music and interface sounds generated** to the video's length, or your own track.
   The music dips under the voice by itself.
 - **Checks** for timing, overlaps, missing translations, uncredited assets, plus
@@ -46,7 +48,9 @@ cd my-videos && npm install
 
 For a voiceover, copy `.env.example` to `.env` and put an
 [ElevenLabs key](https://elevenlabs.io/app/developers/api-keys) or an
-[OpenRouter key](https://openrouter.ai/settings/keys) in it. Without a key
+[OpenRouter key](https://openrouter.ai/settings/keys) in it, or install a free local
+engine: `node kit.mjs tts list`, then `node kit.mjs tts setup qwen3-mlx` (Apple Silicon)
+or `node kit.mjs tts setup piper` (any OS). Without a key
 everything works except the voice: lines are timed by an estimate and stay silent.
 
 Then open the folder in your coding agent and say what you need, in any language:
@@ -79,7 +83,8 @@ node kit.mjs stills <video> [scene@sec …]  PNG frames and a contact sheet
 node kit.mjs voice <video> [--force id]    make new or changed voice lines
 node kit.mjs preview <video>               scrub through it in the browser
 node kit.mjs render <video> [--lang xx] [--quality draft|standard|high] [-o file]
-node kit.mjs doctor                        check Node, ffmpeg, browser, key
+node kit.mjs tts list | setup <engine>      free local voice engines
+node kit.mjs doctor                        check Node, ffmpeg, browser, keys, engines
 ```
 
 ## Contributing

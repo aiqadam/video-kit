@@ -11,3 +11,5 @@ videos/*/assets/kit/
 videos/*/.hyperframes/
 videos/*/renders/
 videos/*/assets/fetched/
+.kit/
+tts/*/voices/

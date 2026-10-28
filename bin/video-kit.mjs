@@ -6,6 +6,7 @@ import { spawnSync } from 'node:child_process';
 import { KIT_ROOT, KitError, loadVideo, workspaceRoot, FORMATS, rel } from '../lib/video.mjs';
 import { sync } from '../lib/sync.mjs';
 import { fetchSources } from '../lib/fetch.mjs';
+import { engines, setupEngine, engineReady } from '../lib/local-tts.mjs';
 import { checkVideo } from '../lib/check.mjs';
 import { generateVoice, audioSeconds } from '../lib/voice.mjs';
 import { hf, hfVersion, ffmpegPath, ffprobePath, loadEnv } from '../lib/tools.mjs';
@@ -25,6 +26,8 @@ const HELP = `AI Qadam Video Kit
   video-kit render <video> [--lang] [--quality draft|standard|high] [-o file]
                                    the finished MP4, with its loudness measured
   video-kit sync <video> [--lang]  fetch outside media, regenerate index.html (the other commands do this)
+  video-kit tts list | setup <engine>
+                                   local voice engines (free, offline): list them, or install one
   video-kit doctor                 check Node, ffmpeg, the browser and the voice key
   video-kit init <dir>             copy the kit into a new folder (for npx)
 
@@ -218,6 +221,20 @@ async function main() {
       return 0;
     }
 
+    case 'tts': {
+      if (pos[1] === 'setup') {
+        if (!pos[2]) throw new KitError('Name the engine: node kit.mjs tts setup piper');
+        setupEngine(pos[2], say);
+        return 0;
+      }
+      for (const e of engines()) {
+        say(`${engineReady(e.name) ? '✓' : '·'} ${e.name.padEnd(10)} ${e.about}`);
+        say(`  ${''.padEnd(10)} runs on ${e.platforms.join(', ')}; ${e.license}`);
+      }
+      say('\nInstall one with: node kit.mjs tts setup <engine>');
+      return 0;
+    }
+
     case 'doctor': {
       const major = Number(process.versions.node.split('.')[0]);
       say(`${major >= 22 ? '✓' : '✗'} Node ${process.versions.node} (22 or newer needed)`);
@@ -232,6 +249,8 @@ async function main() {
       const r = await hf(['browser', 'ensure'], root, { capture: true });
       say(`${r.code === 0 ? '✓' : '✗'} browser for rendering${r.code === 0 ? '' : ': ' + r.out.trim().split('\n').pop()}`);
       const keys = ['ELEVENLABS_API_KEY', 'OPENROUTER_API_KEY'].filter((k) => process.env[k]);
+      const ready = engines().filter((e) => engineReady(e.name)).map((e) => e.name);
+      say(`${ready.length ? '✓' : '·'} local voice engines: ${ready.length ? ready.join(', ') : 'none set up (node kit.mjs tts list)'}`);
       say(`${keys.length ? '✓' : '·'} voice keys: ${keys.length ? keys.join(', ') : 'none set: videos build without a voice until one is (see .env.example)'}`);
       return major >= 22 ? 0 : 1;
     }

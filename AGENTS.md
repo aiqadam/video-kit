@@ -43,7 +43,8 @@ node kit.mjs new <name> [--format landscape|portrait|square] [--lang ru]
 node kit.mjs plan <video>                  when each scene, line and sound plays
 node kit.mjs check <video> [--quick]       kit checks, then HyperFrames checks
 node kit.mjs stills <video> [scene@sec …]  PNG frames; read them before you reply
-node kit.mjs voice <video> [--force id]    voice lines (needs ELEVENLABS_API_KEY in .env)
+node kit.mjs voice <video> [--force id]    voice lines (an ElevenLabs or OpenRouter key, or a local engine)
+node kit.mjs tts list | setup <engine>     free local voice engines (Qwen3-TTS, Piper)
 node kit.mjs render <video> [--quality high]
 node kit.mjs preview <video>               live preview for the person (blocks)
 node kit.mjs doctor                        environment check

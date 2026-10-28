@@ -1,0 +1,8 @@
+{
+  "name": "qwen3-mlx",
+  "about": "Qwen3-TTS (Apache-2.0) on Apple Silicon through MLX: 10 languages incl. Russian and English; a voice is described in words (instructions) or picked by name",
+  "platforms": ["darwin-arm64"],
+  "python": ">=3.10,<3.14",
+  "defaultModel": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-bf16",
+  "license": "model Apache-2.0; mlx-audio MIT"
+}
