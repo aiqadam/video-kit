@@ -14,7 +14,7 @@ Who watches, where (a stage screen, a feed on mute, a website), and what they sh
 - Shape: landscape 16:9 / portrait 9:16 / square
 - Languages: 
 - Voice: yes / no; if yes, which voice and tone
-- Music: generated / a track supplied by the user / none
+- Music: a track supplied by the user / a licensed track we find / generated / none
 
 ## Facts
 | Fact as it will be said | Source (deck page, URL, document, the user's own words and date) |

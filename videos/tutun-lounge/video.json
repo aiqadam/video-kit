@@ -24,6 +24,13 @@
     "voiceId": "Sulafat",
     "instructions": "Speak Russian in a warm, low female voice with a smile and quiet confidence, like a stylish host inviting a guest in for the evening. Natural, lively pace, not slow, not sleepy, not whispering. Short phrases land firmly."
   },
+  "voiceSamples": [
+    { "name": "ms-lev", "provider": "openrouter", "model": "microsoft/mai-voice-2.1", "voiceId": "ru-RU-Lev:MAI-Voice-2.1" },
+    { "name": "gemini-sulafat", "provider": "openrouter", "model": "google/gemini-3.8-flash-tts", "voiceId": "Sulafat",
+      "instructions": "Speak Russian in a warm, low female voice with a smile and quiet confidence, like a stylish host inviting a guest in for the evening. Natural, lively pace." },
+    { "name": "qwen-local", "provider": "local", "engine": "qwen3-mlx",
+      "instructions": "A warm, low female voice with a smile and quiet confidence, like a stylish host inviting a guest in. Natural, lively pace." }
+  ],
   "music": {
     "source": "file",
     "file": "assets/fetched/music/desert-city.mp3",

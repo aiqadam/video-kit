@@ -22,8 +22,9 @@ is open source: rendering by [HyperFrames](https://github.com/heygen-com/hyperfr
   native voices per language, Gemini TTS, MiniMax, Fish Audio and more); or free local
   engines (Qwen3-TTS on Apple Silicon, Piper anywhere) with no account at all. Every take
   is transcribed back and checked against the script.
-- **Music and interface sounds generated** to the video's length, or your own track.
-  The music dips under the voice by itself.
+- **Music**: a licensed track (incompetech, by mood and tempo), your own, or a generated
+  bed; interface sounds generated. The music dips under the voice, and the final mix is
+  normalised to −16 LUFS.
 - **Media by reference**: `media search` (Wikimedia Commons; incompetech music by mood and
   tempo; Openverse) and `media add` (Pexels by clip number, Commons, incompetech,
   Openverse, any URL with its license): the license and
@@ -54,8 +55,8 @@ For a voiceover, copy `.env.example` to `.env` and put an
 [ElevenLabs key](https://elevenlabs.io/app/developers/api-keys) or an
 [OpenRouter key](https://openrouter.ai/settings/keys) in it, or install a free local
 engine: `node kit.mjs tts list`, then `node kit.mjs tts setup qwen3-mlx` (Apple Silicon)
-or `node kit.mjs tts setup piper` (any OS). Without a key
-everything works except the voice: lines are timed by an estimate and stay silent.
+or `node kit.mjs tts setup piper` (any OS). Without a key or an engine everything works
+except the voice: lines are timed by an estimate and stay silent.
 
 Then open the folder in your coding agent and say what you need, in any language:
 
@@ -102,8 +103,8 @@ Issues and pull requests are welcome. Sign off your commits (`git commit -s`, th
 The kit is MIT. It installs HyperFrames (Apache-2.0), ffmpeg via `ffmpeg-static` and
 `@ffprobe-installer/ffprobe` (the ffmpeg binaries are GPL; they are downloaded at
 install, not shipped here), and Inter (OFL). HyperFrames' anonymous telemetry is switched off for every
-command the kit runs. The example's photos and fonts are credited in
-`videos/tutun-lounge/assets/CREDITS.md` and `sources.json`. What you render is yours; check the licenses of
-the media and voices you add. The example's voice files were made with Google Gemini TTS
+command the kit runs. The example's footage, music and fonts are credited in
+`videos/tutun-lounge/assets/sources.json` and `CREDITS.md`. What you render is yours;
+check the licenses of the media and voices you add. The example's voice files were made with Google Gemini TTS
 through OpenRouter; they are not covered by the MIT license, and their use follows the
 provider's terms. For your own video, make the voice again with your own key.

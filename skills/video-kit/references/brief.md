@@ -16,7 +16,8 @@ message, as a short numbered list the person can answer in a line each.
    (a venue screen, an ad platform).
 5. **Language(s).** One, several versions, or one language with inserts in another.
 6. **Voice.** Narrated or not; voice, gender and tone; provider if they have one.
-7. **Music.** Generated, their own track, or none.
+7. **Music.** Their own track, a licensed one we find (`media search --type audio`), a
+   generated bed, or none. The mood and tempo, if they have a view.
 8. **Facts.** The numbers and claims the video should make, each with its source.
 9. **Materials.** Logo, brand colours and fonts, screenshots, photos, footage.
 10. **Must not.** Claims, words, images or competitors to keep out; legal caveats that

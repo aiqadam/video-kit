@@ -9,7 +9,7 @@ import { fetchSources } from '../lib/fetch.mjs';
 import { engines, setupEngine, engineReady } from '../lib/local-tts.mjs';
 import { search as mediaSearch, addMedia, openverseRegister } from '../lib/media.mjs';
 import { checkVideo } from '../lib/check.mjs';
-import { generateVoice, audioSeconds } from '../lib/voice.mjs';
+import { generateVoice, audioSeconds, PROVIDERS } from '../lib/voice.mjs';
 import { hf, hfVersion, ffmpegPath, ffprobePath, loadEnv } from '../lib/tools.mjs';
 
 const HELP = `AI Qadam Video Kit
@@ -18,7 +18,9 @@ const HELP = `AI Qadam Video Kit
                                    start videos/<name> from the template
   video-kit plan <video> [--lang]  when every scene, line and sound plays
   video-kit voice <video> [--lang] [--force id,id]
-                                   make missing or changed voice lines
+                                   make missing or changed voice lines, each take checked
+  video-kit voice <video> --samples [--text "…"]
+                                   the first line in every voice of video.json "voiceSamples"
   video-kit check <video> [--lang] [--quick]
                                    the kit's checks, then HyperFrames' (skip with --quick)
   video-kit stills <video> [scene@seconds ...] [--lang]
@@ -167,6 +169,29 @@ async function main() {
 
     case 'voice': {
       const v = loadVideo(pos[1], typeof opt.lang === 'string' ? opt.lang : undefined);
+      if (opt.samples) {
+        // the first line (or --text) in every voice listed in video.json "voiceSamples"
+        const list = v.spec.voiceSamples || [];
+        if (!list.length) throw new KitError('List candidate voices in video.json first: "voiceSamples": [{"name": "gemini-sulafat", "provider": "openrouter", "model": "…", "voiceId": "…"}, …]');
+        const text = typeof opt.text === 'string' ? opt.text : v.lines[0] && v.lines[0].text;
+        if (!text) throw new KitError('No line to sample: give --text "…".');
+        const out = path.join(v.dir, 'renders', 'voice-samples');
+        fs.mkdirSync(out, { recursive: true });
+        say(`Samples of "${text}"`);
+        for (const [i, c] of list.entries()) {
+          const name = c.name || `${i + 1}-${c.provider}`;
+          try {
+            const r = await PROVIDERS[c.provider](text, { lang: v.lang, ...c });
+            const f = path.join(out, `${name}.mp3`);
+            fs.writeFileSync(f, r.audio);
+            say(`  ${rel(f)}`);
+          } catch (e) {
+            say(`  ✗ ${name}: ${e.message}`);
+          }
+        }
+        say('Let the person listen and choose; then copy the chosen one into "voice".');
+        return 0;
+      }
       const force = typeof opt.force === 'string' ? opt.force.split(',') : opt.force === true ? v.lines.map((l) => l.id) : [];
       say(`Voice for ${v.name} [${v.lang}]`);
       const r = await generateVoice(v, { force });

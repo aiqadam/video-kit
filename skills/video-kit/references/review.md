@@ -10,7 +10,7 @@ Nobody can judge a video from its code. Render frames and look at them.
    then HyperFrames' (lint, runtime errors, layout, contrast, motion, audio). Fix every
    error; read every warning. `info` lines about overflow you intended can stay.
 3. `node kit.mjs stills <name>`: two frames per scene, plus a contact sheet. Read the
-   images. For a moment you changed: `node kit.mjs stills <name> order@6.8 order@7.4`.
+   images. For a moment you changed: `node kit.mjs stills <name> ritual@4.4 draw@10`.
 4. Render only when the frames are right.
 
 ## What to look for in stills
@@ -30,5 +30,6 @@ Nobody can judge a video from its code. Render frames and look at them.
 When you hand over a render, say in a few lines:
 - the file path, length and loudness `render` printed;
 - what changed since the last version;
-- which voice lines are drafts, if any;
+- which voice lines are drafts, if any, and any line whose takes never matched the text;
+- the credits the person must publish with the video (CC BY lines `check` lists);
 - that you checked frames and measured the sound, and did not watch the motion or listen.
