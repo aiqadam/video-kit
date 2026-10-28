@@ -1,5 +1,29 @@
 # Photos, footage, fonts and logos
 
+## Footage and music you may not redistribute
+
+Stock licenses (Pexels, Pixabay, Mixkit) allow use in a video but not handing out the
+original files, so they never go into the repository. List them in
+`assets/sources.json`; the kit downloads, trims, crops, scales and mutes them into
+`assets/fetched/` (gitignored) on the first `sync`, `check`, `stills` or `render`:
+
+```json
+[{ "file": "clips/coals.mp4", "url": "https://www.pexels.com/download/video/8316467/",
+   "page": "https://www.pexels.com/video/close-up-video-of-burning-charcoal-8316467/",
+   "author": "Samer Daboul", "license": "Pexels License", "trim": [2, 6], "width": 1920 }]
+```
+
+`trim` is [from, to] in the source, `crop` an ffmpeg `w:h:x:y`, `width` the largest width
+kept, `"mute": false` keeps the sound. Audio files are trimmed only. The entry is the
+credit; `check` warns when `license` or `page`/`author` is missing.
+
+Pexels: `https://www.pexels.com/download/video/<id>/` is the file; the id is the number at
+the end of the clip's page URL. Its search pages list clips with their slugs. Music: the
+incompetech.com catalogue (Kevin MacLeod, CC BY 4.0) has a JSON list at
+`/music/royalty-free/pieces.json` with genre, feel and BPM; Free Music Archive and
+Openverse have CC tracks too. Check every clip for minors before using it in anything
+about tobacco, alcohol or other adult products.
+
 ## Where to look
 
 1. **The person's own materials** first: their site, deck, app, brand kit.

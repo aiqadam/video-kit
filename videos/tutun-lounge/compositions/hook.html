@@ -1,0 +1,96 @@
+<template>
+  <div id="root" data-composition-id="hook">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #hook-cam {
+        position: absolute;
+        inset: 0;
+      }
+      .hook-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #hook-glow {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 60% 50% at 50% 60%, rgba(255, 130, 50, 0.22), rgba(255, 130, 50, 0) 70%),
+          radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.8) 100%);
+        mix-blend-mode: normal;
+      }
+      #hook-line {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 470px;
+        text-align: center;
+        font-size: 92px;
+        font-weight: 300;
+        letter-spacing: 0.02em;
+      }
+      #hook-logo {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 330px;
+        text-align: center;
+        font-size: 280px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0.3em;
+        padding-left: 0.3em;
+        text-shadow: 0 0 80px rgba(255, 130, 50, 0.45);
+      }
+      #hook-logo span {
+        display: inline-block;
+      }
+      #hook-sub {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 680px;
+        text-align: center;
+        font-size: 46px;
+        font-weight: 400;
+        letter-spacing: 0.5em;
+        padding-left: 0.5em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+    </style>
+    <div id="hook-cam">
+      <video id="hook-smoke" class="clip hook-video" src="assets/fetched/clips/smoke.mp4" data-start="0" data-duration="5.581" data-track-index="1" muted playsinline></video>
+    </div>
+    <div id="hook-glow"></div>
+    <div id="hook-line">Кальян не любит спешки.</div>
+    <div id="hook-logo"><span>T</span><span>U</span><span>T</span><span>U</span><span>N</span></div>
+    <div id="hook-sub">lounge · Ташкент</div>
+    <script>
+      window.__timelines["hook"] = kit.scene("hook", function (t, s) {
+        var BAR = 2.7907;
+        kit.set(s.$("#hook-cam"), { scale: kit.interp(t, [0, s.dur], [1.0, 1.14]) });
+
+        // bar 1: the line; it clears just before the downbeat that brings the logo
+        kit.words(s.$("#hook-line"), t, 0.25, { step: 0.16, len: 0.6 });
+        var out = kit.prog(t, BAR - 0.35, BAR - 0.05, kit.ease.in);
+        kit.set(s.$("#hook-line"), { opacity: 1 - out, blur: out * 12, visibility: t < BAR ? "visible" : "hidden" });
+
+        // bar 2: TUTUN, letter by letter, out of the smoke
+        var letters = s.$("#hook-logo").children;
+        for (var i = 0; i < letters.length; i++) {
+          var p = kit.prog(t, BAR + i * 0.1, BAR + i * 0.1 + 0.7);
+          kit.set(letters[i], { opacity: p, y: (1 - p) * 50, scale: 1.25 - 0.25 * p, blur: (1 - p) * 18 });
+        }
+        kit.reveal(s.$("#hook-sub"), t, BAR + 0.8, { y: 16 });
+      });
+    </script>
+  </div>
+</template>

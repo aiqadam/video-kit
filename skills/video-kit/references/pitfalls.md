@@ -35,5 +35,13 @@ layout. Write every language's text and check its stills.
 **Photos with museum furniture.** Open-access museum photos often include colour charts
 and rulers at the edges; they show up as soon as the image is a background. Crop them.
 
+**An ffprobe build for the wrong CPU.** `ffprobe-static` shipped an Intel binary as
+Apple Silicon ("bad CPU type"). The kit uses `@ffprobe-installer/ffprobe`, which has a
+native build per platform.
+
+**Selling an object instead of the experience.** A hookah ad made of museum photos and a
+drawn configurator left viewers cold. For anything sensory, show the process in close-ups
+with real footage, cut to music, and let the type be big and short.
+
 **A logo redrawn "close enough".** It is someone's trademark and it will be noticed.
 Use the official file or plain text.

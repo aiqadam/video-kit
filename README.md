@@ -55,15 +55,16 @@ The agent asks for whatever is missing (facts, audience, voice) and builds it un
 
 ## The example
 
-`videos/chilim-usta/` is a 38-second ad for an invented hookah workshop in Tashkent:
-Russian narration with Uzbek and English phrases, museum and Commons photos, a phone
-configurator acted out on screen, generated music. Render it:
+`videos/tutun-lounge/` is a 42-second ad for an invented hookah lounge in Tashkent:
+the ritual in close-ups (tobacco, bowl, foil, coals, the first draw), cut on the beat of a
+CC BY track, big type, Russian narration with an Uzbek welcome. The footage comes from
+Pexels; the kit downloads and trims it on the first build (`assets/sources.json`).
 
 ```bash
-node kit.mjs render chilim-usta
+node kit.mjs render tutun-lounge
 ```
 
-The file lands in `videos/chilim-usta/renders/`.
+The file lands in `videos/tutun-lounge/renders/`.
 
 ## Commands
 
@@ -81,8 +82,8 @@ node kit.mjs doctor                        check Node, ffmpeg, browser, key
 ## Licenses
 
 The kit is MIT. It installs HyperFrames (Apache-2.0), ffmpeg via `ffmpeg-static` and
-`ffprobe-static` (the ffmpeg binaries are GPL; they are downloaded at install, not
-shipped here), and Inter (OFL). HyperFrames' anonymous telemetry is switched off for every
+`@ffprobe-installer/ffprobe` (the ffmpeg binaries are GPL; they are downloaded at
+install, not shipped here), and Inter (OFL). HyperFrames' anonymous telemetry is switched off for every
 command the kit runs. The example's photos and fonts are credited in
-`videos/chilim-usta/assets/CREDITS.md`. What you render is yours; check the licenses of
+`videos/tutun-lounge/assets/CREDITS.md` and `sources.json`. What you render is yours; check the licenses of
 the media and voices you add.

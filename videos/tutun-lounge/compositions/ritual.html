@@ -1,0 +1,126 @@
+<template>
+  <div id="root" data-composition-id="ritual">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      .ritual-shot {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .ritual-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      /* the last bar: three tall shots side by side */
+      .ritual-panel {
+        position: absolute;
+        top: 0;
+        width: 640px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      .ritual-panel + .ritual-panel {
+        border-left: 4px solid var(--bg);
+      }
+      #ritual-grade {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(0deg, rgba(8, 5, 3, 0.85) 0%, rgba(8, 5, 3, 0.25) 35%, rgba(8, 5, 3, 0) 55%),
+          radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
+      }
+      .ritual-cap {
+        position: absolute;
+        left: 130px;
+        bottom: 110px;
+        visibility: hidden;
+      }
+      .ritual-num {
+        font-size: 34px;
+        font-weight: 500;
+        letter-spacing: 0.3em;
+        color: var(--accent);
+      }
+      .ritual-word {
+        font-size: 190px;
+        font-weight: 700;
+        line-height: 0.95;
+        text-transform: uppercase;
+      }
+      .ritual-sub {
+        margin-top: 14px;
+        font-size: 50px;
+        font-weight: 300;
+        color: var(--muted);
+      }
+      #ritual-c5 {
+        left: 0;
+        right: 0;
+        bottom: auto;
+        top: 400px;
+        text-align: center;
+      }
+      #ritual-c5 .ritual-word {
+        font-size: 170px;
+        color: var(--accent);
+        text-shadow: 0 0 60px rgba(255, 120, 40, 0.5);
+      }
+    </style>
+
+    <div class="ritual-shot" id="ritual-s1"><video id="ritual-v1" class="clip ritual-video" src="assets/fetched/clips/tobacco.mp4" data-start="0" data-duration="2.791" data-track-index="1" muted playsinline></video></div>
+    <div class="ritual-shot" id="ritual-s2"><video id="ritual-v2" class="clip ritual-video" src="assets/fetched/clips/packing.mp4" data-start="2.791" data-hf-media-start-basis="local" data-duration="2.791" data-track-index="1" muted playsinline></video></div>
+    <div class="ritual-shot" id="ritual-s3"><video id="ritual-v3" class="clip ritual-video" src="assets/fetched/clips/foil.mp4" data-start="5.581" data-hf-media-start-basis="local" data-duration="2.791" data-track-index="1" muted playsinline></video></div>
+    <div class="ritual-shot" id="ritual-s4"><video id="ritual-v4" class="clip ritual-video" src="assets/fetched/clips/coals-pan.mp4" data-start="8.372" data-hf-media-start-basis="local" data-duration="2.791" data-track-index="1" muted playsinline></video></div>
+    <div class="ritual-shot" id="ritual-s5"><video id="ritual-v5" class="clip ritual-video" src="assets/fetched/clips/coal-macro.mp4" data-start="11.163" data-hf-media-start-basis="local" data-duration="2.791" data-track-index="1" muted playsinline></video></div>
+    <div class="ritual-shot" id="ritual-s6">
+      <div class="ritual-panel" id="ritual-p1" style="left: 0"><video id="ritual-v6a" class="clip ritual-video" src="assets/fetched/clips/coals-dark.mp4" data-start="13.953" data-hf-media-start-basis="local" data-duration="2.791" data-track-index="1" muted playsinline></video></div>
+      <div class="ritual-panel" id="ritual-p2" style="left: 640px"><video id="ritual-v6b" class="clip ritual-video" src="assets/fetched/clips/tongs.mp4" data-start="14.651" data-hf-media-start-basis="local" data-duration="2.093" data-track-index="2" muted playsinline></video></div>
+      <div class="ritual-panel" id="ritual-p3" style="left: 1280px"><video id="ritual-v6c" class="clip ritual-video" src="assets/fetched/clips/red-smoke.mp4" data-start="15.349" data-hf-media-start-basis="local" data-duration="1.395" data-track-index="3" muted playsinline></video></div>
+    </div>
+    <div id="ritual-grade"></div>
+
+    <div class="ritual-cap" id="ritual-c1"><div class="ritual-num">01</div><div class="ritual-word">Табак</div><div class="ritual-sub">смешаем под твой вкус</div></div>
+    <div class="ritual-cap" id="ritual-c2"><div class="ritual-num">02</div><div class="ritual-word">Чаша</div><div class="ritual-sub">забиваем вручную</div></div>
+    <div class="ritual-cap" id="ritual-c3"><div class="ritual-num">03</div><div class="ritual-word">Фольга</div><div class="ritual-sub">для ровного прогрева</div></div>
+    <div class="ritual-cap" id="ritual-c4"><div class="ritual-num">04</div><div class="ritual-word">Угли</div><div class="ritual-sub">разжигаем заранее</div></div>
+    <div class="ritual-cap" id="ritual-c5"><div class="ritual-word">До ровного жара</div></div>
+    <div class="ritual-cap" id="ritual-c6"><div class="ritual-num">05</div><div class="ritual-word">На чашу</div></div>
+
+    <script>
+      window.__timelines["ritual"] = kit.scene("ritual", function (t, s) {
+        var BAR = 2.7907, BEAT = BAR / 4;
+
+        // one shot a bar, hard cuts on the downbeat; each lands with a small punch-in and drifts
+        for (var i = 0; i < 6; i++) {
+          var a = i * BAR, b = a + BAR;
+          var on = t >= a && t < b;
+          kit.set(s.$("#ritual-s" + (i + 1)), {
+            visibility: on ? "visible" : "hidden",
+            scale: kit.interp(t, [a, a + 0.3, b], [1.1, 1.03, 1.0], [kit.ease.out, kit.ease.linear]),
+          });
+          var cap = s.$("#ritual-c" + (i + 1));
+          kit.set(cap, { visibility: on ? "visible" : "hidden" });
+          var word = cap.querySelector(".ritual-word"), num = cap.querySelector(".ritual-num"), sub = cap.querySelector(".ritual-sub");
+          kit.words(word, t, a + 0.08, { step: 0.08, len: 0.35 });
+          if (num) kit.reveal(num, t, a, { y: 10, len: 0.3 });
+          if (sub) kit.reveal(sub, t, a + 0.35, { y: 14, len: 0.4 });
+        }
+
+        // the three panels come in on beats one, two and three of the last bar
+        ["#ritual-p1", "#ritual-p2", "#ritual-p3"].forEach(function (id, k) {
+          var at = 5 * BAR + k * BEAT;
+          var p = kit.prog(t, at, at + 0.25);
+          kit.set(s.$(id), { opacity: t >= at ? 1 : 0, y: (1 - p) * 60 });
+        });
+      });
+    </script>
+  </div>
+</template>

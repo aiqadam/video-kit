@@ -1,0 +1,119 @@
+<template>
+  <div id="root" data-composition-id="end">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #end-cam {
+        position: absolute;
+        inset: 0;
+      }
+      .end-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #end-shade {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 55% 45% at 50% 48%, rgba(11, 8, 7, 0.55), rgba(11, 8, 7, 0.88) 100%),
+          linear-gradient(0deg, rgba(11, 8, 7, 0.9), rgba(11, 8, 7, 0) 40%);
+      }
+      #end-logo {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 250px;
+        text-align: center;
+        font-size: 260px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0.3em;
+        padding-left: 0.3em;
+        text-shadow: 0 0 80px rgba(255, 130, 50, 0.4);
+      }
+      #end-sub {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 545px;
+        text-align: center;
+        font-size: 46px;
+        letter-spacing: 0.5em;
+        padding-left: 0.5em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      #end-welcome {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 660px;
+        text-align: center;
+        font-size: 56px;
+        font-weight: 300;
+      }
+      #end-age {
+        position: absolute;
+        right: 110px;
+        top: 90px;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 4px solid var(--ink);
+        font-size: 44px;
+        font-weight: 600;
+        line-height: 112px;
+        text-align: center;
+      }
+      #end-warn {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 120px;
+        text-align: center;
+        font-size: 34px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      #end-note {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 66px;
+        text-align: center;
+        font-size: 28px;
+        font-weight: 300;
+        color: var(--muted);
+      }
+    </style>
+    <div id="end-cam"><video id="end-copper" class="clip end-video" src="assets/fetched/clips/copper.mp4" data-start="0" data-duration="8.372" data-track-index="1" muted playsinline></video></div>
+    <div id="end-shade"></div>
+    <div id="end-age">18+</div>
+    <div id="end-logo">TUTUN</div>
+    <div id="end-sub">lounge · Ташкент</div>
+    <div id="end-welcome">Xush kelibsiz · каждый вечер с 18:00</div>
+    <div id="end-warn">Курение вредит вашему здоровью</div>
+    <div id="end-note">Пример AI Qadam Video Kit: заведение и всё сказанное о нём вымышлены</div>
+    <script>
+      window.__timelines["end"] = kit.scene("end", function (t, s) {
+        kit.set(s.$("#end-cam"), { scale: kit.interp(t, [0, s.dur], [1.08, 1.0]) });
+        var p = kit.prog(t, 0, 0.9);
+        kit.set(s.$("#end-logo"), { opacity: p, scale: 1.12 - 0.12 * p, blur: (1 - p) * 16 });
+        kit.reveal(s.$("#end-sub"), t, 0.6, { y: 14 });
+        kit.reveal(s.$("#end-welcome"), t, 1.2);
+        // the legal lines are on screen for the whole card
+        kit.set(s.$("#end-age"), { opacity: 1 });
+        kit.set(s.$("#end-warn"), { opacity: 1 });
+        kit.set(s.$("#end-note"), { opacity: 1 });
+      });
+    </script>
+  </div>
+</template>

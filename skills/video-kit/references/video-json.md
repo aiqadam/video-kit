@@ -41,7 +41,7 @@ HyperFrames renders; every other command syncs first.
 | `theme` | CSS variables for every scene: `var(--bg)`, `var(--accent)` and so on; add your own keys |
 | `fonts` | `@font-face` rules: one entry per file; `range` is the unicode-range when a family is split by script |
 | `voice` | provider and its options; per-language overrides as `"voice": {"uz": {"voiceId": "…"}}`; per-line as `"voice"` on the line |
-| `music` | `{"source": "synth", "style": "calm" or "hijaz"}`, `{"source": "file", "file": "assets/music/x.mp3"}` or `{"source": "none"}`; `volume` 0–1, `duck` is the level under the voice |
+| `music` | `{"source": "synth", "style": "calm" or "hijaz"}`, `{"source": "file", "file": "assets/music/x.mp3"}` or `{"source": "none"}`; `volume` 0–1, `duck` is the level under the voice, `start` skips the first seconds of a file (put a downbeat at 0) |
 | `scenes[].id` | lowercase letters, digits, dashes; the scene file is `compositions/<id>.html` unless `src` says otherwise |
 | `scenes[].dur` | the scene's length including its share of the crossfade |
 | `lines[]` | `id` (unique in the video), `at` (seconds from the scene start), `text` (a string, or one per language) |

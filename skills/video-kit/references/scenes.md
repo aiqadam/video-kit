@@ -79,8 +79,8 @@ rendered language when the scene loads.
 Showing the real product beats any illustration. Redraw its screens in HTML from the
 source (colours, radii, type sizes, labels) or from screenshots, at a size that reads in
 the video, and act them out: the finger moves, the button dips (`press` from
-`kit.cursor`), text types, the next screen slides in. `videos/chilim-usta/compositions/
-order.html` is a complete example: a phone, selections, typing and a confirmation.
+`kit.cursor`), text types, the next screen slides in: put `.kit-cursor` inside the
+screen, drive it with `kit.cursor`, change the UI on each tap time.
 
 - Strings come from the product itself, not your paraphrase.
 - Demo data must be plausible and must not look like real customers' data; say "demo
@@ -92,7 +92,29 @@ order.html` is a complete example: a phone, selections, typing and a confirmatio
 
 `<img>` with `object-fit: cover` inside a positioned box; move the box or scale the image
 with `kit.set` for a slow push-in. Darken for text with a gradient `div` over it, not a
-CSS filter. Video clips: see HyperFrames' format notes (`npx hyperframes docs compositions`).
+CSS filter.
+
+Footage is a timed `<video>` inside an untimed wrapper; animate the wrapper, never the
+video. Times are scene-local; a nonzero start says so explicitly:
+
+```html
+<div class="tl-shot" id="ritual-s2">
+  <video id="ritual-v2" class="clip" src="assets/fetched/clips/packing.mp4"
+         data-start="2.791" data-hf-media-start-basis="local" data-duration="2.791"
+         data-playback-rate="0.5" data-track-index="1" muted playsinline></video>
+</div>
+```
+
+The video shows only over its window, which makes a hard cut. `data-playback-rate`
+below 1 gives slow motion; it looks smooth only from 50/60 fps sources. Stock footage
+goes through `assets/sources.json` (`media.md`), trimmed to the part you use.
+
+## Cutting to music
+
+With a music bed, the music is the clock. Find the beat (`npx hyperframes beats` in the
+video folder writes the beat times), set `music.start` so a downbeat falls at 0, and
+make every scene and shot a whole number of bars (at 86 BPM a bar is 4 × 60 / 86 =
+2.791 s). `videos/tutun-lounge/` is cut this way: one shot a bar, words on the beat.
 
 ## Portrait and square
 

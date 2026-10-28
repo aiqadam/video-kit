@@ -5,6 +5,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { KIT_ROOT, KitError, loadVideo, workspaceRoot, FORMATS, rel } from '../lib/video.mjs';
 import { sync } from '../lib/sync.mjs';
+import { fetchSources } from '../lib/fetch.mjs';
 import { checkVideo } from '../lib/check.mjs';
 import { generateVoice, audioSeconds } from '../lib/voice.mjs';
 import { hf, hfVersion, ffmpegPath, ffprobePath, loadEnv } from '../lib/tools.mjs';
@@ -23,7 +24,7 @@ const HELP = `AI Qadam Video Kit
   video-kit preview <video>        live preview in the browser
   video-kit render <video> [--lang] [--quality draft|standard|high] [-o file]
                                    the finished MP4, with its loudness measured
-  video-kit sync <video> [--lang]  regenerate index.html (the other commands do this)
+  video-kit sync <video> [--lang]  fetch outside media, regenerate index.html (the other commands do this)
   video-kit doctor                 check Node, ffmpeg, the browser and the voice key
   video-kit init <dir>             copy the kit into a new folder (for npx)
 
@@ -47,8 +48,10 @@ function parse(argv) {
 
 const say = (s = '') => process.stdout.write(s + '\n');
 
-function prepare(name, opt) {
+/** Loads a video, fetches its outside media if missing, and regenerates index.html. */
+async function prepare(name, opt) {
   const v = loadVideo(name, typeof opt.lang === 'string' ? opt.lang : undefined);
+  await fetchSources(v.dir);
   sync(v);
   return v;
 }
@@ -121,7 +124,7 @@ async function main() {
     }
 
     case 'sync': {
-      const v = prepare(pos[1], opt);
+      const v = await prepare(pos[1], opt);
       say(`Wrote ${rel(path.join(v.dir, 'index.html'))} (${v.total.toFixed(2)} s).`);
       return 0;
     }
@@ -138,14 +141,13 @@ async function main() {
       const r = await generateVoice(v, { force });
       say(`  made ${r.made.length}, unchanged ${r.kept.length}, failed ${r.failed.length}`);
       for (const f of r.failed) say(`  ✗ ${f.id}: ${f.error}`);
-      const after = loadVideo(pos[1], v.lang);
-      sync(after);
+      const after = await prepare(pos[1], { lang: v.lang });
       const errors = report(checkVideo(after).filter((f) => f.level !== 'info' && /line/.test(f.msg)));
       return r.failed.length || errors ? 1 : 0;
     }
 
     case 'check': {
-      const v = prepare(pos[1], opt);
+      const v = await prepare(pos[1], opt);
       say(`Kit checks: ${v.name} [${v.lang}]`);
       const errors = report(checkVideo(v));
       if (opt.quick) return errors ? 1 : 0;
@@ -155,7 +157,7 @@ async function main() {
     }
 
     case 'stills': {
-      const v = prepare(pos[1], opt);
+      const v = await prepare(pos[1], opt);
       let times = pos.slice(2).map((p) => {
         const m = /^([a-z][a-z0-9-]*)@([\d.]+)$/.exec(p);
         if (!m) return Number(p);
@@ -174,12 +176,12 @@ async function main() {
     }
 
     case 'preview': {
-      const v = prepare(pos[1], opt);
+      const v = await prepare(pos[1], opt);
       return hf(['preview'], v.dir);
     }
 
     case 'render': {
-      const v = prepare(pos[1], opt);
+      const v = await prepare(pos[1], opt);
       const drafts = v.lines.filter((l) => l.draft);
       if (drafts.length) say(`Note: ${drafts.length} voice line(s) have no audio yet (${drafts.map((l) => l.id).join(', ')}); they will be silent.`);
       const quality = { draft: 'draft', standard: 'looks', high: 'delivery' }[opt.quality || 'standard'] || 'looks';

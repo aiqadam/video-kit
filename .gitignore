@@ -10,3 +10,4 @@ videos/*/assets/kit/
 # HyperFrames working files and renders
 videos/*/.hyperframes/
 videos/*/renders/
+videos/*/assets/fetched/

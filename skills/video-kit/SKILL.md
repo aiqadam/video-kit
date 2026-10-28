@@ -20,8 +20,8 @@ One file, `video.json`, holds all timing, and the kit derives everything else fr
    Run `node kit.mjs plan <name>` and read it: lines must not overlap, gaps stay under
    `maxSilence`.
 3. **Scenes** (`references/scenes.md`). One file per scene in `compositions/`. Read the
-   example's scenes in `videos/chilim-usta/compositions/` first: they show every helper
-   in use. Show the real product: redraw its screens in HTML from its source or
+   example's scenes in `videos/tutun-lounge/compositions/` first: footage cut on the
+   beat, kinetic type, captions per shot. Show the real product: redraw its screens in HTML from its source or
    screenshots, act out taps and typing (`references/scenes.md`, "Product screens").
 4. **Look** (`references/review.md`). `node kit.mjs check <name>`, fix every error, then
    `node kit.mjs stills <name>` and read the PNGs. Repeat until the frames are right.
