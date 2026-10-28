@@ -19,7 +19,7 @@
     "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
     "trim": [
       4.5,
-      8.0
+      8
     ],
     "width": 1920
   },
@@ -30,7 +30,7 @@
     "author": "Aida Shukuhi",
     "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
     "trim": [
-      5.0,
+      5,
       8.5
     ],
     "width": 1920
@@ -42,7 +42,7 @@
     "author": "Aida Shukuhi",
     "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
     "trim": [
-      8.0,
+      8,
       11.5
     ],
     "width": 1920
@@ -66,8 +66,8 @@
     "author": "Samer Daboul",
     "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
     "trim": [
-      2.0,
-      6.0
+      2,
+      6
     ],
     "width": 1920
   },
@@ -78,8 +78,8 @@
     "author": "Emre Vonal",
     "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
     "trim": [
-      3.0,
-      7.0
+      3,
+      7
     ],
     "width": 1080
   },
@@ -90,8 +90,8 @@
     "author": "Hanifi Sarıkaya",
     "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
     "trim": [
-      6.0,
-      10.0
+      6,
+      10
     ],
     "width": 1080
   },
@@ -151,7 +151,7 @@
     "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
     "trim": [
       0.4,
-      2.0
+      2
     ],
     "width": 1920
   },
@@ -162,7 +162,7 @@
     "author": "Aida Shukuhi",
     "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
     "trim": [
-      6.0,
+      6,
       14.6
     ],
     "width": 1920
@@ -172,6 +172,7 @@
     "url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Desert%20City.mp3",
     "page": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100564",
     "author": "Kevin MacLeod (incompetech.com)",
-    "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): \"Desert City\" Kevin MacLeod (incompetech.com)"
+    "license": "CC BY 4.0",
+    "credit": "\"Desert City\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/"
   }
 ]

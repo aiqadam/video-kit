@@ -4,12 +4,23 @@
 
 ```
 node kit.mjs media search "hookah coals" --type video          # Wikimedia Commons, no key
+node kit.mjs media search middle eastern --type audio                # incompetech music
+node kit.mjs media search --source incompetech --feel relaxed,grooving --bpm 80-100 --min 60
+node kit.mjs media add <video> "incompetech:Desert City"
 node kit.mjs media search "oriental lounge" --source openverse --type audio   # needs keys
 node kit.mjs media add <video> pexels:8316467 --trim 2,6 --author "Samer Daboul"
 node kit.mjs media add <video> "commons:File:How to prepare for Hookah.webm" --trim 3,9
 node kit.mjs media add <video> openverse:audio/<id>
 node kit.mjs media add <video> https://… --license "CC BY 4.0" --author … --page …
 ```
+
+**Music:** incompetech.com is Kevin MacLeod's catalogue of 1,400+ tracks under CC BY 4.0,
+searchable by words, feel (Calming, Grooving, Mysterious, Relaxed, Driving, Epic, …),
+tempo and length; `--type audio` searches it by default. Pick a track whose BPM you can
+cut to (`scenes.md`, "Cutting to music"). CC BY needs the credit where the video is seen:
+`add` prints the exact line, and `check` reminds you while no scene names the author. An
+end card line is the safe place; a description works when the video is always published
+with one.
 
 `add` writes the entry into `assets/sources.json` with its license, author and page,
 downloads and trims it, and for a video makes `<file>.preview.jpg` with three frames:

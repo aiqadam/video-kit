@@ -27,10 +27,12 @@ const HELP = `AI Qadam Video Kit
   video-kit render <video> [--lang] [--quality draft|standard|high] [-o file]
                                    the finished MP4, with its loudness measured
   video-kit sync <video> [--lang]  fetch outside media, regenerate index.html (the other commands do this)
-  video-kit media search <words> [--source commons|openverse] [--type video|image|audio]
+  video-kit media search <words> [--source commons|incompetech|openverse] [--type video|image|audio]
+                                   [--feel calm,grooving] [--bpm 80-100] [--min 40]   (incompetech)
                                    find licensed media with an open API
   video-kit media add <video> <ref> [--as clips/x.mp4] [--trim 2,6] [--author ..] [--page ..]
-                                   ref: pexels:<id>, commons:File:<name>, openverse:audio/<id>, URL
+                                   ref: pexels:<id>, commons:File:<name>, incompetech:<title>,
+                                        openverse:audio/<id>, URL
                                    adds it to assets/sources.json, fetches it, makes a preview
   video-kit media openverse-register --email <address>
                                    free Openverse keys, saved to .env
@@ -233,8 +235,9 @@ async function main() {
       const sub = pos[1];
       if (sub === 'search') {
         const query = pos.slice(2).join(' ');
-        if (!query) throw new KitError('What to look for: node kit.mjs media search "hookah coals" --type video');
-        const items = await mediaSearch(query, { source: opt.source || 'commons', type: opt.type || 'video', limit: Number(opt.limit) || 10 });
+        if (!query && !opt.feel && !opt.bpm) throw new KitError('What to look for: node kit.mjs media search "hookah coals" --type video');
+        const source = opt.source || (opt.type === 'audio' ? 'incompetech' : 'commons');
+        const items = await mediaSearch(query, { source, type: opt.type || 'video', limit: Number(opt.limit) || 10, feel: opt.feel, bpm: opt.bpm, min: opt.min });
         if (!items.length) say('Nothing found.');
         for (const it of items) {
           say(`${it.ref}`);
@@ -250,6 +253,8 @@ async function main() {
         say(`Added ${r.entry.file} (${r.info || 'image'}) · ${r.entry.license}${r.entry.author ? ' · ' + r.entry.author : ''}`);
         say(`  in scenes: assets/fetched/${r.entry.file}`);
         if (r.preview) say(`  preview: ${rel(r.preview)} (three frames: look before using it)`);
+        if (/\.(mp3|wav)$/.test(r.entry.file)) say(`  as the music bed: "music": {"source": "file", "file": "assets/fetched/${r.entry.file}"} in video.json`);
+        if (r.entry.credit) say(`  credit required on screen or in the description:\n    ${r.entry.credit}`);
         if (r.entry.warn) say(`  ⚠ ${r.entry.warn}`);
         return 0;
       }

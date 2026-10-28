@@ -24,8 +24,9 @@ is open source: rendering by [HyperFrames](https://github.com/heygen-com/hyperfr
   is transcribed back and checked against the script.
 - **Music and interface sounds generated** to the video's length, or your own track.
   The music dips under the voice by itself.
-- **Media by reference**: `media search` (Wikimedia Commons, Openverse) and `media add`
-  (Pexels by clip number, Commons, Openverse, any URL with its license): the license and
+- **Media by reference**: `media search` (Wikimedia Commons; incompetech music by mood and
+  tempo; Openverse) and `media add` (Pexels by clip number, Commons, incompetech,
+  Openverse, any URL with its license): the license and
   author are recorded, the file is fetched and trimmed, and a preview is made to look at.
 - **Checks** for timing, overlaps, missing translations, uncredited assets, plus
   HyperFrames' layout, contrast and audio checks; the render reports its loudness.

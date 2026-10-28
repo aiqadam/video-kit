@@ -117,6 +117,8 @@ under a name, and set `voice.provider` in `video.json`. Keys go in `.env`.
   placeholder that stays out of the voice's way, not a composed track.
 - `"music": {"source": "file", "file": "assets/music/track.mp3"}` uses the person's track
   (credit it). It is trimmed to the video and faded at the end.
+- A licensed track: `node kit.mjs media search <mood> --type audio` (incompetech, CC BY
+  4.0), then `media add` it and point `music.file` at `assets/fetched/music/<name>.mp3`.
 - The music dips under the voice automatically (`duck`, default 0.35 of its level).
 
 ## Interface sounds
