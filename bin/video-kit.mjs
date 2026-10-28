@@ -92,8 +92,8 @@ function loudness(file, from) {
 }
 
 /**
- * Brings the mix to `target` LUFS with true peak at most -1.5 dB, two-pass loudnorm,
- * picture copied untouched. video.json "loudness": false leaves the mix as rendered.
+ * Brings the mix to `target` LUFS, two-pass loudnorm, then a limiter at -2 dBFS so AAC
+ * overshoot stays below 0 dBTP; the picture is copied untouched. video.json "loudness": false leaves the mix as rendered.
  */
 function normalizeLoudness(file, target) {
   const ff = (args) => spawnSync(ffmpegPath(), args, { encoding: 'utf8' });
@@ -103,7 +103,7 @@ function normalizeLoudness(file, target) {
   const s = JSON.parse(m[0]);
   if (!Number.isFinite(Number(s.input_i)) || Number(s.input_i) < -70) return;
   const tmp = file.replace(/\.mp4$/, '.norm.mp4');
-  const filter = `loudnorm=I=${target}:TP=-1.5:LRA=11:measured_I=${s.input_i}:measured_TP=${s.input_tp}:measured_LRA=${s.input_lra}:measured_thresh=${s.input_thresh}:offset=${s.target_offset}:linear=true`;
+  const filter = `loudnorm=I=${target}:TP=-1.5:LRA=11:measured_I=${s.input_i}:measured_TP=${s.input_tp}:measured_LRA=${s.input_lra}:measured_thresh=${s.input_thresh}:offset=${s.target_offset}:linear=true,alimiter=limit=0.79:level=false:attack=3:release=60`;
   const r = ff(['-v', 'error', '-y', '-i', file, '-map', '0:v', '-map', '0:a', '-c:v', 'copy', '-af', filter, '-ar', '48000', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', tmp]);
   if (r.status === 0) fs.renameSync(tmp, file);
   else fs.rmSync(tmp, { force: true });

@@ -1,0 +1,9 @@
+{
+  "text": "А здесь мастер уже колдует над твоим вкусом.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "3a3ea3ffb95e1603",
+  "duration": 3.143,
+  "words": []
+}

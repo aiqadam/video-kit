@@ -1,0 +1,9 @@
+{
+  "text": "Медленно. В своё удовольствие.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "1aa8ecfc7269d181",
+  "duration": 2.871,
+  "words": []
+}

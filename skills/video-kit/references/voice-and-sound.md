@@ -22,12 +22,32 @@ Voices: the default is George (`JBFqnCBsd6RMkjVDRZzb`). Any voice from the perso
 ElevenLabs library works by its id; premade voices work on free plans. Set it in
 `video.json` → `voice.voiceId`, per language (`voice.ru.voiceId`) or per line.
 
+### Every take is checked
+
+With `OPENROUTER_API_KEY` set, `voice` transcribes each take back (Gemini Flash, a
+fraction of a cent) and compares it with the text, across scripts: "Хуш келибсиз" and
+"Xush kelibsiz" count as the same. A take that says something else is made again, up to
+three times; what was heard goes into the line's `.json` as `heard`. When no take matches,
+rephrase the line rather than forcing it. `"verify": false` in `voice` turns this off.
+
+Silence at both ends of a take is trimmed, so a line's `at` in `video.json` is its first
+word, and a pause longer than 1.2 s inside a line is reported.
+
 ### Writing lines that sound right
 
 - Write numbers as words when the reading matters ("one thousand five hundred", not
   "1,500"; "twenty twenty-six" or "two thousand twenty-six", as the person prefers).
 - Spell brand names phonetically if they are misread ("Nai-kee", "Ky-row"), and write
   abbreviations as letters with hyphens ("A-M-L").
+- Short lines are the riskiest: models drop or swap words in them, and they trail off on
+  a soft last word ("…вместе с ним"). End a line on a firm word; avoid a leading or
+  trailing ellipsis, which makes the voice fade.
+- The narration tells the story the pictures do not; it never reads the captions aloud.
+  Start each line on the cut of the shot it is about.
+- Delivery comes from `instructions` (Gemini, OpenAI, Fish): name the role and the pace
+  ("a stylish host inviting a guest in; natural, lively pace, not sleepy"). "Slow and
+  intimate" made a 40-second ad sound like a lullaby.
+- Brand names: mark the stress (`Тутýн`) or write them in the language of the voice.
 - One sentence or two per line. Lines in another language are fine inside one video;
   eleven_v3 detects the language per line.
 - The narrator should not be silent for long: gaps under about 5 s.

@@ -1,0 +1,9 @@
+{
+  "text": "Вот он. Тот самый момент.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "53d490bccc09bebc",
+  "duration": 3.319,
+  "words": []
+}

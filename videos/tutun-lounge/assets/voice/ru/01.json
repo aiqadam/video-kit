@@ -1,0 +1,9 @@
+{
+  "text": "Вечер. Город наконец отпускает.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "61992a655df60057",
+  "duration": 4.266,
+  "words": []
+}

@@ -1,0 +1,9 @@
+{
+  "text": "И вечер тоже.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "e9fd94b7e22be38a",
+  "duration": 1.868,
+  "words": []
+}

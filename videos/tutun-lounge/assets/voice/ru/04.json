@@ -1,0 +1,9 @@
+{
+  "text": "Тутýн лаунж. Ташкент. Каждый вечер.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "f744dc236c26381d",
+  "duration": 4.599,
+  "words": []
+}

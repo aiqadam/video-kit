@@ -1,0 +1,10 @@
+{
+  "text": "Ещё мгновение.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "acbda0e04486f5a0",
+  "duration": 1.2,
+  "words": [],
+  "heard": "ещё мгновение."
+}

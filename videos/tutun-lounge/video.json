@@ -20,8 +20,9 @@
   ],
   "voice": {
     "provider": "openrouter",
-    "model": "microsoft/mai-voice-2.1",
-    "voiceId": "ru-RU-Lev:MAI-Voice-2.1"
+    "model": "google/gemini-3.8-flash-tts",
+    "voiceId": "Sulafat",
+    "instructions": "Speak Russian in a warm, low female voice with a smile and quiet confidence, like a stylish host inviting a guest in for the evening. Natural, lively pace, not slow, not sleepy, not whispering. Short phrases land firmly."
   },
   "music": {
     "source": "file",
@@ -37,8 +38,8 @@
       "lines": [
         {
           "id": "01",
-          "at": 0.4,
-          "text": "Вечер. Город наконец сбавляет обороты."
+          "at": 0.35,
+          "text": "Вечер. Город наконец отпускает."
         }
       ]
     },
@@ -48,23 +49,28 @@
       "lines": [
         {
           "id": "02",
-          "at": 0.5,
-          "text": "А здесь мастер уже готовит твой кальян."
+          "at": 0.2,
+          "text": "А здесь мастер уже колдует над твоим вкусом."
         },
         {
           "id": "02b",
-          "at": 4.6,
-          "text": "Без спешки. Так, как делали всегда."
+          "at": 3.6,
+          "text": "Всё руками. Всё без спешки."
         },
         {
           "id": "02c",
-          "at": 9.0,
-          "text": "Пока угли набирают жар, просто выдохни."
+          "at": 8.0,
+          "text": "Жар набирает силу."
+        },
+        {
+          "id": "02e",
+          "at": 11.3,
+          "text": "И вечер тоже."
         },
         {
           "id": "02d",
-          "at": 14.2,
-          "text": "Ещё мгновение…"
+          "at": 14.0,
+          "text": "Ещё мгновение."
         }
       ]
     },
@@ -74,13 +80,13 @@
       "lines": [
         {
           "id": "03",
-          "at": 2.95,
-          "text": "И вот он, тот самый момент."
+          "at": 2.85,
+          "text": "Вот он. Тот самый момент."
         },
         {
           "id": "03b",
-          "at": 6.2,
-          "text": "Дым тянется медленно, как разговор, который не хочется заканчивать."
+          "at": 6.45,
+          "text": "Медленно. В своё удовольствие."
         }
       ]
     },
@@ -90,13 +96,16 @@
       "lines": [
         {
           "id": "04",
-          "at": 0.6,
-          "text": "Тутун. Место, где вечер не торопится."
+          "at": 0.5,
+          "text": "Тутýн лаунж. Ташкент. Каждый вечер."
         },
         {
           "id": "04b",
-          "at": 4.4,
-          "text": "Хуш келибсиз."
+          "at": 5.3,
+          "text": "Xush kelibsiz!",
+          "voice": {
+            "instructions": "This is a short Uzbek greeting meaning 'welcome'. Say it in Uzbek, warmly and clearly, with a smile."
+          }
         }
       ]
     }

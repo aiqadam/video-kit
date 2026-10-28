@@ -1,0 +1,9 @@
+{
+  "text": "Всё руками. Всё без спешки.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "f51f787328674e7e",
+  "duration": 3.001,
+  "words": []
+}

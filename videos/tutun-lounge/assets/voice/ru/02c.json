@@ -1,0 +1,9 @@
+{
+  "text": "Жар набирает силу.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "c350e6b9efc45959",
+  "duration": 2.135,
+  "words": []
+}

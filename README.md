@@ -94,6 +94,6 @@ The kit is MIT. It installs HyperFrames (Apache-2.0), ffmpeg via `ffmpeg-static`
 install, not shipped here), and Inter (OFL). HyperFrames' anonymous telemetry is switched off for every
 command the kit runs. The example's photos and fonts are credited in
 `videos/tutun-lounge/assets/CREDITS.md` and `sources.json`. What you render is yours; check the licenses of
-the media and voices you add. The example's voice files were made on an ElevenLabs free
-plan, which allows non-commercial use only; they are not covered by the MIT license. For
-anything commercial, make the voice again with your own paid account.
+the media and voices you add. The example's voice files were made with Google Gemini TTS
+through OpenRouter; they are not covered by the MIT license, and their use follows the
+provider's terms. For your own video, make the voice again with your own key.

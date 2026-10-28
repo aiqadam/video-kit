@@ -1,0 +1,9 @@
+{
+  "text": "Xush kelibsiz!",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "0cdd578e66543c43",
+  "duration": 1.308,
+  "words": []
+}
