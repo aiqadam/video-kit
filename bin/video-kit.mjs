@@ -323,7 +323,7 @@ async function main() {
 main().then(
   (code) => process.exit(code || 0),
   (e) => {
-    process.stderr.write(e instanceof KitError ? `${e.message}\n` : `${e.stack || e}\n`);
+    process.stderr.write(e instanceof KitError || !process.env.VIDEO_KIT_DEBUG ? `${e.message || e}\n` : `${e.stack || e}\n`);
     process.exit(1);
   },
 );
