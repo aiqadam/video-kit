@@ -1,0 +1,102 @@
+[
+  {
+    "file": "music/tabuk.mp3",
+    "url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Tabuk.mp3",
+    "page": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100818",
+    "author": "Kevin MacLeod (incompetech.com)",
+    "license": "CC BY 4.0",
+    "credit": "\"Tabuk\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "file": "images/tughra-suleiman.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Tughra_Suleiman.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Tughra_Suleiman.jpg",
+    "author": "Thadswanek, taken from here (uploaded by Pagan)",
+    "license": "Public domain",
+    "image": true
+  },
+  {
+    "file": "images/imaginary-portrait-of-sultan-osman-i-18t.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Imaginary_portrait_of_Sultan_Osman_I._18th_century.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Imaginary_portrait_of_Sultan_Osman_I._18th_century.jpg",
+    "author": "18th century",
+    "license": "Public domain",
+    "image": true,
+    "crop": "1540:1960:60:65"
+  },
+  {
+    "file": "images/zonaro-gatesofconst.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Zonaro_GatesofConst.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Zonaro_GatesofConst.jpg",
+    "author": "Fausto Zonaro",
+    "license": "Public domain",
+    "image": true
+  },
+  {
+    "file": "images/portrait-suleiman-magnificent.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Suleiman_Magnificent.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Portrait_Suleiman_Magnificent.jpg",
+    "author": "Workshop of Titian",
+    "license": "Public domain",
+    "image": true
+  },
+  {
+    "file": "images/s-leymaniye-mosque-istanbul-20260606-080.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/S%C3%BCleymaniye_Mosque%2C_Istanbul%2C_20260606_0805_1307.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:S%C3%BCleymaniye_Mosque,_Istanbul,_20260606_0805_1307.jpg",
+    "author": "Jakub Hałun",
+    "license": "CC BY 4.0",
+    "image": true
+  },
+  {
+    "file": "images/ottoman-empire-map-1683-orthographic-pro.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Ottoman_Empire_map_1683_%28orthographic_projection%29.png",
+    "page": "https://commons.wikimedia.org/wiki/File:Ottoman_Empire_map_1683_(orthographic_projection).png",
+    "author": "Muhammad782",
+    "license": "CC0",
+    "image": true
+  },
+  {
+    "file": "images/vienna-battle-1683.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Vienna_Battle_1683.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Vienna_Battle_1683.jpg",
+    "author": "Frans Geffels",
+    "license": "Public domain",
+    "image": true
+  },
+  {
+    "file": "images/jacob-philipp-hackert-chesma-end.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Jacob_Philipp_Hackert_Chesma_End.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Jacob_Philipp_Hackert_Chesma_End.jpg",
+    "author": "Jacob Philipp Hackert",
+    "license": "Public domain",
+    "image": true
+  },
+  {
+    "file": "images/ottoman-parliament-1877.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Ottoman_Parliament_1877.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Ottoman_Parliament_1877.jpg",
+    "author": "The Graphic",
+    "license": "Public domain",
+    "image": true,
+    "crop": "780:465:10:5"
+  },
+  {
+    "file": "images/turk-soldiers-gallipoli-lccn2014700276.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Turk_soldiers%2C_Gallipoli_LCCN2014700276.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Turk_soldiers,_Gallipoli_LCCN2014700276.jpg",
+    "author": "Bain News Service, publisher",
+    "license": "Public domain",
+    "image": true,
+    "crop": "5500:3600:145:420"
+  },
+  {
+    "file": "images/s-bah-joaillier-sultan-mehmed-vi.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/35/S%C3%A9bah_%26_Joaillier_-_Sultan_Mehmed_VI.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:S%C3%A9bah_%26_Joaillier_-_Sultan_Mehmed_VI.jpg",
+    "author": "Sebah &amp; Joaillier, that is: Jean Pascal Sébah (1872-1947) Polycarpe Joaillier (1848-1904) Restoration by Adam Cuerden",
+    "license": "Public domain",
+    "image": true,
+    "crop": "2190:3290:165:130"
+  }
+]

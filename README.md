@@ -89,6 +89,16 @@ track; English narration.
 node kit.mjs render kit-promo
 ```
 
+`videos/ottoman-empire/` is a 60-second vertical history explainer for Instagram Reels:
+six centuries of the Ottoman Empire in ten scenes, from Osman I to the Turkish Republic.
+No voice: big years that roll forward, Russian captions, a timeline across the top, and
+paintings, photographs and a map from Wikimedia Commons (public domain, CC0, one CC BY
+photo), cut on the bars of a CC BY track. Every date in it has a source in its `brief.md`.
+
+```bash
+node kit.mjs render ottoman-empire
+```
+
 ## Commands
 
 ```
@@ -122,8 +132,8 @@ The kit is MIT, with these exceptions:
 - `videos/kit-promo/assets/brand/` is the AI Qadam logo: a brand asset, not open source,
   used under the [AI Qadam Brand Usage Policy](https://brand.aiqadam.org/brand-use.html).
   Do not reuse it in your own videos.
-- Footage and music of the examples are not in the repository: `sources.json` lists them
-  with their own licenses (Pexels License, CC BY 4.0).
+- Footage, images and music of the examples are not in the repository: `sources.json`
+  lists them with their own licenses (Pexels License, CC BY 4.0, CC0, public domain).
 
 The kit itself is MIT. It installs HyperFrames (Apache-2.0), ffmpeg via `ffmpeg-static` and
 `@ffprobe-installer/ffprobe` (the ffmpeg binaries are GPL; they are downloaded at

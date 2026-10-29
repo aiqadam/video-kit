@@ -28,6 +28,9 @@ One file, `video.json`, holds all timing, and the kit derives everything else fr
    beat, kinetic type, captions per shot. For a software product, redraw its screens in
    HTML from its source or screenshots and act out taps and typing ("Product screens");
    `videos/kit-promo/compositions/` does this for a terminal, files and a player.
+   For a vertical video told in captions without a voice, read
+   `videos/ottoman-empire/compositions/`: archive images that pan and push in, a year
+   that rolls forward, a timeline across the top.
 5. **Look** (`references/review.md`). `node kit.mjs check <name>`, fix every error, then
    `node kit.mjs stills <name>` and read the PNGs. Repeat until the frames are right.
 6. **Voice and sound** (`references/voice-and-sound.md`). The narration tells the story

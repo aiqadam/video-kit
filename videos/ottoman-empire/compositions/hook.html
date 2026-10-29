@@ -1,0 +1,37 @@
+<template>
+  <div id="root" data-composition-id="hook">
+    <style>
+      #root { position: absolute; inset: 0; overflow: hidden; background: var(--bg); color: var(--ink); }
+      #hook-tug { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+      #hook-shade { position: absolute; inset: 0;
+        background: linear-gradient(0deg, rgba(13,10,8,1) 0px, rgba(13,10,8,.96) 700px, rgba(13,10,8,.2) 1150px, rgba(13,10,8,.35) 1920px); }
+      #hook-box { position: absolute; left: 80px; width: 920px; bottom: 330px; }
+      #hook-title { font-family: var(--display); font-weight: 800; font-size: 132px; line-height: 1.0; }
+      #hook-title .accent { color: var(--accent); }
+      #hook-years { margin-top: 34px; font-family: var(--display); font-weight: 700; font-size: 84px; color: var(--accent);
+        font-variant-numeric: lining-nums; }
+      #hook-sub { margin-top: 22px; font-size: 54px; font-weight: 600; color: var(--muted); }
+      #hook-label { position: absolute; left: 66px; top: 170px; font-size: 30px; font-style: italic; color: var(--ink);
+        padding: 6px 14px; background: rgba(13,10,8,.72); border-radius: 8px; }
+    </style>
+    <img id="hook-tug" src="assets/fetched/images/tughra-suleiman.jpg" alt="">
+    <div id="hook-shade"></div>
+    <div id="hook-label">Тугра султана Сулеймана</div>
+    <div id="hook-box">
+      <div id="hook-title">Османская империя</div>
+      <div id="hook-years">1299 — 1922</div>
+      <div id="hook-sub">Шесть веков за минуту</div>
+    </div>
+    <script>
+      window.__timelines["hook"] = kit.scene("hook", function (t, s) {
+        // the tughra fills the top of the frame and drifts slowly left
+        var sc = 1500 / 1936;
+        kit.set(s.$("#hook-tug"), { x: kit.interp(t, [0, s.dur], [-180, -470], kit.ease.linear), y: 20, scale: sc });
+        kit.set(s.$("#hook-title"), { opacity: 1 });
+        kit.words(s.$("#hook-title"), t, -0.8, { step: 0.12, len: 0.45, accent: ["империя"] });
+        kit.reveal(s.$("#hook-years"), t, 0.5, { y: 20 });
+        kit.reveal(s.$("#hook-sub"), t, 1.0, { y: 20 });
+      });
+    </script>
+  </div>
+</template>
