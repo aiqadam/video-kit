@@ -9,4 +9,4 @@
 | [mlx-audio](https://github.com/Blaizzy/mlx-audio), [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS) | optional local voice engine on Apple Silicon, installed by `tts setup` | MIT; model Apache-2.0 |
 | [Piper](https://github.com/OHF-Voice/piper1-gpl) | optional local voice engine on any OS, installed by `tts setup` | GPL-3.0 (a tool you run, not part of the kit; `tts/piper/run.py` that imports it is GPL-3.0-or-later); voices per MODEL_CARD |
 
-The example videos' footage, music, fonts and logo are credited in `videos/<name>/assets/sources.json` and `CREDITS.md` (`tutun-lounge`, `kit-promo`).
+The example videos' footage, music, fonts and logo are credited in `videos/<name>/assets/sources.json` and `CREDITS.md` (`tutun-lounge`, `kit-promo`, `ottoman-empire`).

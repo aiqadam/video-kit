@@ -123,3 +123,7 @@ make every scene and shot a whole number of bars (at 86 BPM a bar is 4 × 60 / 8
 Lay out for the shape: in portrait, a caption band at the top third and the product
 below it; type sizes stay as large as in landscape. Keep text out of the bottom 15%
 where phone players put their controls.
+
+Wide paintings in a tall frame: scale them to most of the frame's height and pan across
+rather than cropping to the middle, and keep the caption below the part that matters.
+`videos/ottoman-empire/` does this, with a label on each picture saying what it is.
