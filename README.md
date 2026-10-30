@@ -6,6 +6,12 @@ Make promo, pitch and product videos by talking to a coding agent. You describe 
 video; the agent writes a brief, lays out the scenes in HTML, records the voiceover,
 checks the frames and renders an MP4.
 
+[![The first 18 seconds of videos/kit-promo: the word qadam, a prompt typed into a terminal, then the brief with a source next to every fact and the timeline in video.json](docs/media/kit-promo.gif)](https://github.com/aiqadam/video-kit/releases/download/v0.3.0/kit-promo-en.mp4)
+
+The first 18 seconds of `videos/kit-promo/`, a video about the kit made with the kit.
+[The whole video](https://github.com/aiqadam/video-kit/releases/download/v0.3.0/kit-promo-en.mp4)
+is 56 seconds long, with voice and music (MP4, 10 MB).
+
 It works with any agent that can read files and run commands (Claude Code, Codex,
 OpenCode, Cursor, Gemini CLI and others) on macOS, Windows and Linux. The whole stack
 is open source: rendering by [HyperFrames](https://github.com/heygen-com/hyperframes)
