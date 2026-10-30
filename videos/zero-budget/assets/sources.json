@@ -19,16 +19,18 @@
     "file": "clips/pexels-34771072.mp4",
     "url": "https://www.pexels.com/download/video/34771072/",
     "page": "https://www.pexels.com/video/34771072/",
-    "author": "",
+    "author": "Anh Nguyen",
     "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
-    "width": 1920
+    "width": 1920,
+    "authorPage": "https://www.pexels.com/@anh-nguyen-517648218/"
   },
   {
     "file": "clips/pexels-5495845.mp4",
     "url": "https://www.pexels.com/download/video/5495845/",
     "page": "https://www.pexels.com/video/5495845/",
-    "author": "",
+    "author": "Pavel Danilyuk",
     "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
-    "width": 1920
+    "width": 1920,
+    "authorPage": "https://www.pexels.com/@pavel-danilyuk/"
   }
 ]
