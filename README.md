@@ -139,8 +139,8 @@ The kit is MIT, with these exceptions:
   library; it is a separate program the kit talks to.
 - `videos/*/assets/fonts/` are fonts under the SIL Open Font License, with the license
   next to them.
-- `videos/*/assets/voice/` are voice files made with Google Gemini TTS; their use follows
-  the provider's terms.
+- `videos/*/assets/voice/` are voice files made for those examples: Google Gemini TTS in
+  `kit-promo`, Kokoro 82M locally in `zero-budget`; their use follows each provider's terms.
 - `videos/kit-promo/assets/brand/` is the AI Qadam logo: a brand asset, not open source,
   used under the [AI Qadam Brand Usage Policy](https://brand.aiqadam.org/brand-use.html).
   Do not reuse it in your own videos.
@@ -152,6 +152,8 @@ The kit itself is MIT. It installs HyperFrames (Apache-2.0), ffmpeg via `ffmpeg-
 install, not shipped here), and Inter (OFL). HyperFrames' anonymous telemetry is switched off for every
 command the kit runs. The examples' footage, music, fonts and logo are credited in each
 `videos/<name>/assets/sources.json` and `CREDITS.md`. What you render is yours;
-check the licenses of the media and voices you add. The examples' voice files were made with Google Gemini TTS
-through OpenRouter; they are not covered by the MIT license, and their use follows the
-provider's terms. For your own video, make the voice again with your own key.
+check the licenses of the media and voices you add. The examples' voice files were made
+with Google Gemini TTS through OpenRouter (kit-promo) and with Kokoro 82M offline
+(zero-budget); they are not covered by the MIT license, and their use follows each
+provider's terms. For your own video, make the voice again with your own key or a local
+engine.
