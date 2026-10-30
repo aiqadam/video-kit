@@ -14,7 +14,7 @@ Three providers, set in `video.json` → `voice.provider`:
 | -------- | ----- | -------- |
 | `openrouter` | `OPENROUTER_API_KEY` | native voices in many languages (Microsoft MAI-Voice), voices steered by words (Gemini TTS); pay per character |
 | `elevenlabs` | `ELEVENLABS_API_KEY` (starts with `sk_`; a key *ID* fails) | English; word timings; its library voices need a paid plan |
-| `local` | `node kit.mjs tts setup <engine>` once | free, offline, no account: Qwen3-TTS on Apple Silicon, Piper anywhere |
+| `local` | `node kit.mjs tts setup <engine>` once | free, offline, no account: Kokoro and Qwen3-TTS on Apple Silicon, Piper anywhere |
 
 Keys go in `.env` at the repository root (see `.env.example`) or the environment.
 
@@ -113,6 +113,7 @@ virtual environment under `.kit/tts/<engine>/` (needs Python 3.10–3.13 on the 
 and installs the engine. The model downloads on first use and stays cached.
 
 ```json
+"voice": { "provider": "local", "engine": "kokoro-mlx", "voiceId": "af_heart" }
 "voice": { "provider": "local", "engine": "qwen3-mlx",
            "instructions": "A warm, low female voice with a smile; natural, lively pace." }
 "voice": { "provider": "local", "engine": "piper", "model": "ru_RU-dmitri-medium" }
@@ -120,12 +121,22 @@ and installs the engine. The model downloads on first use and stays cached.
 
 | Engine | Runs on | Sounds | License of what you make |
 | ------ | ------- | ------ | ------------------------ |
-| `qwen3-mlx` (Qwen3-TTS 1.7B VoiceDesign) | Apple Silicon Macs | close to cloud voices; the voice is described in words; 10 languages, no Uzbek | Apache-2.0 model: commercial use allowed |
+| `kokoro-mlx` (Kokoro 82M) | Apple Silicon Macs | clear, even, native US/UK English voices (`af_heart`, `am_michael`, `bf_alice`, `bm_george`, …); the same voice on every line; English only | Apache-2.0 model: commercial use allowed |
+| `qwen3-mlx` (Qwen3-TTS 1.7B VoiceDesign) | Apple Silicon Macs | close to cloud voices; the voice is described in words; 10 languages, no Uzbek. VoiceDesign invents a slightly different voice per line — use CustomVoice with a `voiceId` (Sohee, Serena, Vivian, Ono_Anna) when the voice must stay the same | Apache-2.0 model: commercial use allowed |
 | `piper` | Windows, macOS, Linux, CPU | plain but clear, very fast | per voice: `ru_RU-denis`/`dmitri` MIT with CC0 data; `ru_RU-ruslan` non-commercial; read the voice's MODEL_CARD |
+
+The engine reads its settings from `voice` (`model`, `voiceId`, `language`, `instructions`,
+`speed`). For English, `kokoro-mlx` is the one whose voices sound native; Qwen3-TTS
+preset speakers are native Chinese, Korean and Japanese and carry an accent in English.
+Set `"language": "en-gb"` with `bf_*`/`bm_*` voices for British English.
 
 A new engine is a folder in `tts/` with `engine.json`, `requirements.txt` and a `run.py`
 that reads one JSON request per line on stdin (`text`, `out`, `model`, `language`,
 `instructions`, `voiceId`, `speed`), writes a WAV to `out` and answers `{"ok": true}`.
+`node kit.mjs tts list` and `tts setup` find it by that `engine.json` alone, so anything
+written in `docs/stack.md` or the references should list it. If a dependency has no
+wheel for the machine's Python, put `--only-binary=:all: <package>` in `requirements.txt`
+(Kokoro's `misaki[en]` needs it for `spacy`): building from source fails on some versions.
 
 ### Other providers
 

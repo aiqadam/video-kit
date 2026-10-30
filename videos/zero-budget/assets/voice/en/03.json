@@ -1,0 +1,10 @@
+{
+  "text": "The pipeline is open source. Every layer of it.",
+  "provider": "local",
+  "voiceId": "af_heart",
+  "model": "mlx-community/Kokoro-82M-bf16",
+  "hash": "2aab1b1d968b7f3e",
+  "duration": 2.913,
+  "words": [],
+  "heard": "The pipeline is open source. Every layer of it."
+}

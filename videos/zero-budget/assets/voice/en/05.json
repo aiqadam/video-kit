@@ -1,0 +1,10 @@
+{
+  "text": "The music is Creative Commons. The price of attribution: zero.",
+  "provider": "local",
+  "voiceId": "af_heart",
+  "model": "mlx-community/Kokoro-82M-bf16",
+  "hash": "a0aed8750dfdcdb3",
+  "duration": 4.018,
+  "words": [],
+  "heard": "The music is creative commons. The price of attribution, zero."
+}

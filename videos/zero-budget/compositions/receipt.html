@@ -1,0 +1,117 @@
+<template>
+  <div id="root" data-composition-id="receipt">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      /* the whole bill, torn from the printer */
+      #receipt-paper {
+        position: absolute;
+        left: 560px;
+        top: 90px;
+        width: 800px;
+        background: var(--panel);
+        border: 1px solid var(--faint);
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 54px 60px 60px;
+        font-family: var(--mono);
+      }
+      #receipt-head {
+        text-align: center;
+        font-size: 30px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--muted);
+        padding-bottom: 28px;
+        border-bottom: 1px dashed var(--faint);
+      }
+      .receipt-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 17px 0;
+        font-size: 30px;
+        color: var(--muted);
+        border-bottom: 1px dashed var(--faint);
+      }
+      .receipt-row .receipt-price {
+        color: var(--green);
+        font-weight: 500;
+      }
+      .receipt-row.receipt-free .receipt-name {
+        color: var(--ink);
+      }
+      #receipt-total {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: 34px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink);
+      }
+      #receipt-sum {
+        font-family: var(--display);
+        font-size: 96px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--green);
+      }
+      /* the real thing, printing, beside the drawn one */
+      #receipt-clip {
+        position: absolute;
+        left: 90px;
+        top: 150px;
+        width: 380px;
+        height: 780px;
+        overflow: hidden;
+        border-radius: 12px;
+        border: 1px solid var(--faint);
+      }
+      #receipt-clip video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #receipt-cap {
+        position: absolute;
+        left: 90px;
+        top: 950px;
+        width: 380px;
+        text-align: center;
+        font-family: var(--mono);
+        font-size: 28px;
+        color: var(--muted);
+      }
+    </style>
+    <div id="receipt-clip">
+      <video id="receipt-v" class="clip" src="assets/fetched/clips/wiki-article-receipt-being-printed.mp4" data-start="0" data-duration="3.43" data-track-index="1" muted playsinline></video>
+    </div>
+    <div id="receipt-cap">a real receipt, printing</div>
+    <div id="receipt-paper">
+      <div id="receipt-head">The whole invoice</div>
+      <div class="receipt-row" id="receipt-r1"><span class="receipt-name">The model</span><span class="receipt-price">$0.00</span></div>
+      <div class="receipt-row" id="receipt-r2"><span class="receipt-name">The pipeline</span><span class="receipt-price">$0.00</span></div>
+      <div class="receipt-row" id="receipt-r3"><span class="receipt-name">The voice</span><span class="receipt-price">$0.00</span></div>
+      <div class="receipt-row" id="receipt-r4"><span class="receipt-name">The music</span><span class="receipt-price">$0.00</span></div>
+      <div class="receipt-row" id="receipt-r5"><span class="receipt-name">The render</span><span class="receipt-price">$0.00</span></div>
+      <div id="receipt-total"><span>Total</span><span id="receipt-sum">$0.00</span></div>
+    </div>
+    <script>
+      window.__timelines["receipt"] = kit.scene("receipt", function (t, s) {
+        kit.reveal(s.$("#receipt-paper"), t, 0.1, { y: 30, len: 0.4 });
+        kit.reveal(s.$("#receipt-head"), t, 0.5, { y: 10, len: 0.3 });
+        var rows = ["#receipt-r1", "#receipt-r2", "#receipt-r3", "#receipt-r4", "#receipt-r5"];
+        for (var i = 0; i < rows.length; i++) kit.reveal(s.$(rows[i]), t, 0.9 + i * 0.42, { y: 10, len: 0.28 });
+        // the sum lands on the last word of the narration
+        var pop = kit.prog(t, 4.3, 5.1, kit.ease.outBack);
+        kit.set(s.$("#receipt-total"), { opacity: kit.prog(t, 4.3, 4.6) });
+        kit.set(s.$("#receipt-sum"), { scale: 0.7 + 0.3 * pop });
+      });
+    </script>
+  </div>
+</template>

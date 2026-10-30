@@ -1,0 +1,84 @@
+<template>
+  <div id="root" data-composition-id="endcard">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #endcard-title {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 250px;
+        text-align: center;
+        font-family: var(--display);
+        font-size: 110px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+      #endcard-title b {
+        color: var(--green);
+        font-weight: 700;
+      }
+      /* the credit list, every line checked in the repository */
+      #endcard-list {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 470px;
+        text-align: center;
+        font-family: var(--mono);
+        font-size: 30px;
+        line-height: 2.1;
+        color: var(--muted);
+      }
+      #endcard-list b {
+        color: var(--ink);
+        font-weight: 400;
+      }
+      #endcard-foot {
+        position: absolute;
+        left: 120px;
+        right: 120px;
+        bottom: 70px;
+        text-align: center;
+        font-size: 28px;
+        color: var(--muted);
+      }
+      #endcard-total {
+        position: absolute;
+        right: 120px;
+        top: 72px;
+        font-family: var(--mono);
+        font-size: 34px;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        border: 1px solid var(--faint);
+        border-radius: 12px;
+        padding: 14px 26px;
+      }
+      #endcard-total b {
+        font-weight: 500;
+        color: var(--green);
+      }
+    </style>
+    <div id="endcard-total">TOTAL <b>$0.00</b></div>
+    <div id="endcard-title">Total: <b>$0.00</b></div>
+    <div id="endcard-list">
+      brief, scenes, voice — <b>opencode/mimo-v2.6-flash-free</b><br />
+      voice — <b>Kokoro 82M</b>, offline · music — <b>Kevin MacLeod, CC BY 4.0</b><br />
+      receipt clip — <b>~fjpaz-net, CC BY-SA 4.0</b> · laptop clips — <b>Pexels License</b>
+    </div>
+    <div id="endcard-foot">Every line of this bill is in the repository · AI Qadam Video Kit · MIT</div>
+    <script>
+      window.__timelines["endcard"] = kit.scene("endcard", function (t, s) {
+        kit.reveal(s.$("#endcard-total"), t, 0.1, { y: 0, len: 0.4 });
+        kit.words(s.$("#endcard-title"), t, 0.4, { step: 0.12, accent: ["$0.00"] });
+        kit.reveal(s.$("#endcard-list"), t, 1.2, { y: 16, len: 0.5 });
+        kit.reveal(s.$("#endcard-foot"), t, 2.0, { y: 10, len: 0.5 });
+      });
+    </script>
+  </div>
+</template>

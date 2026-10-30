@@ -1,0 +1,10 @@
+{
+  "text": "It even wrote this line.",
+  "provider": "local",
+  "voiceId": "af_heart",
+  "model": "mlx-community/Kokoro-82M-bf16",
+  "hash": "26b0f0de5acfbfa3",
+  "duration": 1.415,
+  "words": [],
+  "heard": "It even wrote this line."
+}

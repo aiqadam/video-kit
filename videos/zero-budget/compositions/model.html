@@ -1,0 +1,134 @@
+<template>
+  <div id="root" data-composition-id="model">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #model-eyebrow {
+        position: absolute;
+        left: 120px;
+        top: 80px;
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      #model-total {
+        position: absolute;
+        right: 120px;
+        top: 72px;
+        font-family: var(--mono);
+        font-size: 34px;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        border: 1px solid var(--faint);
+        border-radius: 12px;
+        padding: 14px 26px;
+      }
+      #model-total b {
+        font-weight: 500;
+        color: var(--green);
+      }
+      /* the session header, as opencode prints it */
+      #model-term {
+        position: absolute;
+        left: 200px;
+        top: 210px;
+        width: 1520px;
+        height: 300px;
+        background: var(--panel);
+        border: 1px solid var(--faint);
+        border-radius: 16px;
+        overflow: hidden;
+        padding: 48px 64px;
+        font-family: var(--mono);
+      }
+      #model-id {
+        font-size: 46px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      #model-id b {
+        color: var(--accent);
+        font-weight: 500;
+      }
+      #model-sub {
+        margin-top: 30px;
+        font-size: 30px;
+        color: var(--muted);
+      }
+      #model-reg {
+        margin-top: 22px;
+        font-size: 30px;
+        color: var(--muted);
+      }
+      #model-reg b {
+        color: var(--green);
+        font-weight: 400;
+      }
+      /* the receipt line this scene prints */
+      #model-line {
+        position: absolute;
+        left: 200px;
+        top: 580px;
+        width: 1520px;
+        font-family: var(--mono);
+        font-size: 38px;
+      }
+      #model-line .ml-name {
+        color: var(--ink);
+      }
+      #model-line .ml-dots {
+        color: var(--faint);
+        letter-spacing: 0.2em;
+      }
+      #model-line .ml-price {
+        color: var(--green);
+        float: right;
+        font-weight: 500;
+      }
+      #model-detail {
+        position: absolute;
+        left: 200px;
+        top: 660px;
+        width: 1520px;
+        font-family: var(--mono);
+        font-size: 28px;
+        color: var(--muted);
+      }
+    </style>
+    <div id="model-eyebrow">Line 1 · the model</div>
+    <div id="model-total">TOTAL <b>$0.00</b></div>
+    <div id="model-term">
+      <div id="model-id">&gt; model: <b>opencode/mimo-v2.6-flash-free</b></div>
+      <div id="model-sub">status: active · input · output · cache read · cache write</div>
+      <div id="model-reg">registry read 2026-10-30 · every token: $0.00</div>
+    </div>
+    <div id="model-line">
+      <span class="ml-name">The model that writes this video</span>
+      <span class="ml-dots">·······················</span>
+      <span class="ml-price">$0.00</span>
+    </div>
+    <div id="model-detail">input $0.00 &nbsp; output $0.00 &nbsp; cached $0.00</div>
+    <script>
+      window.__timelines["model"] = kit.scene("model", function (t, s) {
+        kit.reveal(s.$("#model-eyebrow"), t, 0, { y: 10, len: 0.3 });
+        kit.reveal(s.$("#model-term"), t, 0.2, { y: 24, len: 0.4 });
+        // a slow push-in so the tail of the scene keeps breathing; after reveal,
+        // which has finished by then, so its transform is free to take over
+        kit.set(s.$("#model-term"), { scale: 1 + 0.02 * kit.prog(t, 4.4, 7.7, kit.ease.linear) });
+        kit.reveal(s.$("#model-sub"), t, 0.9, { y: 10, len: 0.35 });
+        var line = s.$("#model-line");
+        kit.reveal(line, t, 2.4, { y: 16, len: 0.4 });
+        var pop = kit.prog(t, 2.5, 3.1, kit.ease.outBack);
+        kit.set(line, { scale: 0.96 + 0.04 * pop });
+        kit.reveal(s.$("#model-detail"), t, 3.4, { y: 8, len: 0.35 });
+        kit.reveal(s.$("#model-reg"), t, 3.9, { y: 8, len: 0.4 });
+      });
+    </script>
+  </div>
+</template>

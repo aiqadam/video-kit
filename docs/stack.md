@@ -52,7 +52,7 @@ it and it is not loaded into renders.
 | -------- | ----- | ----- |
 | `openrouter` | `OPENROUTER_API_KEY` | one key for many speech models: Microsoft MAI-Voice (native voices per language), Google Gemini TTS (delivery steered by words), ElevenLabs, MiniMax, Fish Audio; pay per character |
 | `elevenlabs` | `ELEVENLABS_API_KEY` | word timings; premade voices are native English; library voices need a paid plan through the API; free plan output is non-commercial |
-| `local` | Python 3.10–3.13 and `node kit.mjs tts setup <engine>` | free, offline: `qwen3-mlx` (Qwen3-TTS 1.7B via mlx-audio 0.6.2, Apple Silicon, Apache-2.0 model) or `piper` (piper-tts 1.8.0, GPL-3.0, any OS; voice licenses per voice). Engines run as separate processes; `tts/piper/run.py` is GPL-3.0-or-later because it imports piper |
+| `local` | Python 3.10–3.13 and `node kit.mjs tts setup <engine>` | free, offline: `kokoro-mlx` (Kokoro 82M via mlx-audio 0.6.2, Apple Silicon, Apache-2.0 model, native US/UK English voices), `qwen3-mlx` (Qwen3-TTS 1.7B via mlx-audio 0.6.2, Apple Silicon, Apache-2.0 model) or `piper` (piper-tts 1.8.0, GPL-3.0, any OS; voice licenses per voice). Engines run as separate processes; `tts/piper/run.py` is GPL-3.0-or-later because it imports piper |
 
 With `OPENROUTER_API_KEY` set, every take from any provider is transcribed back (Google
 Gemini 2.5 Flash through OpenRouter) and compared with the script; a mismatching take is

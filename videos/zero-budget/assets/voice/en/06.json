@@ -1,0 +1,10 @@
+{
+  "text": "Headless Chrome shoots the frames. The whole render farm is a laptop.",
+  "provider": "local",
+  "voiceId": "af_heart",
+  "model": "mlx-community/Kokoro-82M-bf16",
+  "hash": "a2776181d8e2d455",
+  "duration": 3.936,
+  "words": [],
+  "heard": "Headless Chrome shoots the frames. The whole render farm is a laptop."
+}

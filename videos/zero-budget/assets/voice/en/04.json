@@ -1,0 +1,10 @@
+{
+  "text": "The voice is generated on this Mac. No key, no account.",
+  "provider": "local",
+  "voiceId": "af_heart",
+  "model": "mlx-community/Kokoro-82M-bf16",
+  "hash": "a683858bad7e5826",
+  "duration": 3.528,
+  "words": [],
+  "heard": "The voice is generated on this Mac. No key, no account."
+}

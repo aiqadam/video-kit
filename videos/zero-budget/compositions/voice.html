@@ -1,0 +1,151 @@
+<template>
+  <div id="root" data-composition-id="voice">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #voice-eyebrow {
+        position: absolute;
+        left: 120px;
+        top: 80px;
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      #voice-total {
+        position: absolute;
+        right: 120px;
+        top: 72px;
+        font-family: var(--mono);
+        font-size: 34px;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        border: 1px solid var(--faint);
+        border-radius: 12px;
+        padding: 14px 26px;
+      }
+      #voice-total b {
+        font-weight: 500;
+        color: var(--green);
+      }
+      #voice-term {
+        position: absolute;
+        left: 200px;
+        top: 220px;
+        width: 1520px;
+        background: var(--panel);
+        border: 1px solid var(--faint);
+        border-radius: 16px;
+        overflow: hidden;
+        padding: 48px 64px;
+        font-family: var(--mono);
+      }
+      #voice-cmd {
+        font-size: 38px;
+        font-weight: 500;
+      }
+      #voice-cmd .voice-gt {
+        color: var(--accent);
+        margin-right: 0.5em;
+      }
+      #voice-engine {
+        margin-top: 26px;
+        font-size: 30px;
+        color: var(--muted);
+      }
+      #voice-engine b {
+        color: var(--ink);
+        font-weight: 400;
+      }
+      /* the take, drawn as a waveform the narration is speaking over */
+      #voice-wave {
+        position: absolute;
+        left: 200px;
+        top: 560px;
+        width: 1520px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      #voice-wave i {
+        display: block;
+        flex: 1;
+        background: var(--accent);
+        border-radius: 3px;
+        opacity: 0.85;
+      }
+      #voice-file {
+        position: absolute;
+        left: 200px;
+        top: 730px;
+        width: 1520px;
+        font-family: var(--mono);
+        font-size: 28px;
+        color: var(--muted);
+      }
+      #voice-file .voice-price {
+        color: var(--green);
+        float: right;
+        font-weight: 500;
+      }
+      /* a real machine in a real room, dimmed, behind the panel */
+      #voice-bg {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      #voice-bg video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #voice-scrim {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(11, 13, 14, 0.78), rgba(11, 13, 14, 0.9));
+      }
+    </style>
+    <div id="voice-bg">
+      <video id="voice-v" class="clip" src="assets/fetched/clips/pexels-34771072.mp4" data-start="2" data-hf-media-start-basis="local" data-duration="5.806" data-track-index="1" muted playsinline></video>
+    </div>
+    <div id="voice-scrim"></div>
+    <div id="voice-eyebrow">Line 3 · the voice</div>
+    <div id="voice-total">TOTAL <b>$0.00</b></div>
+    <div id="voice-term">
+      <div id="voice-cmd"><span class="voice-gt">&gt;</span>node kit.mjs voice zero-budget</div>
+      <div id="voice-engine">provider <b>local</b> · engine <b>kokoro-mlx</b> · Kokoro 82M, on this Mac · offline</div>
+    </div>
+    <div id="voice-wave"></div>
+    <div id="voice-file">
+      <span>assets/voice/en/04.mp3 · heard: "generated on this mac"</span>
+      <span class="voice-price">$0.00</span>
+    </div>
+    <script>
+      window.__timelines["voice"] = kit.scene("voice", function (t, s) {
+        kit.reveal(s.$("#voice-eyebrow"), t, 0, { y: 10, len: 0.3 });
+        kit.reveal(s.$("#voice-term"), t, 0.2, { y: 24, len: 0.4 });
+        kit.reveal(s.$("#voice-file"), t, 1.8, { y: 10, len: 0.4 });
+        // a slow push-in so the tail of the scene keeps breathing
+        kit.set(s.$("#voice-term"), { scale: 1 + 0.02 * kit.prog(t, 2.8, 5.8, kit.ease.linear) });
+        // a deterministic waveform: the take being spoken over
+        var bars = s.$("#voice-wave").children;
+        var spoken = s.line("04");
+        var p = spoken ? (t - spoken.start) / Math.max(0.001, spoken.end - spoken.start) : 0;
+        p = Math.max(0, Math.min(1, p));
+        for (var i = 0; i < bars.length; i++) {
+          var x = i / bars.length;
+          // a fixed shape that lights up left to right as the line is spoken
+          var shape = 0.35 + 0.65 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * 0.6));
+          var played = x <= p ? 1 : 0.22;
+          kit.set(bars[i], { height: Math.round(14 + shape * 92) * played, opacity: x <= p ? 0.9 : 0.3 });
+        }
+      });
+    </script>
+  </div>
+</template>

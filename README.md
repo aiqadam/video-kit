@@ -21,8 +21,8 @@ What each part does, what is optional and what needs a key: [docs/stack.md](docs
 - **Product screens drawn in code** and acted out: taps, typing, screen changes.
 - **Voiceover** three ways: ElevenLabs; OpenRouter (one key for Microsoft MAI-Voice with
   native voices per language, Gemini TTS, MiniMax, Fish Audio and more); or free local
-  engines (Qwen3-TTS on Apple Silicon, Piper anywhere) with no account at all. Every take
-  is transcribed back and checked against the script.
+  engines (Kokoro on Apple Silicon, Qwen3-TTS on Apple Silicon, Piper anywhere) with no
+  account at all. Every take is transcribed back and checked against the script.
 - **Music**: a licensed track (incompetech, by mood and tempo), your own, or a generated
   bed; interface sounds generated. The music dips under the voice, and the final mix is
   normalised to −16 LUFS.
@@ -55,8 +55,9 @@ cd my-videos && npm install
 For a voiceover, copy `.env.example` to `.env` and put an
 [ElevenLabs key](https://elevenlabs.io/app/developers/api-keys) or an
 [OpenRouter key](https://openrouter.ai/settings/keys) in it, or install a free local
-engine: `node kit.mjs tts list`, then `node kit.mjs tts setup qwen3-mlx` (Apple Silicon)
-or `node kit.mjs tts setup piper` (any OS). Without a key or an engine everything works
+engine: `node kit.mjs tts list`, then `node kit.mjs tts setup kokoro-mlx` (native English
+voices, Apple Silicon), `node kit.mjs tts setup qwen3-mlx` (Apple Silicon) or
+`node kit.mjs tts setup piper` (any OS). Without a key or an engine everything works
 except the voice: lines are timed by an estimate and stay silent.
 
 Then open the folder in your coding agent and say what you need, in any language:
@@ -97,6 +98,17 @@ photo), cut on the bars of a CC BY track. Every date in it has a source in its `
 
 ```bash
 node kit.mjs render ottoman-empire
+```
+
+`videos/zero-budget/` is a 58-second English promo about making a promo for nothing: a
+receipt whose total stays at `$0.00` while each scene prints one more line of the bill —
+the model, the pipeline, the voice, the music, the render. It runs on
+`opencode/mimo-v2.6-flash-free` and says so on screen; the voice is Kokoro 82M, generated
+offline on the machine that rendered it. The terminal, the receipt and the total are drawn
+in HTML; three stock clips (Pexels, Wikimedia Commons) sit behind them.
+
+```bash
+node kit.mjs render zero-budget
 ```
 
 ## Commands

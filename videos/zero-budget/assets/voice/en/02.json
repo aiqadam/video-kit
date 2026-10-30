@@ -1,0 +1,10 @@
+{
+  "text": "The model that writes this video pays nothing. Not for input, not for output.",
+  "provider": "local",
+  "voiceId": "af_heart",
+  "model": "mlx-community/Kokoro-82M-bf16",
+  "hash": "ab1be3b17670016e",
+  "duration": 4.515,
+  "words": [],
+  "heard": "The model that writes this video pays nothing, not for input, not for output."
+}
