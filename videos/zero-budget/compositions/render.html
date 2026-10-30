@@ -1,0 +1,118 @@
+<template>
+  <div id="root" data-composition-id="render">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #render-eyebrow {
+        position: absolute;
+        left: 120px;
+        top: 80px;
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      #render-total {
+        position: absolute;
+        right: 120px;
+        top: 72px;
+        font-family: var(--mono);
+        font-size: 34px;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        border: 1px solid var(--faint);
+        border-radius: 12px;
+        padding: 14px 26px;
+      }
+      #render-total b {
+        font-weight: 500;
+        color: var(--green);
+      }
+      #render-term {
+        position: absolute;
+        left: 200px;
+        top: 210px;
+        width: 1520px;
+        height: 600px;
+        background: var(--panel);
+        border: 1px solid var(--faint);
+        border-radius: 16px;
+        overflow: hidden;
+        padding: 44px 64px;
+        font-family: var(--mono);
+        font-size: 32px;
+      }
+      #render-cmd {
+        font-size: 40px;
+        font-weight: 500;
+        margin-bottom: 36px;
+      }
+      #render-cmd .render-gt {
+        color: var(--accent);
+        margin-right: 0.5em;
+      }
+      .render-row {
+        padding: 12px 0;
+        color: var(--muted);
+      }
+      .render-row b {
+        color: var(--ink);
+        font-weight: 400;
+      }
+      #render-progress {
+        margin-top: 30px;
+        height: 14px;
+        background: var(--faint);
+        border-radius: 7px;
+        overflow: hidden;
+      }
+      #render-fill {
+        height: 100%;
+        width: 0;
+        background: var(--accent);
+        border-radius: 7px;
+      }
+      #render-frames {
+        margin-top: 22px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 28px;
+        color: var(--muted);
+      }
+      #render-done b {
+        color: var(--green);
+        font-weight: 500;
+      }
+    </style>
+    <div id="render-eyebrow">Line 5 · the render</div>
+    <div id="render-total">TOTAL <b>$0.00</b></div>
+    <div id="render-term">
+      <div id="render-cmd"><span class="render-gt">&gt;</span>node kit.mjs render zero-budget</div>
+      <div class="render-row">headless Chrome · <b>1920×1080</b> · 30 fps · frames to PNG</div>
+      <div class="render-row">ffmpeg · two-pass · normalised to <b>−16 LUFS</b></div>
+      <div class="render-row">the whole render farm is <b>this laptop</b></div>
+      <div id="render-progress"><div id="render-fill"></div></div>
+      <div id="render-frames">
+        <span id="render-count">frame 0 / 1684</span>
+        <span id="render-done">renders/zero-budget-en.mp4 · <b>$0.00</b></span>
+      </div>
+    </div>
+    <script>
+      window.__timelines["render"] = kit.scene("render", function (t, s) {
+        kit.reveal(s.$("#render-eyebrow"), t, 0, { y: 10, len: 0.3 });
+        kit.reveal(s.$("#render-term"), t, 0.2, { y: 24, len: 0.4 });
+        kit.reveal(s.$("#render-cmd"), t, 0.7, { y: 10, len: 0.3 });
+        // frames tick up as the render runs; the same picture for the same t
+        var p = kit.prog(t, 1.6, 6.4, kit.ease.inOut);
+        kit.set(s.$("#render-fill"), { width: (p * 100).toFixed(1) + "%" });
+        kit.set(s.$("#render-count"), { textContent: "frame " + Math.round(p * 1684) + " / 1684" });
+        kit.reveal(s.$("#render-done"), t, 5.3, { y: 8, len: 0.35 });
+      });
+    </script>
+  </div>
+</template>

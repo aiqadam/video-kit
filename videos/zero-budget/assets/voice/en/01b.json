@@ -1,0 +1,10 @@
+{
+  "text": "This one printed its own.",
+  "provider": "local",
+  "voiceId": "af_heart",
+  "model": "mlx-community/Kokoro-82M-bf16",
+  "hash": "1f2d5bf46e3568fa",
+  "duration": 1.458,
+  "words": [],
+  "heard": "This one printed its own."
+}

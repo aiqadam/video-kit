@@ -1,0 +1,8 @@
+{
+  "name": "kokoro-mlx",
+  "about": "Kokoro 82M (Apache-2.0) on Apple Silicon through MLX: small, fast, clear US/UK English voices recorded by native speakers",
+  "platforms": ["darwin-arm64"],
+  "python": ">=3.10,<3.14",
+  "defaultModel": "mlx-community/Kokoro-82M-bf16",
+  "license": "model Apache-2.0; mlx-audio MIT; misaki MIT"
+}

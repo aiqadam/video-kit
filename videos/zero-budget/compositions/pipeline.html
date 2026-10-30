@@ -1,0 +1,98 @@
+<template>
+  <div id="root" data-composition-id="pipeline">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #pipeline-eyebrow {
+        position: absolute;
+        left: 120px;
+        top: 80px;
+        font-family: var(--mono);
+        font-size: 28px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      #pipeline-total {
+        position: absolute;
+        right: 120px;
+        top: 72px;
+        font-family: var(--mono);
+        font-size: 34px;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        border: 1px solid var(--faint);
+        border-radius: 12px;
+        padding: 14px 26px;
+      }
+      #pipeline-total b {
+        font-weight: 500;
+        color: var(--green);
+      }
+      /* the terminal listing every layer of the stack */
+      #pipeline-term {
+        position: absolute;
+        left: 200px;
+        top: 210px;
+        width: 1520px;
+        height: 600px;
+        background: var(--panel);
+        border: 1px solid var(--faint);
+        border-radius: 16px;
+        overflow: hidden;
+        padding: 44px 64px;
+        font-family: var(--mono);
+        font-size: 34px;
+      }
+      #pipeline-cmd {
+        font-size: 38px;
+        font-weight: 500;
+        margin-bottom: 34px;
+      }
+      #pipeline-cmd .pipeline-gt {
+        color: var(--accent);
+        margin-right: 0.5em;
+      }
+      .pipeline-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 13px 0;
+        color: var(--muted);
+        border-bottom: 1px dashed var(--faint);
+      }
+      .pipeline-row .pipeline-price {
+        color: var(--green);
+        font-weight: 500;
+      }
+      .pipeline-row b {
+        color: var(--ink);
+        font-weight: 400;
+      }
+    </style>
+    <div id="pipeline-eyebrow">Line 2 · the pipeline</div>
+    <div id="pipeline-total">TOTAL <b>$0.00</b></div>
+    <div id="pipeline-term">
+      <div id="pipeline-cmd"><span class="pipeline-gt">&gt;</span>node kit.mjs render zero-budget</div>
+      <div class="pipeline-row" id="pipeline-r1"><span><b>the kit</b> · scenes, timeline, checks</span><span class="pipeline-price">MIT · $0.00</span></div>
+      <div class="pipeline-row" id="pipeline-r2"><span><b>HyperFrames</b> · frames and mix</span><span class="pipeline-price">Apache-2.0 · $0.00</span></div>
+      <div class="pipeline-row" id="pipeline-r3"><span><b>ffmpeg</b> · the encoder</span><span class="pipeline-price">GPL-3.0 · $0.00</span></div>
+      <div class="pipeline-row" id="pipeline-r4"><span><b>Chrome</b> · headless, the studio</span><span class="pipeline-price">free · $0.00</span></div>
+      <div class="pipeline-row" id="pipeline-r5"><span><b>the machine</b> · this laptop</span><span class="pipeline-price">already paid for</span></div>
+    </div>
+    <script>
+      window.__timelines["pipeline"] = kit.scene("pipeline", function (t, s) {
+        kit.reveal(s.$("#pipeline-eyebrow"), t, 0, { y: 10, len: 0.3 });
+        kit.reveal(s.$("#pipeline-term"), t, 0.2, { y: 24, len: 0.4 });
+        kit.reveal(s.$("#pipeline-cmd"), t, 0.7, { y: 10, len: 0.3 });
+        var rows = ["#pipeline-r1", "#pipeline-r2", "#pipeline-r3", "#pipeline-r4", "#pipeline-r5"];
+        for (var i = 0; i < rows.length; i++) kit.reveal(s.$(rows[i]), t, 1.4 + i * 0.55, { y: 12, len: 0.3 });
+        // a slow push-in so the tail of the scene keeps breathing
+        kit.set(s.$("#pipeline-term"), { scale: 1 + 0.02 * kit.prog(t, 4.6, 7.7, kit.ease.linear) });
+      });
+    </script>
+  </div>
+</template>

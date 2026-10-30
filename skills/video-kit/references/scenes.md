@@ -89,6 +89,9 @@ screen, drive it with `kit.cursor`, change the UI on each tap time.
   (`visibility: hidden`), or `check` reports overlapping text.
 - `videos/kit-promo/` is a worked example: a terminal that types, files whose lines light
   up with the voice, an x-ray wipe, a pull-back into a player.
+- `videos/zero-budget/` is another: a receipt that keeps printing rows, a running total
+  in a corner, a terminal and a file list — all plain HTML type, with stock clips dimmed
+  behind them.
 
 ## Photos and footage
 

@@ -1,0 +1,10 @@
+{
+  "text": "Every promo video has a budget.",
+  "provider": "local",
+  "voiceId": "af_heart",
+  "model": "mlx-community/Kokoro-82M-bf16",
+  "hash": "10bf5fdeea769b16",
+  "duration": 1.972,
+  "words": [],
+  "heard": "Every promo video has a budget."
+}

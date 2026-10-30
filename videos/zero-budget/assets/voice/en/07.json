@@ -1,0 +1,10 @@
+{
+  "text": "Zero is not a discount.",
+  "provider": "local",
+  "voiceId": "af_heart",
+  "model": "mlx-community/Kokoro-82M-bf16",
+  "hash": "7fa23b71d82d3be3",
+  "duration": 1.528,
+  "words": [],
+  "heard": "Zero is not a discount."
+}

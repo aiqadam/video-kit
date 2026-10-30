@@ -1,0 +1,139 @@
+{
+  "title": "Zero Budget: a promo video whose invoice is $0.00",
+  "format": "landscape",
+  "fps": 30,
+  "lang": "en",
+  "transition": 0,
+  "maxSilence": 5,
+  "theme": {
+    "bg": "#0b0d0e",
+    "ink": "#fdfaf5",
+    "muted": "rgba(253, 250, 245, 0.62)",
+    "faint": "rgba(253, 250, 245, 0.14)",
+    "panel": "#14181a",
+    "accent": "#3ca29e",
+    "green": "#7fd8a2",
+    "font": "'Kit Inter', sans-serif",
+    "display": "'Geist', sans-serif",
+    "mono": "'JetBrains Mono', monospace"
+  },
+  "fonts": [
+    {
+      "family": "Geist",
+      "src": "assets/fonts/geist-latin-wght-normal.woff2",
+      "weight": "100 900",
+      "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "Geist",
+      "src": "assets/fonts/geist-latin-ext-wght-normal.woff2",
+      "weight": "100 900",
+      "range": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "JetBrains Mono",
+      "src": "assets/fonts/jetbrains-mono-latin-wght-normal.woff2",
+      "weight": "100 800",
+      "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "JetBrains Mono",
+      "src": "assets/fonts/jetbrains-mono-latin-ext-wght-normal.woff2",
+      "weight": "100 800",
+      "range": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    }
+  ],
+  "voice": {
+    "provider": "local",
+    "engine": "kokoro-mlx",
+    "model": "mlx-community/Kokoro-82M-bf16",
+    "voiceId": "af_heart",
+    "language": "en"
+  },
+  "voiceSamples": [
+    { "name": "kokoro-am-michael", "provider": "local", "engine": "kokoro-mlx", "model": "mlx-community/Kokoro-82M-bf16", "voiceId": "am_michael" },
+    { "name": "kokoro-am-adam", "provider": "local", "engine": "kokoro-mlx", "model": "mlx-community/Kokoro-82M-bf16", "voiceId": "am_adam" },
+    { "name": "kokoro-af-heart", "provider": "local", "engine": "kokoro-mlx", "model": "mlx-community/Kokoro-82M-bf16", "voiceId": "af_heart" },
+    { "name": "kokoro-bm-george", "provider": "local", "engine": "kokoro-mlx", "model": "mlx-community/Kokoro-82M-bf16", "voiceId": "bm_george", "language": "en-gb" },
+    { "name": "kokoro-bf-alice", "provider": "local", "engine": "kokoro-mlx", "model": "mlx-community/Kokoro-82M-bf16", "voiceId": "bf_alice", "language": "en-gb" }
+  ],
+  "music": {
+    "source": "file",
+    "file": "assets/fetched/music/blipotron.mp3",
+    "start": 0.065,
+    "volume": 0.5,
+    "duck": 0.4
+  },
+  "sfxVolume": 0.55,
+  "scenes": [
+    {
+      "id": "cold-open",
+      "dur": 7.742,
+      "lines": [
+        { "id": "01", "at": 0.4, "text": "Every promo video has a budget." },
+        { "id": "01b", "at": 3.6, "text": "This one printed its own." }
+      ],
+      "sfx": [
+        { "at": 0.2, "sound": "whoosh", "gain": 0.5 },
+        { "at": 6.9, "sound": "tap", "gain": 0.6 }
+      ]
+    },
+    {
+      "id": "model",
+      "dur": 7.742,
+      "lines": [
+        { "id": "02", "at": 0.3, "text": "The model that writes this video pays nothing. Not for input, not for output." }
+      ],
+      "sfx": [{ "at": 2.6, "sound": "pop", "gain": 0.5 }]
+    },
+    {
+      "id": "pipeline",
+      "dur": 7.742,
+      "lines": [
+        { "id": "03", "at": 0.3, "text": "The pipeline is open source. Every layer of it." }
+      ],
+      "sfx": [{ "at": 2.4, "sound": "pop", "gain": 0.5 }]
+    },
+    {
+      "id": "voice",
+      "dur": 5.806,
+      "lines": [
+        { "id": "04", "at": 0.3, "text": "The voice is generated on this Mac. No key, no account." }
+      ],
+      "sfx": [{ "at": 0.2, "sound": "whoosh", "gain": 0.4 }]
+    },
+    {
+      "id": "media",
+      "dur": 5.806,
+      "lines": [
+        { "id": "05", "at": 0.3, "text": "The music is Creative Commons. The price of attribution: zero." }
+      ],
+      "sfx": [{ "at": 4.2, "sound": "pop", "gain": 0.5 }]
+    },
+    {
+      "id": "render",
+      "dur": 7.742,
+      "lines": [
+        { "id": "06", "at": 0.3, "text": "Headless Chrome shoots the frames. The whole render farm is a laptop." }
+      ],
+      "sfx": [{ "at": 0.2, "sound": "whoosh", "gain": 0.4 }]
+    },
+    {
+      "id": "receipt",
+      "dur": 7.742,
+      "lines": [
+        { "id": "07", "at": 0.4, "text": "Zero is not a discount." },
+        { "id": "07b", "at": 3.0, "text": "It is the whole invoice." }
+      ],
+      "sfx": [{ "at": 4.6, "sound": "success", "gain": 0.5 }]
+    },
+    {
+      "id": "endcard",
+      "dur": 7.742,
+      "lines": [
+        { "id": "08", "at": 0.5, "text": "It even wrote this line." }
+      ],
+      "sfx": [{ "at": 0.2, "sound": "whoosh", "gain": 0.4 }]
+    }
+  ]
+}

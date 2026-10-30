@@ -1,0 +1,10 @@
+{
+  "text": "It is the whole invoice.",
+  "provider": "local",
+  "voiceId": "af_heart",
+  "model": "mlx-community/Kokoro-82M-bf16",
+  "hash": "e56f475102ff5974",
+  "duration": 1.408,
+  "words": [],
+  "heard": "It is the whole invoice."
+}

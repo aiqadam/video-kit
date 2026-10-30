@@ -9,6 +9,7 @@ videos/*/assets/kit/
 
 # HyperFrames working files and renders
 videos/*/.hyperframes/
+videos/*/.transcode-cache/
 videos/*/renders/
 videos/*/assets/fetched/
 .kit/

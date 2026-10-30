@@ -1,0 +1,5 @@
+--only-binary=:all: spacy, blis, thinc
+mlx-audio==0.6.2
+misaki[en]
+soundfile
+numpy
