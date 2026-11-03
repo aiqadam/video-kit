@@ -1,0 +1,10 @@
+{
+  "text": "Oʻrindiqni tanlaysiz, karta bilan toʻlaysiz, chipta esa telefoningizda.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "6c48cbbcf7e37635",
+  "duration": 4.977,
+  "words": [],
+  "heard": "O'rindiqni tanlaysiz, karta bilan to'laysiz, chipda esa telefoningizda."
+}

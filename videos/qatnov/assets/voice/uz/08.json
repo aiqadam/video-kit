@@ -1,0 +1,10 @@
+{
+  "text": "Qirq olti shahar va mamlakatning barcha viloyatlari.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "8254954ade226ba9",
+  "duration": 3.428,
+  "words": [],
+  "heard": "46 shahar va mamlakatning barcha viloyatlari."
+}

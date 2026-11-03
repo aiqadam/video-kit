@@ -1,0 +1,257 @@
+<template>
+  <div id="root" data-composition-id="cities">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font), sans-serif;
+      }
+      #root .shot {
+        position: absolute;
+        inset: 0;
+      }
+      #root .girih {
+        position: absolute;
+        inset: -120px;
+        background-image: url(assets/ui/girih.svg);
+        background-size: 120px 120px;
+        opacity: 0.09;
+      }
+      #root .glow {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(31, 181, 166, 0.32), rgba(31, 181, 166, 0) 100%);
+        pointer-events: none;
+      }
+      #root .kicker {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--saffron);
+      }
+      #root .kicker svg {
+        width: 26px;
+        height: 26px;
+        flex: none;
+      }
+      #root .display {
+        font-family: var(--display), sans-serif;
+        font-variation-settings: 'opsz' 96;
+        font-weight: 800;
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+      }
+      #root .display .accent {
+        color: var(--tile);
+      }
+      #root .cap {
+        position: absolute;
+        left: 150px;
+        width: 820px;
+      }
+      #root .cap .display {
+        margin-top: 26px;
+        font-size: 104px;
+      }
+      #root .arch-line {
+        position: absolute;
+        pointer-events: none;
+      }
+      #root .sub {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 44px;
+        text-align: center;
+        z-index: 60;
+      }
+      #root .sub span {
+        display: inline-block;
+        max-width: 1480px;
+        padding: 10px 26px;
+        border-radius: 14px;
+        background: rgba(8, 17, 41, 0.8);
+        color: #fff;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 1.32;
+      }
+
+      .ct-arch {
+        position: absolute;
+        overflow: hidden;
+      }
+      .ct-arch video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .ct-arch .shade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(8, 17, 41, 0.85) 0%, rgba(8, 17, 41, 0) 45%);
+      }
+      .ct-arch .nm {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 34px;
+        text-align: center;
+        font-family: var(--display), sans-serif;
+        font-variation-settings: 'opsz' 96;
+        font-weight: 800;
+        font-size: 54px;
+        letter-spacing: -0.02em;
+      }
+      #cities-layer {
+        position: absolute;
+        left: 110px;
+        top: 105px;
+        width: 1350px;
+        height: 878px;
+      }
+      #cities-layer img,
+      #cities-layer svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1350px;
+        height: 878px;
+        overflow: visible;
+      }
+      #cities-layer text {
+        font-family: var(--font), sans-serif;
+        font-size: 32px;
+        font-weight: 600;
+        fill: #f6efe2;
+      }
+      #cities-text {
+        position: absolute;
+        left: 1150px;
+        top: 140px;
+      }
+      #cities-big {
+        margin-top: 18px;
+        font-size: 120px;
+        white-space: nowrap;
+      }
+      #cities-unit {
+        margin-top: 12px;
+        font-size: 40px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+      #cities-credit {
+        position: absolute;
+        right: 60px;
+        bottom: 14px;
+        font-size: 22px;
+        color: rgba(246, 239, 226, 0.5);
+      }
+
+    </style>
+    <svg width="0" height="0" style="position:absolute"><defs><clipPath id="cities-arch" clipPathUnits="objectBoundingBox"><path d="M0,1 L0,0.40 C0,0.19 0.23,0.07 0.5,0 C0.77,0.07 1,0.19 1,0.40 L1,1 Z"/></clipPath></defs></svg>
+    <div class="shot" id="cities-a">
+      <div class="girih" id="cities-girih"></div>
+      <div class="ct-arch" id="cities-a0" style="left:210px; top:300px; width:440px; height:640px; clip-path:url(#cities-arch)"><video id="cities-v0" class="clip" src="assets/fetched/clips/pexels-17874609.mp4" data-start="0" data-duration="4" data-track-index="1" muted playsinline style="object-position:50% 50%"></video><div class="shade"></div><div class="nm">Toshkent</div></div><svg class="arch-line" id="cities-l0" style="left:196px; top:286px; width:468px; height:654px" viewBox="0 0 1 1" preserveAspectRatio="none"><path d="M0,1 L0,0.40 C0,0.19 0.23,0.07 0.5,0 C0.77,0.07 1,0.19 1,0.40 L1,1 Z" fill="none" stroke="#F5B53F" stroke-width="3" vector-effect="non-scaling-stroke"/></svg><div class="ct-arch" id="cities-a1" style="left:700px; top:150px; width:520px; height:790px; clip-path:url(#cities-arch)"><video id="cities-v1" class="clip" src="assets/fetched/clips/pexels-32485939.mp4" data-start="0" data-duration="4" data-track-index="2" muted playsinline style="object-position:50% 50%"></video><div class="shade"></div><div class="nm">Samarqand</div></div><svg class="arch-line" id="cities-l1" style="left:686px; top:136px; width:548px; height:804px" viewBox="0 0 1 1" preserveAspectRatio="none"><path d="M0,1 L0,0.40 C0,0.19 0.23,0.07 0.5,0 C0.77,0.07 1,0.19 1,0.40 L1,1 Z" fill="none" stroke="#F5B53F" stroke-width="3" vector-effect="non-scaling-stroke"/></svg><div class="ct-arch" id="cities-a2" style="left:1270px; top:300px; width:440px; height:640px; clip-path:url(#cities-arch)"><video id="cities-v2" class="clip" src="assets/fetched/clips/pexels-39335469.mp4" data-start="0" data-duration="4" data-track-index="3" muted playsinline style="object-position:62% 20%"></video><div class="shade"></div><div class="nm">Buxoro</div></div><svg class="arch-line" id="cities-l2" style="left:1256px; top:286px; width:468px; height:654px" viewBox="0 0 1 1" preserveAspectRatio="none"><path d="M0,1 L0,0.40 C0,0.19 0.23,0.07 0.5,0 C0.77,0.07 1,0.19 1,0.40 L1,1 Z" fill="none" stroke="#F5B53F" stroke-width="3" vector-effect="non-scaling-stroke"/></svg>
+    </div>
+    <div class="shot" id="cities-b">
+      <div class="girih"></div>
+      <div id="cities-layer"><img src="assets/map/uzbekistan-dark.svg" alt=""/><svg viewBox="0 0 1500 975.5" id="cities-svg"></svg></div>
+      <div id="cities-text"><div class="kicker" id="cities-kicker"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5l2.9 4.1 4.9-1-1 4.9 4.1 2.9-4.1 2.9 1 4.9-4.9-1-2.9 4.1-2.9-4.1-4.9 1 1-4.9L1.5 12l4.1-2.9-1-4.9 4.9 1z"/></svg><span>Yo‘nalishlar</span></div><div class="display" id="cities-big"><span id="cities-n">46</span> shahar</div><div id="cities-unit">barcha viloyatlarda</div></div>
+      <div id="cities-credit" data-layout-ignore>Xarita: © OpenStreetMap contributors, geoBoundaries (ODbL)</div>
+    </div>
+    <div class="sub" id="cities-sub"><span></span></div>
+    <script>
+      (function () {
+        // regional centres at their real positions; the routes are the demo network
+        var C = {
+          Toshkent: [1158.7, 497.5], Samarqand: [959.2, 688.3], Buxoro: [737.7, 674.3], Urganch: [405.7, 468.4],
+          Nukus: [316.1, 363.7], Navoiy: [820.9, 638.4], Qarshi: [856.8, 780.3], Termiz: [987.1, 970.0],
+          Jizzax: [1036.4, 634.7], Guliston: [1118.9, 591.4], Namangan: [1371.6, 532.4], Andijon: [1430.4, 557.5],
+          "Farg‘ona": [1381.4, 603.4], "Qo‘qon": [1307.7, 586.9],
+        };
+        var R = [
+          ["Toshkent", "Guliston"], ["Guliston", "Jizzax"], ["Jizzax", "Samarqand"], ["Samarqand", "Navoiy"],
+          ["Navoiy", "Buxoro"], ["Buxoro", "Urganch"], ["Urganch", "Nukus"], ["Toshkent", "Qo‘qon"],
+          ["Qo‘qon", "Farg‘ona"], ["Qo‘qon", "Namangan"], ["Farg‘ona", "Andijon"], ["Samarqand", "Qarshi"], ["Qarshi", "Termiz"],
+        ];
+        var L = {
+          Toshkent: [14, -18, "start"], Samarqand: [0, 44, "middle"], Buxoro: [-16, 36, "end"], Urganch: [-16, 8, "end"],
+          Nukus: [0, -22, "middle"], Navoiy: [0, -22, "middle"], Qarshi: [-16, 8, "end"], Termiz: [16, 0, "start"],
+          Jizzax: [-12, -18, "end"], Guliston: [-10, -18, "end"], Namangan: [0, -22, "middle"], Andijon: [16, 28, "start"],
+          "Farg‘ona": [0, 42, "middle"], "Qo‘qon": [-14, -16, "end"],
+        };
+        var svg = document.querySelector('[data-composition-id="cities"] #cities-svg');
+        if (!svg || svg.childNodes.length) return;
+        var out = "";
+        R.forEach(function (r, i) {
+          var a = C[r[0]], b = C[r[1]];
+          var mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, dx = b[0] - a[0], dy = b[1] - a[1], k = 0.18;
+          out += '<path class="ct-route" d="M' + a[0] + "," + a[1] + " Q" + (mx - dy * k) + "," + (my + dx * k) + " " + b[0] + "," + b[1] + '" fill="none" stroke="#F5B53F" stroke-width="5" stroke-linecap="round"/>';
+        });
+        Object.keys(C).forEach(function (n) {
+          var p = C[n], l = L[n], big = n === "Toshkent";
+          out += '<g class="ct-city"><circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + (big ? 14 : 9) + '" fill="' + (big ? "#1FB5A6" : "#F6EFE2") + '" stroke="#0D1B3E" stroke-width="3"/>';
+          out += '<text x="' + (p[0] + l[0]) + '" y="' + (p[1] + l[1]) + '" text-anchor="' + l[2] + '">' + n + "</text></g>";
+        });
+        svg.innerHTML = out;
+      })();
+
+      window.__timelines["cities"] = kit.scene("cities", function (t, s) {
+        var B = 4;
+        kit.beat(s.$("#cities-a"), t, -1, B);
+        kit.set(s.$("#cities-girih"), { y: -t * 10 });
+        [0, 1, 2].forEach(function (i) {
+          var a = i === 1 ? 0 : i === 0 ? 0.5 : 1.0;
+          var p = kit.prog(t, a, a + 0.6, kit.ease.outBack);
+          var o = kit.prog(t, a, a + 0.3);
+          kit.set(s.$("#cities-a" + i), { y: (1 - p) * 160, opacity: o });
+          kit.set(s.$("#cities-l" + i), { y: (1 - p) * 160, opacity: o });
+          kit.set(s.$("#cities-v" + i), { scale: 1.08 + 0.04 * t / B });
+        });
+        kit.beat(s.$("#cities-b"), t, B, s.dur + 1, { enter: 1.15, last: true });
+        var routes = document.querySelectorAll('[data-composition-id="cities"] .ct-route');
+        routes.forEach(function (el, i) {
+          var len = el.__len || (el.__len = el.getTotalLength());
+          var a = B + 0.3 + i * 0.13;
+          el.style.strokeDasharray = len + " " + len;
+          el.style.strokeDashoffset = String(len * (1 - kit.prog(t, a, a + 0.5, kit.ease.inOut)));
+        });
+        document.querySelectorAll('[data-composition-id="cities"] .ct-city').forEach(function (el, i) {
+          var a = B + 0.2 + i * 0.1;
+          el.setAttribute("opacity", String(kit.prog(t, a, a + 0.3)));
+        });
+        kit.reveal(s.$("#cities-kicker"), t, B + 0.2);
+        kit.count(s.$("#cities-n"), t, B + 0.3, 46, { len: 1.6, locale: "ru" });
+        citiesSub(s.$("#cities-sub"), t, s, ["08"]);
+      });
+
+      function citiesSub(el, t, s, ids) {
+        var on = null;
+        ids.forEach(function (id) {
+          var l = s.line(id);
+          if (t >= l.start - 0.15 && t < l.end + 0.4) on = id;
+        });
+        var span = el.firstElementChild;
+        if (!on) return kit.set(el, { opacity: 0 });
+        if (span.__id !== on) {
+          span.textContent = kit.t("sub." + on);
+          span.__id = on;
+        }
+        var l = s.line(on);
+        kit.set(el, { opacity: Math.min(kit.prog(t, l.start - 0.15, l.start + 0.1), 1 - kit.prog(t, l.end + 0.15, l.end + 0.4)) });
+      }
+
+    </script>
+  </div>
+</template>

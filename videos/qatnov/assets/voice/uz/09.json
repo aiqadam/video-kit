@@ -1,0 +1,10 @@
+{
+  "text": "Yoʻlga oʻz vaqtida chiqing, Qatnov bilan.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "884af6e7a24395c8",
+  "duration": 2.908,
+  "words": [],
+  "heard": "Yo'lga o'z vaqtida chiqing. Qatnov bilan"
+}

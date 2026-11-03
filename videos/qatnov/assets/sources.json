@@ -1,0 +1,50 @@
+[
+  {
+    "file": "clips/pexels-32485939.mp4",
+    "url": "https://www.pexels.com/download/video/32485939/",
+    "page": "https://www.pexels.com/video/32485939/",
+    "author": "Yaşar Başkurt",
+    "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
+    "trim": [
+      0,
+      7
+    ],
+    "width": 1920
+  },
+  {
+    "file": "clips/pexels-17874609.mp4",
+    "url": "https://www.pexels.com/download/video/17874609/",
+    "page": "https://www.pexels.com/video/17874609/",
+    "author": "no name",
+    "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
+    "trim": [
+      2,
+      10
+    ],
+    "width": 1920
+  },
+  {
+    "file": "clips/pexels-6335191.mp4",
+    "url": "https://www.pexels.com/download/video/6335191/",
+    "page": "https://www.pexels.com/video/6335191/",
+    "author": "Valentino Esguerra",
+    "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
+    "trim": [
+      4,
+      12
+    ],
+    "width": 1920
+  },
+  {
+    "file": "clips/pexels-39335469.mp4",
+    "url": "https://www.pexels.com/download/video/39335469/",
+    "page": "https://www.pexels.com/video/39335469/",
+    "author": "Adit Syahfiar",
+    "license": "Pexels License (free to use, no attribution required; do not redistribute the original files)",
+    "trim": [
+      0,
+      8
+    ],
+    "width": 1920
+  }
+]

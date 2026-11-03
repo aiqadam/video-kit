@@ -27,7 +27,9 @@ One file, `video.json`, holds all timing, and the kit derives everything else fr
    example's scenes in `videos/tutun-lounge/compositions/` first: footage cut on the
    beat, kinetic type, captions per shot. For a software product, redraw its screens in
    HTML from its source or screenshots and act out taps and typing ("Product screens");
-   `videos/kit-promo/compositions/` does this for a terminal, files and a player.
+   `videos/kit-promo/compositions/` does this for a terminal, files and a player;
+   `videos/qatnov/compositions/` for a mobile app in an iPhone (camera moves in on each
+   tap, screens push in, notifications arrive), with footage in arch frames between.
    For a vertical video told in captions without a voice, read
    `videos/ottoman-empire/compositions/`: archive images that pan and push in, a year
    that rolls forward, a timeline across the top.
@@ -40,6 +42,9 @@ One file, `video.json`, holds all timing, and the kit derives everything else fr
    `node kit.mjs voice <name>` makes the lines that changed and checks each take by
    transcribing it back. The real lengths replace the estimates; run `plan` and `check`
    again and move lines that now collide.
+   Music is a track the person gives, a licensed one (`media search --type audio`), or one
+   generated from a description (`node kit.mjs music <name> --samples`, then `--use`);
+   let the person choose it by ear too, and cut scenes to its bars.
 7. **Render** with `node kit.mjs render <name>`. Report the file, its length and loudness,
    and say plainly that you have not watched or listened to it.
 

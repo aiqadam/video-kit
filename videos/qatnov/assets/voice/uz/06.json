@@ -1,0 +1,10 @@
+{
+  "text": "Haydovchi esa vokzalda kutmaydi: buyurtmalar ilovaga keladi va mashina toʻla yoʻlga chiqadi.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "a464442537876a4c",
+  "duration": 5.74,
+  "words": [],
+  "heard": "Haydovchi esa vokzalda kutmaydi. Buyurtmalar ilovaga keladi va mashina toʻla yoʻlga chiqadi."
+}

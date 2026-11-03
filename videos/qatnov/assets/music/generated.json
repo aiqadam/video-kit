@@ -1,0 +1,8 @@
+{
+  "model": "google/lyria-3-pro-preview",
+  "prompt": "Instrumental Khorezm Lazgi dance music from Uzbekistan: surnay and dutar play the lively melody, doira frame drums drive a fast, joyful rhythm with claps, 126 BPM, festive and energetic, building up and resolving cleanly. No vocals. About 80 seconds with a clear ending.",
+  "hash": "3ce962290509c7b0",
+  "from": "lyria-lazgi",
+  "duration": 80.823,
+  "lufs": -18
+}

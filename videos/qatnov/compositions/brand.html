@@ -1,0 +1,201 @@
+<template>
+  <div id="root" data-composition-id="brand">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font), sans-serif;
+      }
+      #root .shot {
+        position: absolute;
+        inset: 0;
+      }
+      #root .girih {
+        position: absolute;
+        inset: -120px;
+        background-image: url(assets/ui/girih.svg);
+        background-size: 120px 120px;
+        opacity: 0.09;
+      }
+      #root .glow {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(31, 181, 166, 0.32), rgba(31, 181, 166, 0) 100%);
+        pointer-events: none;
+      }
+      #root .kicker {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--saffron);
+      }
+      #root .kicker svg {
+        width: 26px;
+        height: 26px;
+        flex: none;
+      }
+      #root .display {
+        font-family: var(--display), sans-serif;
+        font-variation-settings: 'opsz' 96;
+        font-weight: 800;
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+      }
+      #root .display .accent {
+        color: var(--tile);
+      }
+      #root .cap {
+        position: absolute;
+        left: 150px;
+        width: 820px;
+      }
+      #root .cap .display {
+        margin-top: 26px;
+        font-size: 104px;
+      }
+      #root .arch-line {
+        position: absolute;
+        pointer-events: none;
+      }
+      #root .sub {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 44px;
+        text-align: center;
+        z-index: 60;
+      }
+      #root .sub span {
+        display: inline-block;
+        max-width: 1480px;
+        padding: 10px 26px;
+        border-radius: 14px;
+        background: rgba(8, 17, 41, 0.8);
+        color: #fff;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 1.32;
+      }
+
+      #brand-lock {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 250px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 44px;
+      }
+      #brand-logo {
+        width: 150px;
+        height: 180px;
+      }
+      #brand-word {
+        font-family: var(--display), sans-serif;
+        font-variation-settings: 'opsz' 96;
+        font-weight: 800;
+        font-size: 210px;
+        line-height: 0.8;
+        letter-spacing: -0.04em;
+      }
+      #brand-word span {
+        display: inline-block;
+      }
+      #brand-tag {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 520px;
+        text-align: center;
+        font-size: 46px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+      #brand-tag .accent {
+        color: var(--saffron);
+      }
+      #brand-chips {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 660px;
+        display: flex;
+        justify-content: center;
+        gap: 22px;
+      }
+      .brand-chip {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 20px 30px;
+        border-radius: 22px;
+        background: rgba(246, 239, 226, 0.07);
+        box-shadow: inset 0 0 0 2px rgba(246, 239, 226, 0.12);
+        font-size: 34px;
+        font-weight: 600;
+      }
+      #brand-road {
+        position: absolute;
+        left: -40px;
+        right: -40px;
+        top: 900px;
+        height: 8px;
+      }
+
+    </style>
+    <div class="girih" id="brand-girih"></div>
+    <div class="glow" style="left: 560px; top: -60px; width: 800px; height: 800px"></div>
+    <div id="brand-lock">
+      <svg id="brand-logo" viewBox="0 0 100 120"><path d="M0,120 L0,48 C0,23 23,8 50,0 C77,8 100,23 100,48 L100,120 Z" fill="#1FB5A6"/><path d="M50,30 C40,55 30,80 22,120 L38,120 C42,92 46,64 50,30 Z" fill="#F6EFE2"/><path d="M50,30 C60,55 70,80 78,120 L62,120 C58,92 54,64 50,30 Z" fill="#F6EFE2"/><path d="M50,58 L50,70 M50,82 L50,96 M50,106 L50,120" stroke="#F5B53F" stroke-width="5" stroke-linecap="round"/></svg>
+      <div id="brand-word"><span>Q</span><span>a</span><span>t</span><span>n</span><span>o</span><span>v</span></div>
+    </div>
+    <div id="brand-tag">Shahardan shaharga — jadval bo‘yicha.</div>
+    <div id="brand-chips"><div class="brand-chip" id="brand-c0"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#1FB5A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span>Jo‘nash vaqti aniq</span></div><div class="brand-chip" id="brand-c1"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#1FB5A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12.3V4.8a1.3 1.3 0 0 1 1.3-1.3h7.5l8.2 8.2a1.3 1.3 0 0 1 0 1.8l-6.7 6.7a1.3 1.3 0 0 1-1.8 0z"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/></svg><span>Narx oldindan</span></div><div class="brand-chip" id="brand-c2"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#1FB5A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7a2 2 0 0 1 2 2v7H7z"/><path d="M5 13h13a1 1 0 0 1 1 1v2H5z"/><path d="M7 16v4M17 16v4"/></svg><span>Joyingiz band</span></div></div>
+    <svg id="brand-road" viewBox="0 0 2000 8" preserveAspectRatio="none"><path id="brand-road-p" d="M0 4 H2000" stroke="#F5B53F" stroke-width="6" stroke-dasharray="46 30"/></svg>
+    <div class="sub" id="brand-sub"><span></span></div>
+    <script>
+      window.__timelines["brand"] = kit.scene("brand", function (t, s) {
+        kit.set(s.$("#brand-girih"), { opacity: 0.09 * kit.prog(t, 0, 0.8), scale: 1.15 - 0.15 * kit.prog(t, 0, 1.5) });
+        kit.pop(s.$("#brand-logo"), t, 0.05, { base: 0.4 });
+        s.$("#brand-word").querySelectorAll("span").forEach(function (el, i) {
+          var p = kit.prog(t, 0.25 + i * 0.05, 0.75 + i * 0.05, kit.ease.outBack);
+          kit.set(el, { y: (1 - p) * 120, opacity: Math.min(1, p * 1.5) });
+        });
+        kit.words(s.$("#brand-tag"), t, 1.0, { step: 0.07, accent: ["jadval"] });
+        [2.0, 2.5, 3.0].forEach(function (a, i) {
+          kit.pop(s.$("#brand-c" + i), t, a, { base: 0.7 });
+        });
+        s.$("#brand-road-p").style.strokeDashoffset = String(-t * 260);
+        kit.set(s.$("#brand-road"), { opacity: kit.prog(t, 0.3, 0.9) });
+        // fly into the phone scene on the last beat
+        kit.set(s.$("#brand-lock"), { scale: 1 + 0.6 * kit.prog(t, s.dur - 0.35, s.dur, kit.ease.in) });
+        brandSub(s.$("#brand-sub"), t, s, ["02"]);
+      });
+
+      function brandSub(el, t, s, ids) {
+        var on = null;
+        ids.forEach(function (id) {
+          var l = s.line(id);
+          if (t >= l.start - 0.15 && t < l.end + 0.4) on = id;
+        });
+        var span = el.firstElementChild;
+        if (!on) return kit.set(el, { opacity: 0 });
+        if (span.__id !== on) {
+          span.textContent = kit.t("sub." + on);
+          span.__id = on;
+        }
+        var l = s.line(on);
+        kit.set(el, { opacity: Math.min(kit.prog(t, l.start - 0.15, l.start + 0.1), 1 - kit.prog(t, l.end + 0.15, l.end + 0.4)) });
+      }
+
+    </script>
+  </div>
+</template>

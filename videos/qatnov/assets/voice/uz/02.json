@@ -1,0 +1,10 @@
+{
+  "text": "Qatnov bilan joyingiz oldindan band, joʻnash vaqti va narxi esa aniq.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "54c21710e029a5c3",
+  "duration": 5.495,
+  "words": [],
+  "heard": "Qatnov bilan joyingiz oldindan band, jo'nash vaqti va narxi esa aniq."
+}
