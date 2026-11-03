@@ -29,8 +29,8 @@ traction figures, a map, a closing card.
 - Language: Uzbek voice (Latin script), Russian subtitles at the bottom of the frame;
   on-screen interface and captions in Uzbek
 - Voice: Google Gemini 3.8 Flash TTS, voice Sulafat, through OpenRouter; chosen by ear
-  from five samples by the person (2026-11-03). The Uzbek lines were written by the
-  agent and have not been checked by a native speaker.
+  from five samples by the person (2026-11-03). The Uzbek lines and on-screen text were
+  written by the agent and checked by a native Uzbek speaker (the person, 2026-11-03).
 - Music: an instrumental in the style of Khorezm lazgi (surnay, dutar, doira), 120 BPM,
   generated with Google Lyria 3 Pro through OpenRouter; the person chose it by ear from three
   generated samples (2026-11-03) after rejecting incompetech tracks. Scenes are whole bars
