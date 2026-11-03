@@ -79,13 +79,14 @@ first build and makes a preview. `check` lists CC BY credits that no scene shows
 | What | How |
 | ---- | --- |
 | music bed | `lib/audio/music.mjs`, synthesised to the video's length (`calm`, `hijaz`), when no track is given |
+| generated music | `lib/audio/generate.mjs`: `video-kit music` asks a music model on OpenRouter (Google Lyria 3 Pro by default) for a track from `music.prompt`, kept in `assets/music/` |
 | interface sounds | `lib/audio/sfx.mjs`: tap, key, pop, whoosh, success |
-| final mix | HyperFrames' Web Audio graph (voice chain, music ducked under the voice), then ffmpeg loudness normalisation and a limiter |
+| final mix | HyperFrames' Web Audio graph (voice chain, softened with `voiceTone` and levelled against the music with `voiceVolume`; music ducked under the voice), then ffmpeg loudness normalisation and a limiter |
 
 ## License of this repository
 
 MIT, except `tts/piper/run.py` (GPL-3.0-or-later), the examples' fonts (OFL), voice
-files (provider's terms) and the AI Qadam logo in `videos/kit-promo/` (brand asset); see
+and generated music files (provider's terms) and the AI Qadam logo in `videos/kit-promo/` (brand asset); see
 the README. GPL and LGPL tools (ffmpeg, ffprobe, Piper) are
 installed by the user and run as separate programs, so they do not change the license of
 the kit or of the videos made with it.
@@ -107,4 +108,5 @@ the kit or of the videos made with it.
 | make a new video without voice | the same |
 | voice it | a key (OpenRouter or ElevenLabs) or a local engine |
 | check voice takes | `OPENROUTER_API_KEY` |
+| generate music | `OPENROUTER_API_KEY` |
 | search photos and audio on Openverse | an Openverse registration, and the service being up |

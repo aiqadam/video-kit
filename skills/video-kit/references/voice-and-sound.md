@@ -59,6 +59,15 @@ word, and a pause longer than 1.2 s inside a line is reported.
 - One sentence or two per line. Lines in another language are fine inside one video;
   eleven_v3 detects the language per line.
 - The narrator should not be silent for long: gaps under about 5 s.
+- Every voice goes through a chain in the mix: rumble cut, a small lift at 3 kHz for
+  clarity, a compressor. When the person says a voice sounds sharp, piercing or hissing,
+  set `"voiceTone": "soft"` in `video.json`: no lift, −5 dB around 6.5 kHz, −4 dB above
+  9 kHz, a little warmth below; for more, give the numbers:
+  `"voiceTone": {"harsh": -8, "air": -6, "warmth": 1.5}`. Render and compare; the takes
+  themselves are untouched.
+- Voice against music: `music.volume` and `music.duck` set the bed, `voiceVolume` (default
+  1) the voice. The final mix is normalised to `loudness` afterwards, so these change the
+  balance, not how loud the video is overall.
 
 ### Letting the person choose
 
@@ -155,6 +164,21 @@ under a name, and set `voice.provider` in `video.json`. Keys go in `.env`.
   (credit it). It is trimmed to the video and faded at the end.
 - A licensed track: `node kit.mjs media search <mood> --type audio` (incompetech, CC BY
   4.0), then `media add` it and point `music.file` at `assets/fetched/music/<name>.mp3`.
+- A generated track: `"music": {"source": "openrouter", "prompt": "…"}` describes it in
+  words (instruments, style, tempo, mood, "no vocals"); `node kit.mjs music <video>` makes
+  it with Google Lyria 3 Pro through OpenRouter (`OPENROUTER_API_KEY`, about $0.08 a
+  track) into `assets/music/generated.mp3`, sized to the video unless the prompt names a
+  length, and levelled to −18 LUFS (models deliver tracks louder than the voice), so the
+  default `volume` 0.4 sits well under the narration. It is made again only when the prompt or `model` changes, or with `--force` for
+  another take of the same prompt. `check` warns when there is no track yet, when the
+  prompt changed since, or when the track is shorter than the video.
+- To choose by ear, list candidates in `"musicSamples": [{"name": "lazgi", "prompt": "…"}, …]`,
+  run `node kit.mjs music <video> --samples` (all at once, into `renders/music-samples/`),
+  let the person listen, then `node kit.mjs music <video> --use <name>` keeps that file and
+  writes its prompt into `music`. Name the regional style and its instruments ("Khorezm
+  lazgi: surnay, dutar, doira, 126 BPM") rather than a mood alone; ask for a steady tempo
+  you can cut to, and find the beat with `npx hyperframes beats` in the video folder.
+  Credit the model in `assets/CREDITS.md`; the output follows the provider's terms.
 - The music dips under the voice automatically (`duck`, default 0.35 of its level).
 
 ## Interface sounds

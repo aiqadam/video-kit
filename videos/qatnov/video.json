@@ -1,0 +1,212 @@
+{
+  "title": "Qatnov",
+  "format": "landscape",
+  "fps": 30,
+  "lang": "uz",
+  "transition": 0,
+  "maxSilence": 5,
+  "theme": {
+    "bg": "#0D1B3E",
+    "night": "#081129",
+    "tile": "#1FB5A6",
+    "saffron": "#F5B53F",
+    "cream": "#F6EFE2",
+    "ink": "#F6EFE2",
+    "muted": "rgba(246, 239, 226, 0.68)",
+    "dark": "#0D1B3E",
+    "inkdim": "rgba(13, 27, 62, 0.62)",
+    "font": "'Kit Inter'",
+    "display": "'Bricolage'"
+  },
+  "fonts": [
+    {
+      "family": "Bricolage",
+      "src": "assets/fonts/bricolage-grotesque-latin-opsz-normal.woff2",
+      "weight": "200 800",
+      "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    }
+  ],
+  "voice": {
+    "provider": "openrouter",
+    "model": "google/gemini-3.8-flash-tts",
+    "voiceId": "Sulafat",
+    "instructions": "A native Uzbek female narrator from Tashkent with standard literary Uzbek pronunciation. Warm and friendly, with a slight smile; natural, lively pace."
+  },
+  "voiceSamples": [
+    {
+      "name": "gemini-kore",
+      "provider": "openrouter",
+      "model": "google/gemini-3.8-flash-tts",
+      "voiceId": "Kore",
+      "instructions": "A native Uzbek female narrator from Tashkent with standard literary Uzbek pronunciation. Calm, confident product-video delivery: warm, clear, natural pace, not slow."
+    },
+    {
+      "name": "gemini-sulafat",
+      "provider": "openrouter",
+      "model": "google/gemini-3.8-flash-tts",
+      "voiceId": "Sulafat",
+      "instructions": "A native Uzbek female narrator from Tashkent with standard literary Uzbek pronunciation. Warm and friendly, with a slight smile; natural, lively pace."
+    },
+    {
+      "name": "gemini-charon",
+      "provider": "openrouter",
+      "model": "google/gemini-3.8-flash-tts",
+      "voiceId": "Charon",
+      "instructions": "A native Uzbek male narrator from Tashkent with standard literary Uzbek pronunciation. Low, calm, confident product-video delivery; natural pace, not slow."
+    },
+    {
+      "name": "eleven-v3-lily",
+      "provider": "openrouter",
+      "model": "elevenlabs/eleven-v3",
+      "voiceId": "lily"
+    },
+    {
+      "name": "eleven-v4-lily",
+      "provider": "openrouter",
+      "model": "elevenlabs/eleven-v4",
+      "voiceId": "lily"
+    }
+  ],
+  "voiceTone": {
+    "harsh": -8,
+    "air": -6,
+    "warmth": 1.5
+  },
+  "voiceVolume": 0.85,
+  "music": {
+    "source": "openrouter",
+    "volume": 0.38,
+    "model": "google/lyria-3-pro-preview",
+    "prompt": "Instrumental Khorezm Lazgi dance music from Uzbekistan: surnay and dutar play the lively melody, doira frame drums drive a fast, joyful rhythm with claps, 126 BPM, festive and energetic, building up and resolving cleanly. No vocals. About 80 seconds with a clear ending.",
+    "duck": 0.3,
+    "start": 0.065
+  },
+  "musicSamples": [
+    {
+      "name": "lyria-shashmaqom",
+      "prompt": "Instrumental Uzbek classical music inspired by shashmaqom: dutar and tanbur carry the melody, gijak and nay answer it, a doira frame drum keeps a steady, driving rhythm. 112 BPM, bright and confident, forward-moving like a journey on the road, suited to a modern app promo. No vocals. About 80 seconds with a clear ending."
+    },
+    {
+      "name": "lyria-lazgi",
+      "prompt": "Instrumental Khorezm Lazgi dance music from Uzbekistan: surnay and dutar play the lively melody, doira frame drums drive a fast, joyful rhythm with claps, 126 BPM, festive and energetic, building up and resolving cleanly. No vocals. About 80 seconds with a clear ending."
+    },
+    {
+      "name": "lyria-chang",
+      "prompt": "Instrumental Uzbek music: chang (hammered dulcimer) arpeggios and rubab melody over a soft, steady doira groove and a low dutar drone, 100 BPM, warm, modern and cinematic, gently uplifting, like a sunrise drive between Tashkent and Samarkand. No vocals. About 80 seconds with a clear ending."
+    }
+  ],
+  "strings": {
+    "uz": {
+      "sub.01": "Поездка в другой город часто начинается с ожидания: стоишь на вокзале, пока машина не заполнится.",
+      "sub.02": "С Qatnov место забронировано заранее, а время отправления и цена известны.",
+      "sub.03": "Выберите маршрут, например из Ташкента в Самарканд, и посмотрите свободные места.",
+      "sub.04": "Выбираете место, платите картой, а билет — у вас в телефоне.",
+      "sub.05": "Каждый месяц двести сорок тысяч пассажиров отправляются в путь с Qatnov.",
+      "sub.06": "А водитель не ждёт на вокзале: заказы приходят в приложение, и машина уезжает полной.",
+      "sub.07": "Каждый водитель проверен, а вашу поездку близкие видят на карте.",
+      "sub.08": "Сорок шесть городов и все регионы страны.",
+      "sub.09": "Отправляйтесь в путь вовремя, с Qatnov."
+    }
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "dur": 8,
+      "lines": [
+        {
+          "id": "01",
+          "at": 0.5,
+          "text": "Shaharlararo yoʻl koʻpincha kutishdan boshlanadi: mashina toʻlguncha vokzalda turasiz."
+        }
+      ]
+    },
+    {
+      "id": "brand",
+      "dur": 6,
+      "lines": [
+        {
+          "id": "02",
+          "at": 0.4,
+          "text": "Qatnov bilan joyingiz oldindan band, joʻnash vaqti va narxi esa aniq."
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "dur": 10,
+      "lines": [
+        {
+          "id": "03",
+          "at": 0.4,
+          "text": "Yoʻnalishni tanlang, masalan, Toshkentdan Samarqandga, va boʻsh joylarni koʻring."
+        }
+      ]
+    },
+    {
+      "id": "book",
+      "dur": 10,
+      "lines": [
+        {
+          "id": "04",
+          "at": 1.0,
+          "text": "Oʻrindiqni tanlaysiz, karta bilan toʻlaysiz, chipta esa telefoningizda."
+        }
+      ]
+    },
+    {
+      "id": "road",
+      "dur": 8,
+      "lines": [
+        {
+          "id": "05",
+          "at": 0.5,
+          "text": "Har oy ikki yuz qirq ming yoʻlovchi Qatnov bilan yoʻlga chiqadi."
+        }
+      ]
+    },
+    {
+      "id": "driver",
+      "dur": 8,
+      "lines": [
+        {
+          "id": "06",
+          "at": 0.4,
+          "text": "Haydovchi esa vokzalda kutmaydi: buyurtmalar ilovaga keladi va mashina toʻla yoʻlga chiqadi."
+        }
+      ]
+    },
+    {
+      "id": "safety",
+      "dur": 8,
+      "lines": [
+        {
+          "id": "07",
+          "at": 0.4,
+          "text": "Har bir haydovchi tekshiruvdan oʻtgan, safaringizni esa yaqinlaringiz xaritada kuzatib boradi."
+        }
+      ]
+    },
+    {
+      "id": "cities",
+      "dur": 8,
+      "lines": [
+        {
+          "id": "08",
+          "at": 1.0,
+          "text": "Qirq olti shahar va mamlakatning barcha viloyatlari."
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "dur": 8,
+      "lines": [
+        {
+          "id": "09",
+          "at": 0.6,
+          "text": "Yoʻlga oʻz vaqtida chiqing, Qatnov bilan."
+        }
+      ]
+    }
+  ]
+}

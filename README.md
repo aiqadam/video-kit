@@ -28,10 +28,14 @@ What each part does, what is optional and what needs a key: [docs/stack.md](docs
 - **Voiceover** three ways: ElevenLabs; OpenRouter (one key for Microsoft MAI-Voice with
   native voices per language, Gemini TTS, MiniMax, Fish Audio and more); or free local
   engines (Kokoro on Apple Silicon, Qwen3-TTS on Apple Silicon, Piper anywhere) with no
-  account at all. Every take is transcribed back and checked against the script.
-- **Music**: a licensed track (incompetech, by mood and tempo), your own, or a generated
-  bed; interface sounds generated. The music dips under the voice, and the final mix is
-  normalised to −16 LUFS.
+  account at all. Every take is transcribed back and checked against the script. A voice
+  that sounds sharp can be softened in the mix (`voiceTone`), and its level set against
+  the music (`voiceVolume`).
+- **Music**: a licensed track (incompetech, by mood and tempo), your own, a track
+  generated from a description (`node kit.mjs music`: Google Lyria through OpenRouter,
+  several samples to choose by ear, levelled to −18 LUFS), or a synthesised bed; interface
+  sounds generated. The music dips under the voice, and the final mix is normalised to
+  −16 LUFS.
 - **Media by reference**: `media search` (Wikimedia Commons; incompetech music by mood and
   tempo; Openverse) and `media add` (Pexels by clip number, Commons, incompetech,
   Openverse, any URL with its license): the license and
@@ -117,6 +121,19 @@ in HTML; three stock clips (Pexels, Wikimedia Commons) sit behind them.
 node kit.mjs render zero-budget
 ```
 
+`videos/qatnov/` is a 74-second pitch for an invented app for trips between cities in
+Uzbekistan, narrated in Uzbek with Russian subtitles. The passenger's and the driver's
+apps are drawn in HTML inside an iPhone and acted out: the camera moves in on each tap,
+fields are typed into, screens push in, bookings arrive as notifications, a car moves
+along the route. Pexels footage of Tashkent, Samarkand, Bukhara and a desert road sits in
+pointed arches; the colours come from Samarkand tiles. The music is a lazgi-style track
+generated with `node kit.mjs music` and chosen by ear from three samples; every scene is a
+whole number of its bars. The voice is Gemini TTS, softened with `voiceTone`.
+
+```bash
+node kit.mjs render qatnov
+```
+
 ## Commands
 
 ```
@@ -125,6 +142,7 @@ node kit.mjs plan <video>                  when each scene, line and sound plays
 node kit.mjs check <video> [--quick]       kit checks, then HyperFrames checks
 node kit.mjs stills <video> [scene@sec …]  PNG frames and a contact sheet
 node kit.mjs voice <video> [--force id]    make new or changed voice lines
+node kit.mjs music <video> [--samples | --use name | --force]   music from a description
 node kit.mjs preview <video>               scrub through it in the browser
 node kit.mjs render <video> [--lang xx] [--quality draft|standard|high] [-o file]
 node kit.mjs media search <words> | add <video> <ref>   find and add licensed media
@@ -146,7 +164,10 @@ The kit is MIT, with these exceptions:
 - `videos/*/assets/fonts/` are fonts under the SIL Open Font License, with the license
   next to them.
 - `videos/*/assets/voice/` are voice files made for those examples: Google Gemini TTS in
-  `kit-promo`, Kokoro 82M locally in `zero-budget`; their use follows each provider's terms.
+  `kit-promo` and `qatnov`, Kokoro 82M locally in `zero-budget`; their use follows each
+  provider's terms.
+- `videos/qatnov/assets/music/` is a track generated with Google Lyria through OpenRouter;
+  its use follows the provider's terms.
 - `videos/kit-promo/assets/brand/` is the AI Qadam logo: a brand asset, not open source,
   used under the [AI Qadam Brand Usage Policy](https://brand.aiqadam.org/brand-use.html).
   Do not reuse it in your own videos.
@@ -159,7 +180,7 @@ install, not shipped here), and Inter (OFL). HyperFrames' anonymous telemetry is
 command the kit runs. The examples' footage, music, fonts and logo are credited in each
 `videos/<name>/assets/sources.json` and `CREDITS.md`. What you render is yours;
 check the licenses of the media and voices you add. The examples' voice files were made
-with Google Gemini TTS through OpenRouter (kit-promo) and with Kokoro 82M offline
-(zero-budget); they are not covered by the MIT license, and their use follows each
-provider's terms. For your own video, make the voice again with your own key or a local
-engine.
+with Google Gemini TTS through OpenRouter (kit-promo, qatnov) and with Kokoro 82M offline
+(zero-budget), the qatnov music with Google Lyria through OpenRouter; they are not covered
+by the MIT license, and their use follows each provider's terms. For your own video, make
+the voice and music again with your own key or a local engine.

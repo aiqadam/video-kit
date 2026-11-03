@@ -10,6 +10,7 @@ import { engines, setupEngine, engineReady } from '../lib/local-tts.mjs';
 import { search as mediaSearch, addMedia, openverseRegister } from '../lib/media.mjs';
 import { checkVideo } from '../lib/check.mjs';
 import { generateVoice, audioSeconds, PROVIDERS } from '../lib/voice.mjs';
+import { generateMusic, musicSamples, useSample } from '../lib/audio/generate.mjs';
 import { hf, hfVersion, ffmpegPath, ffprobePath, loadEnv } from '../lib/tools.mjs';
 
 const HELP = `AI Qadam Video Kit
@@ -21,6 +22,10 @@ const HELP = `AI Qadam Video Kit
                                    make missing or changed voice lines, each take checked
   video-kit voice <video> --samples [--text "…"]
                                    the first line in every voice of video.json "voiceSamples"
+  video-kit music <video> [--force]
+                                   make the track video.json "music" describes ("source": "openrouter")
+  video-kit music <video> --samples | --use <name>
+                                   one track per "musicSamples" entry to choose by ear; keep the chosen one
   video-kit check <video> [--lang] [--quick]
                                    the kit's checks, then HyperFrames' (skip with --quick)
   video-kit stills <video> [scene@seconds ...] [--lang]
@@ -200,6 +205,31 @@ async function main() {
       const after = await prepare(pos[1], { lang: v.lang });
       const errors = report(checkVideo(after).filter((f) => f.level !== 'info' && /line/.test(f.msg)));
       return r.failed.length || errors ? 1 : 0;
+    }
+
+    case 'music': {
+      const v = loadVideo(pos[1], typeof opt.lang === 'string' ? opt.lang : undefined);
+      if (opt.samples) {
+        if (!(v.spec.musicSamples || []).length) throw new KitError('List candidate tracks in video.json first: "musicSamples": [{"name": "doira-dutar", "prompt": "Instrumental Uzbek music: …"}, …]');
+        say(`Music samples for ${v.name} (${v.total.toFixed(1)} s), made in parallel`);
+        const made = await musicSamples(v, { log: say });
+        say(made.length ? `Let the person listen and choose; then \`video-kit music ${v.name} --use <name>\`.` : 'No sample was made.');
+        return made.length ? 0 : 1;
+      }
+      if (typeof opt.use === 'string') {
+        const music = useSample(v, opt.use);
+        const specFile = path.join(v.dir, 'video.json');
+        const spec = JSON.parse(fs.readFileSync(specFile, 'utf8'));
+        spec.music = music;
+        fs.writeFileSync(specFile, JSON.stringify(spec, null, 2) + '\n');
+        say(`Using "${opt.use}": assets/music/generated.mp3, its prompt written to video.json "music".`);
+        return 0;
+      }
+      if ((v.spec.music || {}).source !== 'openrouter') throw new KitError('video.json "music" has no "source": "openrouter"; set it with a "prompt" (or use --samples).');
+      say(`Music for ${v.name}`);
+      const meta = await generateMusic(v, { force: !!opt.force, log: say });
+      say(`  assets/music/generated.mp3 (${meta.duration} s for a ${v.total.toFixed(2)} s video)`);
+      return 0;
     }
 
     case 'check': {

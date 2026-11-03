@@ -1,0 +1,10 @@
+{
+  "text": "Yoʻnalishni tanlang, masalan, Toshkentdan Samarqandga, va boʻsh joylarni koʻring.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "aaecc730773ccef4",
+  "duration": 5.86,
+  "words": [],
+  "heard": "Yo'nalishni tanlang, masalan, Toshkentdan Samarqandga va bo'sh joylarni ko'ring."
+}

@@ -1,0 +1,185 @@
+<template>
+  <div id="root" data-composition-id="end">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font), sans-serif;
+      }
+      #root .shot {
+        position: absolute;
+        inset: 0;
+      }
+      #root .girih {
+        position: absolute;
+        inset: -120px;
+        background-image: url(assets/ui/girih.svg);
+        background-size: 120px 120px;
+        opacity: 0.09;
+      }
+      #root .glow {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(31, 181, 166, 0.32), rgba(31, 181, 166, 0) 100%);
+        pointer-events: none;
+      }
+      #root .kicker {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--saffron);
+      }
+      #root .kicker svg {
+        width: 26px;
+        height: 26px;
+        flex: none;
+      }
+      #root .display {
+        font-family: var(--display), sans-serif;
+        font-variation-settings: 'opsz' 96;
+        font-weight: 800;
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+      }
+      #root .display .accent {
+        color: var(--tile);
+      }
+      #root .cap {
+        position: absolute;
+        left: 150px;
+        width: 820px;
+      }
+      #root .cap .display {
+        margin-top: 26px;
+        font-size: 104px;
+      }
+      #root .arch-line {
+        position: absolute;
+        pointer-events: none;
+      }
+      #root .sub {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 44px;
+        text-align: center;
+        z-index: 60;
+      }
+      #root .sub span {
+        display: inline-block;
+        max-width: 1480px;
+        padding: 10px 26px;
+        border-radius: 14px;
+        background: rgba(8, 17, 41, 0.8);
+        color: #fff;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 1.32;
+      }
+
+      #end-lock {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 250px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 44px;
+      }
+      #end-logo {
+        width: 150px;
+        height: 180px;
+      }
+      #end-word {
+        font-family: var(--display), sans-serif;
+        font-variation-settings: 'opsz' 96;
+        font-weight: 800;
+        font-size: 210px;
+        line-height: 0.8;
+        letter-spacing: -0.04em;
+      }
+      #end-tag {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 520px;
+        text-align: center;
+        font-size: 46px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+      #end-tag .accent {
+        color: var(--saffron);
+      }
+      #end-note {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 700px;
+        text-align: center;
+        font-size: 28px;
+        line-height: 1.55;
+        color: rgba(246, 239, 226, 0.6);
+      }
+      #end-road {
+        position: absolute;
+        left: -40px;
+        right: -40px;
+        top: 890px;
+        height: 8px;
+      }
+
+    </style>
+    <div class="girih" id="end-girih"></div>
+    <div class="glow" style="left: 560px; top: -60px; width: 800px; height: 800px"></div>
+    <div id="end-lock">
+      <svg id="end-logo" viewBox="0 0 100 120"><path d="M0,120 L0,48 C0,23 23,8 50,0 C77,8 100,23 100,48 L100,120 Z" fill="#1FB5A6"/><path d="M50,30 C40,55 30,80 22,120 L38,120 C42,92 46,64 50,30 Z" fill="#F6EFE2"/><path d="M50,30 C60,55 70,80 78,120 L62,120 C58,92 54,64 50,30 Z" fill="#F6EFE2"/><path d="M50,58 L50,70 M50,82 L50,96 M50,106 L50,120" stroke="#F5B53F" stroke-width="5" stroke-linecap="round"/></svg>
+      <div id="end-word">Qatnov</div>
+    </div>
+    <div id="end-tag">Shahardan shaharga — jadval bo‘yicha.</div>
+    <div id="end-note">
+      Namuna: Qatnov o‘ylab topilgan, raqamlar shartli.<br/>
+      Пример: сервис и цифры выдуманы.<br/>
+      Video: Pexels · Musiqa: Google Lyria · AI Qadam Video Kit
+    </div>
+    <svg id="end-road" viewBox="0 0 2000 8" preserveAspectRatio="none"><path id="end-road-p" d="M0 4 H2000" stroke="#F5B53F" stroke-width="6" stroke-dasharray="46 30"/></svg>
+    <div class="sub" id="end-sub"><span></span></div>
+    <script>
+      window.__timelines["end"] = kit.scene("end", function (t, s) {
+        kit.set(s.$("#end-girih"), { y: -t * 8 });
+        kit.pop(s.$("#end-logo"), t, 0.05, { base: 0.5 });
+        kit.reveal(s.$("#end-word"), t, 0.2, { y: 40 });
+        kit.words(s.$("#end-tag"), t, 0.6, { step: 0.07, accent: ["jadval"] });
+        kit.reveal(s.$("#end-note"), t, 1.6);
+        s.$("#end-road-p").style.strokeDashoffset = String(-t * 260);
+        kit.set(s.$("#end-road"), { opacity: kit.prog(t, 0.3, 0.9) });
+        endSub(s.$("#end-sub"), t, s, ["09"]);
+      });
+
+      function endSub(el, t, s, ids) {
+        var on = null;
+        ids.forEach(function (id) {
+          var l = s.line(id);
+          if (t >= l.start - 0.15 && t < l.end + 0.4) on = id;
+        });
+        var span = el.firstElementChild;
+        if (!on) return kit.set(el, { opacity: 0 });
+        if (span.__id !== on) {
+          span.textContent = kit.t("sub." + on);
+          span.__id = on;
+        }
+        var l = s.line(on);
+        kit.set(el, { opacity: Math.min(kit.prog(t, l.start - 0.15, l.start + 0.1), 1 - kit.prog(t, l.end + 0.15, l.end + 0.4)) });
+      }
+
+    </script>
+  </div>
+</template>

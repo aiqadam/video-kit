@@ -1,0 +1,706 @@
+<template>
+  <div id="root" data-composition-id="safety">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font), sans-serif;
+      }
+      #root .shot {
+        position: absolute;
+        inset: 0;
+      }
+      #root .girih {
+        position: absolute;
+        inset: -120px;
+        background-image: url(assets/ui/girih.svg);
+        background-size: 120px 120px;
+        opacity: 0.09;
+      }
+      #root .glow {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(31, 181, 166, 0.32), rgba(31, 181, 166, 0) 100%);
+        pointer-events: none;
+      }
+      #root .kicker {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--saffron);
+      }
+      #root .kicker svg {
+        width: 26px;
+        height: 26px;
+        flex: none;
+      }
+      #root .display {
+        font-family: var(--display), sans-serif;
+        font-variation-settings: 'opsz' 96;
+        font-weight: 800;
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+      }
+      #root .display .accent {
+        color: var(--tile);
+      }
+      #root .cap {
+        position: absolute;
+        left: 150px;
+        width: 820px;
+      }
+      #root .cap .display {
+        margin-top: 26px;
+        font-size: 104px;
+      }
+      #root .arch-line {
+        position: absolute;
+        pointer-events: none;
+      }
+      #root .sub {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 44px;
+        text-align: center;
+        z-index: 60;
+      }
+      #root .sub span {
+        display: inline-block;
+        max-width: 1480px;
+        padding: 10px 26px;
+        border-radius: 14px;
+        background: rgba(8, 17, 41, 0.8);
+        color: #fff;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 1.32;
+      }
+
+      .ph {
+        position: absolute;
+        width: 425px;
+        height: 884px;
+        border-radius: 70px;
+        background: linear-gradient(135deg, #c9ccd1 0%, #6c7078 22%, #e6e8eb 48%, #777b83 74%, #c2c5ca 100%);
+        box-shadow: 0 70px 140px rgba(3, 7, 20, 0.55), 0 20px 40px rgba(3, 7, 20, 0.35);
+        transform-origin: 50% 50%;
+      }
+      .ph-side {
+        position: absolute;
+        width: 5px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, #5b5f66, #a9adb3);
+      }
+      .ph-bezel {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        width: 415px;
+        height: 874px;
+        border-radius: 65px;
+        background: #040507;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      }
+      .ph-scr {
+        position: absolute;
+        left: 16px;
+        top: 16px;
+        width: 393px;
+        height: 852px;
+        border-radius: 54px;
+        overflow: hidden;
+        background: #f5f2eb;
+        color: #0d1b3e;
+        font-family: var(--font), sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .ph-island {
+        position: absolute;
+        left: 134px;
+        top: 11px;
+        width: 125px;
+        height: 37px;
+        border-radius: 20px;
+        background: #000;
+        z-index: 80;
+      }
+      .ph-status {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 54px;
+        padding: 3px 30px 0 46px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        z-index: 70;
+      }
+      .ph-status .ic {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .ph-home {
+        position: absolute;
+        left: 129px;
+        bottom: 8px;
+        width: 135px;
+        height: 5px;
+        border-radius: 3px;
+        background: #0d1b3e;
+        z-index: 80;
+      }
+      .ph-glare {
+        position: absolute;
+        inset: 0;
+        border-radius: 54px;
+        background: linear-gradient(115deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 32%);
+        pointer-events: none;
+        z-index: 90;
+      }
+      /* screens */
+      .scr {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 393px;
+        height: 852px;
+        padding: 62px 20px 0;
+        background: #f5f2eb;
+        box-shadow: -18px 0 40px rgba(13, 27, 62, 0.12);
+      }
+      .scr-dim {
+        position: absolute;
+        inset: 0;
+        background: #0d1b3e;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 40;
+      }
+      .navbar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 44px;
+        font-size: 17px;
+        font-weight: 600;
+      }
+      .navbar .bk {
+        width: 36px;
+        height: 36px;
+        border-radius: 18px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 3px rgba(13, 27, 62, 0.08);
+      }
+      .hello {
+        font-size: 15px;
+        color: #6b7389;
+        margin-top: 6px;
+      }
+      .h-large {
+        font-size: 31px;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.12;
+      }
+      .h-mid {
+        font-size: 22px;
+        font-weight: 750;
+        letter-spacing: -0.02em;
+      }
+      .dim {
+        color: #6b7389;
+      }
+      .card {
+        background: #fff;
+        border-radius: 22px;
+        box-shadow: 0 1px 2px rgba(13, 27, 62, 0.05), 0 10px 28px rgba(13, 27, 62, 0.07);
+      }
+      .fld {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        border: 2px solid transparent;
+      }
+      .fld.on {
+        border-color: #1fb5a6;
+        background: rgba(31, 181, 166, 0.06);
+      }
+      .fld .lbl {
+        font-size: 13px;
+        color: #6b7389;
+      }
+      .fld .val {
+        font-size: 19px;
+        font-weight: 650;
+        min-height: 24px;
+        white-space: nowrap;
+      }
+      .fld .val.ph-hint {
+        color: #a6acba;
+        font-weight: 500;
+      }
+      .caret {
+        display: inline-block;
+        width: 2px;
+        height: 22px;
+        margin-left: 1px;
+        vertical-align: -4px;
+        background: #1fb5a6;
+      }
+      .btn {
+        height: 56px;
+        border-radius: 17px;
+        background: #0e9c8f;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        box-shadow: 0 10px 22px rgba(14, 156, 143, 0.32);
+      }
+      .btn.ghost {
+        background: #fff;
+        color: #0e9c8f;
+        box-shadow: inset 0 0 0 2px rgba(14, 156, 143, 0.35);
+      }
+      .btn.sun {
+        background: #f5b53f;
+        color: #0d1b3e;
+        box-shadow: 0 10px 22px rgba(245, 181, 63, 0.35);
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 14px;
+        border-radius: 14px;
+        background: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        box-shadow: 0 1px 2px rgba(13, 27, 62, 0.06);
+      }
+      .chip.on {
+        background: #0d1b3e;
+        color: #fff;
+      }
+      .tabbar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 86px;
+        padding: 10px 34px 0;
+        display: flex;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.94);
+        border-top: 1px solid rgba(13, 27, 62, 0.07);
+        font-size: 11px;
+        font-weight: 600;
+        color: #9aa1b2;
+        z-index: 50;
+      }
+      .tabbar div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        width: 70px;
+      }
+      .tabbar .on {
+        color: #0e9c8f;
+      }
+      .ride {
+        margin-top: 12px;
+        padding: 16px 18px;
+      }
+      .ride .tm {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 22px;
+        font-weight: 750;
+        letter-spacing: -0.02em;
+      }
+      .ride .tm i {
+        flex: 1;
+        height: 2px;
+        background: repeating-linear-gradient(90deg, #c9cdd6 0 6px, transparent 6px 11px);
+        position: relative;
+      }
+      .ride .tm i::before,
+      .ride .tm i::after {
+        content: '';
+        position: absolute;
+        top: -4px;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        background: #fff;
+        border: 2px solid #0e9c8f;
+        box-sizing: border-box;
+      }
+      .ride .tm i::before {
+        left: 0;
+      }
+      .ride .tm i::after {
+        right: 0;
+        background: #0e9c8f;
+      }
+      .ride .cities {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 3px;
+        font-size: 13px;
+        color: #6b7389;
+      }
+      .ride .row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(13, 27, 62, 0.07);
+        font-size: 14px;
+        color: #48506a;
+      }
+      .ride .free {
+        padding: 4px 9px;
+        border-radius: 9px;
+        background: rgba(31, 181, 166, 0.12);
+        color: #0b8a7e;
+        font-weight: 700;
+        font-size: 13px;
+      }
+      .ride .price {
+        margin-left: auto;
+        font-size: 18px;
+        font-weight: 800;
+        color: #0d1b3e;
+      }
+      .banner {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        padding: 13px 15px;
+        border-radius: 24px;
+        background: rgba(250, 250, 252, 0.97);
+        box-shadow: 0 16px 40px rgba(13, 27, 62, 0.25);
+        display: flex;
+        gap: 12px;
+        z-index: 85;
+      }
+      .banner .app {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: #0d1b3e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+      }
+      .banner .app svg {
+        width: 22px;
+        height: 26px;
+      }
+      .banner b {
+        display: block;
+        font-size: 15px;
+      }
+      .banner span {
+        font-size: 14px;
+        color: #48506a;
+      }
+      .banner em {
+        position: absolute;
+        right: 16px;
+        top: 13px;
+        font-style: normal;
+        font-size: 13px;
+        color: #8b92a5;
+      }
+      .ph .kit-cursor {
+        width: 58px;
+        height: 58px;
+        margin: -29px 0 0 -29px;
+        background: rgba(13, 27, 62, 0.16);
+        border: 3px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 6px 18px rgba(13, 27, 62, 0.3);
+        z-index: 95;
+      }
+
+      .stage-arch {
+        position: absolute;
+        left: 1090px;
+        top: 70px;
+        width: 600px;
+        height: 1010px;
+        background: linear-gradient(180deg, #16295a 0%, #0d1b3e 85%);
+      }
+      .cam {
+        position: absolute;
+        left: 1180px;
+        top: 98px;
+        width: 425px;
+        height: 884px;
+      }
+      .cam .ph {
+        left: 0;
+        top: 0;
+      }
+      .steps {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+      .steps svg {
+        width: 30px;
+        height: 30px;
+        color: rgba(246, 239, 226, 0.2);
+      }
+      .steps svg.on {
+        color: var(--saffron);
+      }
+
+      .sf-av {
+        width: 96px;
+        height: 96px;
+        margin: 12px auto 0;
+        border-radius: 48px;
+        background: #f5b53f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 34px;
+        font-weight: 800;
+      }
+      .sf-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(13, 27, 62, 0.07);
+        font-size: 16px;
+        font-weight: 650;
+      }
+      .sf-row:last-child {
+        border: 0;
+      }
+      .sf-row small {
+        display: block;
+        margin-top: 2px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #0b8a7e;
+      }
+      .sf-ic {
+        width: 42px;
+        height: 42px;
+        border-radius: 13px;
+        background: rgba(31, 181, 166, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+      }
+      #safety-map {
+        position: absolute;
+        inset: 0;
+        background: #f2ede2;
+        overflow: hidden;
+      }
+      #safety-map img {
+        position: absolute;
+        left: -1498.5px;
+        top: -618.5px;
+        width: 2400px;
+        height: 1561px;
+      }
+      #safety-map svg text {
+        font-family: var(--font), sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        fill: #0d1b3e;
+      }
+      .sf-pill {
+        position: absolute;
+        left: 20px;
+        top: 62px;
+        padding: 10px 14px;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 6px 18px rgba(13, 27, 62, 0.12);
+        font-size: 14px;
+        font-weight: 700;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .sf-sheet {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 20px 20px 104px;
+        border-radius: 28px 28px 0 0;
+        background: #fff;
+        box-shadow: 0 -10px 30px rgba(13, 27, 62, 0.1);
+      }
+      .sf-live {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 11px;
+        border-radius: 10px;
+        background: rgba(31, 181, 166, 0.12);
+        color: #0b8a7e;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .sf-live i {
+        width: 9px;
+        height: 9px;
+        border-radius: 5px;
+        background: #0e9c8f;
+      }
+      .sf-who {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 14px;
+        font-size: 15px;
+        color: #48506a;
+      }
+      .sf-who i {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        border: 3px solid #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 15px;
+      }
+      #safety-credit {
+        position: absolute;
+        right: 60px;
+        bottom: 14px;
+        font-size: 22px;
+        color: rgba(246, 239, 226, 0.5);
+      }
+
+    </style>
+    <svg width="0" height="0" style="position:absolute"><defs><clipPath id="safety-arch" clipPathUnits="objectBoundingBox"><path d="M0,1 L0,0.40 C0,0.19 0.23,0.07 0.5,0 C0.77,0.07 1,0.19 1,0.40 L1,1 Z"/></clipPath></defs></svg>
+      <div class="girih" id="safety-girih"></div>
+      <div class="stage-arch" style="clip-path: url(#safety-arch)"></div>
+      <svg class="arch-line" id="safety-archline" style="left: 1070px; top: 50px; width: 640px; height: 1050px" viewBox="0 0 1 1" preserveAspectRatio="none"><path d="M0,1 L0,0.40 C0,0.19 0.23,0.07 0.5,0 C0.77,0.07 1,0.19 1,0.40 L1,1 Z" fill="none" stroke="#F5B53F" stroke-width="3" vector-effect="non-scaling-stroke"/></svg>
+      <div class="glow" style="left: 990px; top: 140px; width: 800px; height: 800px"></div>
+      <div class="cam" id="safety-cam"><div class="ph" data-layout-ignore id="safety-phone" style=""><div class="ph-side" style="left:-3px; top:170px; height:34px"></div><div class="ph-side" style="left:-3px; top:232px; height:62px"></div><div class="ph-side" style="left:-3px; top:306px; height:62px"></div><div class="ph-side" style="right:-3px; top:262px; height:98px"></div><div class="ph-bezel"></div><div class="ph-scr"><div class="ph-island"></div><div class="ph-status"><span>9:41</span><span class="ic"><svg width="19" height="12" viewBox="0 0 19 12"><rect x="0" y="8" width="3.4" height="4" rx="1" fill="#0d1b3e"/><rect x="5" y="5.5" width="3.4" height="6.5" rx="1" fill="#0d1b3e"/><rect x="10" y="3" width="3.4" height="9" rx="1" fill="#0d1b3e"/><rect x="15" y="0" width="3.4" height="12" rx="1" fill="#0d1b3e"/></svg><svg width="17" height="12" viewBox="0 0 17 12"><path d="M8.5 2.2c2.5 0 4.8 1 6.5 2.6l1.2-1.2C14.2 1.6 11.5.5 8.5.5S2.8 1.6.8 3.6L2 4.8c1.7-1.6 4-2.6 6.5-2.6zm0 3.4c1.6 0 3 .6 4.1 1.6l1.2-1.2c-1.4-1.3-3.3-2.1-5.3-2.1s-3.9.8-5.3 2.1l1.2 1.2c1.1-1 2.5-1.6 4.1-1.6zm0 3.4c.7 0 1.3.3 1.8.7L8.5 11.5 6.7 9.7c.5-.4 1.1-.7 1.8-.7z" fill="#0d1b3e"/></svg><svg width="28" height="13" viewBox="0 0 28 13"><rect x="0.5" y="0.5" width="24" height="12" rx="3.5" fill="none" stroke="#0d1b3e" stroke-opacity="0.4"/><rect x="2.5" y="2.5" width="17" height="8" rx="2" fill="#0d1b3e"/><path d="M26 4.5v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2z" fill="#0d1b3e" fill-opacity="0.45"/></svg></span></div><div class="scr" id="safety-s1"><div class="scr-dim"></div><div class="navbar"><div class="bk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></div>Haydovchingiz</div><div class="sf-av" id="safety-av">AK</div><div class="h-mid" style="text-align:center; margin-top:10px">Akmal K.</div><div class="dim" style="text-align:center; font-size:14px; margin-top:2px">Oq sedan · 01 A 482 KA</div><div class="card" style="margin-top:20px; padding:4px 18px"><div class="sf-row" id="safety-c1"><div class="sf-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0e9c8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 2.8v5.7c0 4.6-3.2 7.8-7.5 9.2-4.3-1.4-7.5-4.6-7.5-9.2V5.8z"/><path d="M8.6 12.2l2.4 2.4 4.4-4.6"/></svg></div><div>Haydovchilik guvohnomasi<small>Tekshirildi</small></div></div><div class="sf-row" id="safety-c2"><div class="sf-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0e9c8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 2.8v5.7c0 4.6-3.2 7.8-7.5 9.2-4.3-1.4-7.5-4.6-7.5-9.2V5.8z"/><path d="M8.6 12.2l2.4 2.4 4.4-4.6"/></svg></div><div>Avtomobil hujjatlari<small>Tekshirildi</small></div></div></div><div class="btn ghost" id="safety-share" style="margin-top:18px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v11M12 3.5L8.2 7.3M12 3.5l3.8 3.8M5.5 12.5v6a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-6"/></svg>Safarni yaqinlarga ulashish</div><div class="tabbar"><div class=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>Qidiruv</div><div class="on"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5A1.5 1.5 0 0 1 5.5 6h13A1.5 1.5 0 0 1 20 7.5V10a2 2 0 0 0 0 4v2.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 16.5V14a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.5"/></svg>Chiptalarim</div><div class=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.4-3.8 4.3-5.5 7.5-5.5s6.1 1.7 7.5 5.5"/></svg>Profil</div></div></div><div class="scr" id="safety-s2" style="padding:0"><div class="scr-dim"></div><div id="safety-map"><img src="assets/map/uzbekistan-light.svg" alt=""/><svg width="393" height="852" viewBox="0 0 393 852" style="position:absolute; left:0; top:0"><path id="safety-route" d="M355.5,177.5 C330,240 310,290 291.7,327.7 S200,385 159.8,397 S70,450 36.5,482.5" fill="none" stroke="#0e9c8f" stroke-width="7" stroke-linecap="round"/><circle cx="355.5" cy="177.5" r="9" fill="#fff" stroke="#0e9c8f" stroke-width="4"/><circle cx="36.5" cy="482.5" r="9" fill="#0e9c8f" stroke="#fff" stroke-width="4"/><text x="345" y="210" text-anchor="end">Toshkent</text><text x="48" y="516">Samarqand</text><circle id="safety-halo" r="24" fill="#f5b53f" fill-opacity="0.3"/><circle id="safety-dot" r="12" fill="#f5b53f" stroke="#fff" stroke-width="4"/></svg><div class="sf-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0e9c8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>Yetib borish 12:40</div></div><div class="sf-sheet" id="safety-sheet"><div style="display:flex; justify-content:space-between; align-items:center"><span class="sf-live"><i id="safety-live"></i>Safar ulashildi</span><span class="dim" style="font-size:13px">Toshkent → Samarqand</span></div><div class="sf-who"><i style="background:#f5b53f">O</i><i style="background:#8fd3c9; margin-left:-22px">D</i>Onam va Dilnoza kuzatmoqda</div></div><div class="tabbar"><div class=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>Qidiruv</div><div class="on"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5A1.5 1.5 0 0 1 5.5 6h13A1.5 1.5 0 0 1 20 7.5V10a2 2 0 0 0 0 4v2.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 16.5V14a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.5"/></svg>Chiptalarim</div><div class=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.4-3.8 4.3-5.5 7.5-5.5s6.1 1.7 7.5 5.5"/></svg>Profil</div></div></div><div class="kit-cursor" id="safety-cursor"></div><div class="ph-home"></div><div class="ph-glare"></div></div></div></div>
+    <div class="cap" id="safety-cap0" style="top: 340px"><div class="kicker"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5l2.9 4.1 4.9-1-1 4.9 4.1 2.9-4.1 2.9 1 4.9-4.9-1-2.9 4.1-2.9-4.1-4.9 1 1-4.9L1.5 12l4.1-2.9-1-4.9 4.9 1z"/></svg><span>Xavfsizlik</span></div><div class="display" id="safety-t0">Haydovchilar tekshirilgan.</div></div><div class="cap" id="safety-cap1" style="top: 340px"><div class="kicker"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5l2.9 4.1 4.9-1-1 4.9 4.1 2.9-4.1 2.9 1 4.9-4.9-1-2.9 4.1-2.9-4.1-4.9 1 1-4.9L1.5 12l4.1-2.9-1-4.9 4.9 1z"/></svg><span>Yaqinlaringiz uchun</span></div><div class="display" id="safety-t1">Safar jonli xaritada.</div></div>
+    <div id="safety-credit" data-layout-ignore>Xarita: © OpenStreetMap contributors, geoBoundaries (ODbL)</div>
+    <div class="sub" id="safety-sub"><span></span></div>
+    <script>
+      function pushScreens(s, t, ids, cuts) {
+        // ids[i] is visible from cuts[i]; it slides in over 0.45 s while the previous one drifts left and dims
+        ids.forEach(function (id, i) {
+          var el = s.$(id);
+          var inP = i === 0 ? 1 : kit.prog(t, cuts[i], cuts[i] + 0.45, kit.ease.out);
+          var next = cuts[i + 1];
+          var outP = next === undefined ? 0 : kit.prog(t, next, next + 0.45, kit.ease.out);
+          var shown = (i === 0 || t >= cuts[i]) && (next === undefined || t < next + 0.45);
+          kit.set(el, { x: 393 * (1 - inP) - 110 * outP, display: shown ? "block" : "none" });
+          var dim = el.querySelector(".scr-dim");
+          if (dim) dim.style.opacity = String(0.18 * outP);
+        });
+      }
+
+      function phoneCam(el, t, keys, base) {
+        var ts = keys.map(function (k) { return k.t; });
+        var e = kit.ease.camera;
+        kit.set(el, {
+          scale: kit.interp(t, ts, keys.map(function (k) { return k.s; }), e),
+          x: kit.interp(t, ts, keys.map(function (k) { return k.x || 0; }), e),
+          y: kit.interp(t, ts, keys.map(function (k) { return k.y || 0; }), e),
+        });
+      }
+
+      window.__timelines["safety"] = kit.scene("safety", function (t, s) {
+        var B = 3.6;
+        kit.set(s.$("#safety-girih"), { y: -t * 8 });
+        kit.set(s.$("#safety-phone"), { y: (1 - kit.prog(t, 0, 0.7)) * 140, opacity: kit.prog(t, 0, 0.3) });
+        pushScreens(s, t, ["#safety-s1", "#safety-s2"], [0, B]);
+        phoneCam(s.$("#safety-cam"), t, [{ t: 0, s: 0.92 }, { t: 0.7, s: 0.92 }, { t: 1.3, s: 1.14, y: 60 }, { t: 3.0, s: 1.14, y: 60 }, { t: 3.6, s: 0.95 }, { t: 8, s: 1.02, y: 20 }]);
+        kit.pop(s.$("#safety-av"), t, 0.4, { base: 0.6 });
+        kit.reveal(s.$("#safety-c1"), t, 1.0, { y: 20 });
+        kit.reveal(s.$("#safety-c2"), t, 1.5, { y: 20 });
+        var c = kit.cursor(s.$("#safety-cursor"), t, [{ t: 2.1, x: 300, y: 700 }, { t: 3.0, x: 196, y: 580 }, { t: 3.35, x: 196, y: 580, tap: true }, { t: 3.9, x: 260, y: 700 }], { from: 2.1 });
+        kit.set(s.$("#safety-cursor"), { opacity: kit.prog(t, 2.1, 2.4) * (1 - kit.prog(t, 3.7, 4.0)) });
+        kit.set(s.$("#safety-share"), { scale: 1 - 0.06 * c });
+        var route = s.$("#safety-route");
+        var len = route.__len || (route.__len = route.getTotalLength());
+        route.style.strokeDasharray = len + " " + len;
+        route.style.strokeDashoffset = String(len * (1 - kit.prog(t, B + 0.3, B + 1.3)));
+        var pt = route.getPointAtLength(len * kit.interp(t, [B + 1.2, s.dur], [0.05, 0.32]));
+        ["#safety-dot", "#safety-halo"].forEach(function (id) {
+          var el = s.$(id);
+          el.setAttribute("cx", pt.x);
+          el.setAttribute("cy", pt.y);
+          el.setAttribute("opacity", String(kit.prog(t, B + 1.1, B + 1.4)));
+        });
+        s.$("#safety-halo").setAttribute("r", String(18 + 10 * Math.abs(Math.sin(t * 3))));
+        s.$("#safety-live").style.opacity = String(0.4 + 0.6 * Math.abs(Math.cos(t * 3)));
+        kit.set(s.$("#safety-sheet"), { y: (1 - kit.prog(t, B + 0.6, B + 1.1, kit.ease.outBack)) * 220 });
+        kit.reveal(s.$("#safety-credit"), t, B + 0.3, { y: 0 });
+        [[0, B - 0.1], [B, 99]].forEach(function (sp, i) {
+          var el = s.$("#safety-cap" + i);
+          el.style.visibility = t >= sp[0] && t < sp[1] + 0.3 ? "visible" : "hidden";
+          kit.reveal(el, t, sp[0] + 0.05, { until: sp[1], outLen: 0.25 });
+          kit.words(s.$("#safety-t" + i), t, sp[0] + 0.12, { step: 0.08, accent: ["tekshirilgan.", "tekshirilgan", "jonli"] });
+        });
+        safetySub(s.$("#safety-sub"), t, s, ["07"]);
+      });
+
+      function safetySub(el, t, s, ids) {
+        var on = null;
+        ids.forEach(function (id) {
+          var l = s.line(id);
+          if (t >= l.start - 0.15 && t < l.end + 0.4) on = id;
+        });
+        var span = el.firstElementChild;
+        if (!on) return kit.set(el, { opacity: 0 });
+        if (span.__id !== on) {
+          span.textContent = kit.t("sub." + on);
+          span.__id = on;
+        }
+        var l = s.line(on);
+        kit.set(el, { opacity: Math.min(kit.prog(t, l.start - 0.15, l.start + 0.1), 1 - kit.prog(t, l.end + 0.15, l.end + 0.4)) });
+      }
+
+    </script>
+  </div>
+</template>

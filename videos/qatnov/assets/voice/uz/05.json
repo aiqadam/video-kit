@@ -1,0 +1,10 @@
+{
+  "text": "Har oy ikki yuz qirq ming yoʻlovchi Qatnov bilan yoʻlga chiqadi.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "11b97ddb63bd3dbb",
+  "duration": 4.179,
+  "words": [],
+  "heard": "Har oy 240 ming yoʻlovchi qatnov bilan yoʻlga chiqadi."
+}

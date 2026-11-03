@@ -1,0 +1,10 @@
+{
+  "text": "Shaharlararo yoʻl koʻpincha kutishdan boshlanadi: mashina toʻlguncha vokzalda turasiz.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "bb21a38d6db854e6",
+  "duration": 6.126,
+  "words": [],
+  "heard": "Shaharlararo yoʻl koʻpincha kutishdan boshlanadi. Mashina toʻlguncha vokzalda turasiz."
+}

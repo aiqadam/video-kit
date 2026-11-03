@@ -1,0 +1,10 @@
+{
+  "text": "Har bir haydovchi tekshiruvdan oʻtgan, safaringizni esa yaqinlaringiz xaritada kuzatib boradi.",
+  "provider": "openrouter",
+  "voiceId": "Sulafat",
+  "model": "google/gemini-3.8-flash-tts",
+  "hash": "4d48c007bfdb4977",
+  "duration": 5.819,
+  "words": [],
+  "heard": "Har bir haydovchi tekshiruvdan o'tgan, safaringizni esa yaqinlaringiz xaritada kuzatib boradi."
+}

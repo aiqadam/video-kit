@@ -89,6 +89,11 @@ screen, drive it with `kit.cursor`, change the UI on each tap time.
   (`visibility: hidden`), or `check` reports overlapping text.
 - `videos/kit-promo/` is a worked example: a terminal that types, files whose lines light
   up with the voice, an x-ray wipe, a pull-back into a player.
+- `videos/qatnov/` draws a mobile app: an iPhone frame (titanium, buttons, island,
+  status bar), a light iOS-style interface with its own icons, and a camera over the
+  phone (`phoneCam`) that moves in on the field being typed into and out again; screens
+  push in from the right (`pushScreens`), bookings arrive as banners. Its scenes repeat
+  the phone's styles in each file: scenes are self-contained.
 - `videos/zero-budget/` is another: a receipt that keeps printing rows, a running total
   in a corner, a terminal and a file list — all plain HTML type, with stock clips dimmed
   behind them.

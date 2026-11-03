@@ -1,0 +1,224 @@
+<template>
+  <div id="root" data-composition-id="road">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font), sans-serif;
+      }
+      #root .shot {
+        position: absolute;
+        inset: 0;
+      }
+      #root .girih {
+        position: absolute;
+        inset: -120px;
+        background-image: url(assets/ui/girih.svg);
+        background-size: 120px 120px;
+        opacity: 0.09;
+      }
+      #root .glow {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(31, 181, 166, 0.32), rgba(31, 181, 166, 0) 100%);
+        pointer-events: none;
+      }
+      #root .kicker {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--saffron);
+      }
+      #root .kicker svg {
+        width: 26px;
+        height: 26px;
+        flex: none;
+      }
+      #root .display {
+        font-family: var(--display), sans-serif;
+        font-variation-settings: 'opsz' 96;
+        font-weight: 800;
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+      }
+      #root .display .accent {
+        color: var(--tile);
+      }
+      #root .cap {
+        position: absolute;
+        left: 150px;
+        width: 820px;
+      }
+      #root .cap .display {
+        margin-top: 26px;
+        font-size: 104px;
+      }
+      #root .arch-line {
+        position: absolute;
+        pointer-events: none;
+      }
+      #root .sub {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 44px;
+        text-align: center;
+        z-index: 60;
+      }
+      #root .sub span {
+        display: inline-block;
+        max-width: 1480px;
+        padding: 10px 26px;
+        border-radius: 14px;
+        background: rgba(8, 17, 41, 0.8);
+        color: #fff;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 1.32;
+      }
+
+      #road-cam {
+        position: absolute;
+        inset: 0;
+      }
+      #road-cam video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #road-shade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(8, 17, 41, 0.86) 0%, rgba(8, 17, 41, 0.5) 40%, rgba(8, 17, 41, 0) 70%),
+          linear-gradient(0deg, rgba(8, 17, 41, 0.6) 0%, rgba(8, 17, 41, 0) 40%);
+      }
+      #road-live {
+        position: absolute;
+        left: 150px;
+        top: 120px;
+        width: 680px;
+        padding: 22px 26px;
+        border-radius: 30px;
+        background: rgba(250, 248, 243, 0.96);
+        color: #0d1b3e;
+        box-shadow: 0 30px 60px rgba(3, 7, 20, 0.35);
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+      #road-live .app {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        background: #0d1b3e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+      }
+      #road-live .app svg {
+        width: 34px;
+        height: 40px;
+      }
+      #road-live b {
+        display: block;
+        font-size: 34px;
+        letter-spacing: -0.02em;
+      }
+      #road-live span {
+        font-size: 28px;
+        color: #48506a;
+      }
+      #road-bar {
+        position: relative;
+        margin-top: 14px;
+        height: 8px;
+        border-radius: 4px;
+        background: rgba(13, 27, 62, 0.1);
+      }
+      #road-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 4px;
+        background: #0e9c8f;
+      }
+      .road-fig {
+        position: absolute;
+        left: 150px;
+        top: 540px;
+      }
+      .road-fig .num {
+        margin-top: 10px;
+        font-family: var(--display), sans-serif;
+        font-variation-settings: 'opsz' 96;
+        font-weight: 800;
+        font-size: 230px;
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        white-space: nowrap;
+        text-shadow: 0 10px 40px rgba(3, 7, 20, 0.4);
+      }
+      .road-fig .unit {
+        margin-top: 12px;
+        font-size: 42px;
+        font-weight: 600;
+      }
+
+    </style>
+    <div id="road-cam"><video id="road-v" class="clip" src="assets/fetched/clips/pexels-6335191.mp4" data-start="0" data-duration="8" data-track-index="1" muted playsinline></video></div>
+    <div id="road-shade"></div>
+    <div id="road-live">
+      <div class="app"><svg viewBox="0 0 100 120"><path d="M0,120 L0,48 C0,23 23,8 50,0 C77,8 100,23 100,48 L100,120 Z" fill="#1FB5A6"/><path d="M50,30 C40,55 30,80 22,120 L38,120 C42,92 46,64 50,30 Z M50,30 C60,55 70,80 78,120 L62,120 C58,92 54,64 50,30 Z" fill="#F6EFE2"/></svg></div>
+      <div style="flex: 1">
+        <b>Toshkent → Samarqand</b>
+        <span>Yo‘lda · 12:40 da yetib borasiz</span>
+        <div id="road-bar"><div id="road-fill"></div></div>
+      </div>
+    </div>
+    <div class="road-fig" id="road-f1"><div class="kicker"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5l2.9 4.1 4.9-1-1 4.9 4.1 2.9-4.1 2.9 1 4.9-4.9-1-2.9 4.1-2.9-4.1-4.9 1 1-4.9L1.5 12l4.1-2.9-1-4.9 4.9 1z"/></svg><span>Yo‘lovchilar</span></div><div class="num" id="road-n1">240 000</div><div class="unit">har oy yo‘lga chiqadi</div></div>
+    <div class="road-fig" id="road-f2"><div class="kicker"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5l2.9 4.1 4.9-1-1 4.9 4.1 2.9-4.1 2.9 1 4.9-4.9-1-2.9 4.1-2.9-4.1-4.9 1 1-4.9L1.5 12l4.1-2.9-1-4.9 4.9 1z"/></svg><span>Haydovchilar</span></div><div class="num" id="road-n2">4 800</div><div class="unit">hujjatlari tekshirilgan</div></div>
+    <div class="sub" id="road-sub"><span></span></div>
+    <script>
+      window.__timelines["road"] = kit.scene("road", function (t, s) {
+        kit.set(s.$("#road-cam"), { scale: 1.04 + 0.04 * (t / s.dur) });
+        kit.set(s.$("#road-live"), { y: (1 - kit.prog(t, 0.1, 0.6, kit.ease.outBack)) * -60, opacity: kit.prog(t, 0.1, 0.4) });
+        s.$("#road-fill").style.width = (32 + 26 * kit.prog(t, 0, s.dur, kit.ease.linear)) + "%";
+        var B = 4;
+        var f1 = s.$("#road-f1"), f2 = s.$("#road-f2");
+        f1.style.visibility = t < B + 0.3 ? "visible" : "hidden";
+        f2.style.visibility = t >= B ? "visible" : "hidden";
+        kit.set(f1, { opacity: kit.prog(t, 0.2, 0.5) * (1 - kit.prog(t, B - 0.1, B + 0.2)), y: -60 * kit.prog(t, B - 0.1, B + 0.25, kit.ease.in) });
+        kit.count(s.$("#road-n1"), t, 0.3, 240000, { len: 1.5, locale: "ru" });
+        kit.set(f2, { opacity: kit.prog(t, B, B + 0.3), y: 60 * (1 - kit.prog(t, B, B + 0.4)) });
+        kit.count(s.$("#road-n2"), t, B + 0.05, 4800, { len: 1.2, locale: "ru" });
+        roadSub(s.$("#road-sub"), t, s, ["05"]);
+      });
+
+      function roadSub(el, t, s, ids) {
+        var on = null;
+        ids.forEach(function (id) {
+          var l = s.line(id);
+          if (t >= l.start - 0.15 && t < l.end + 0.4) on = id;
+        });
+        var span = el.firstElementChild;
+        if (!on) return kit.set(el, { opacity: 0 });
+        if (span.__id !== on) {
+          span.textContent = kit.t("sub." + on);
+          span.__id = on;
+        }
+        var l = s.line(on);
+        kit.set(el, { opacity: Math.min(kit.prog(t, l.start - 0.15, l.start + 0.1), 1 - kit.prog(t, l.end + 0.15, l.end + 0.4)) });
+      }
+
+    </script>
+  </div>
+</template>
