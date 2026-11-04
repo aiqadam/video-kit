@@ -27,7 +27,7 @@ What each part does, what is optional and what needs a key: [docs/stack.md](docs
 - **Product screens drawn in code** and acted out: taps, typing, screen changes.
 - **Voiceover** three ways: ElevenLabs; OpenRouter (one key for Microsoft MAI-Voice with
   native voices per language, Gemini TTS, MiniMax, Fish Audio and more); or free local
-  engines (Kokoro on Apple Silicon, Qwen3-TTS on Apple Silicon, Piper anywhere) with no
+  engines (Kokoro on Apple Silicon, Qwen3-TTS on Apple Silicon, Phonon and Piper anywhere) with no
   account at all. Every take is transcribed back and checked against the script. A voice
   that sounds sharp can be softened in the mix (`voiceTone`), and its level set against
   the music (`voiceVolume`).
@@ -66,8 +66,8 @@ For a voiceover, copy `.env.example` to `.env` and put an
 [ElevenLabs key](https://elevenlabs.io/app/developers/api-keys) or an
 [OpenRouter key](https://openrouter.ai/settings/keys) in it, or install a free local
 engine: `node kit.mjs tts list`, then `node kit.mjs tts setup kokoro-mlx` (native English
-voices, Apple Silicon), `node kit.mjs tts setup qwen3-mlx` (Apple Silicon) or
-`node kit.mjs tts setup piper` (any OS). Without a key or an engine everything works
+voices, Apple Silicon), `node kit.mjs tts setup qwen3-mlx` (Apple Silicon), `node kit.mjs tts setup phonon`
+(natural English on any OS) or `node kit.mjs tts setup piper` (any OS). Without a key or an engine everything works
 except the voice: lines are timed by an estimate and stay silent.
 
 Then open the folder in your coding agent and say what you need, in any language:
