@@ -3,7 +3,8 @@
 SPDX-License-Identifier: MIT
 
 Reads one JSON request per line on stdin, writes a WAV file and answers one JSON line:
-  {"text", "out", "model", "language", "instructions", "voiceId"} -> {"ok": true} | {"error": "..."}
+  {"text", "out", "model", "language", "instructions", "voiceId", "refAudio", "refText"} -> {"ok": true} | {"error": "..."}
+A Base model with refAudio and refText clones the voice of that reference take, so every line sounds the same.
 The model loads once and stays in memory for every line of a video.
 """
 import json
@@ -21,7 +22,11 @@ models = {}
 def handle(req):
     name = req.get("model") or "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-bf16"
     if name not in models:
-        models[name] = load_model(name)
+        try:
+            models[name] = load_model(name)
+        except ImportError:
+            # on some macOS versions the first import of scipy's _spropack fails and the second succeeds
+            models[name] = load_model(name)
     model = models[name]
     lang = LANGS.get(req.get("language", ""), req.get("language") or "Russian")
     text, instruct, voice = req["text"], req.get("instructions"), req.get("voiceId")
@@ -29,6 +34,8 @@ def handle(req):
         res = model.generate_voice_design(text=text, language=lang, instruct=instruct or "A clear, natural voice.")
     elif "CustomVoice" in name:
         res = model.generate_custom_voice(text=text, speaker=voice or "Vivian", language=lang, instruct=instruct or "")
+    elif req.get("refAudio"):
+        res = model.generate(text=text, ref_audio=req["refAudio"], ref_text=req.get("refText") or "", lang_code=lang.lower())
     else:
         res = model.generate(text=text, voice=voice)
     audio = np.concatenate([np.array(r.audio) for r in res])

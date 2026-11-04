@@ -1,0 +1,8 @@
+{
+  "text": "Пять образов по вашему размеру. Через неделю забираем, чистим и привозим новые.",
+  "provider": "local",
+  "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+  "hash": "07da915630451817",
+  "duration": 5.765,
+  "words": []
+}

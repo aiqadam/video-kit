@@ -45,3 +45,12 @@ with real footage, cut to music, and let the type be big and short.
 
 **A logo redrawn "close enough".** It is someone's trademark and it will be noticed.
 Use the official file or plain text.
+
+**A local voice that changes between lines.** Qwen3-TTS VoiceDesign makes a new voice from
+the description for every line; in an ad the narrator seemed to change. Clone one take for
+all lines with the Base model and `refAudio` (`voice-and-sound.md`).
+
+**A key with a spending limit.** An OpenRouter key can carry a monthly limit; generated
+footage ($0.40 for a 4-second Veo clip) used it up and the cloud voice and the take check
+stopped working for the month. Check the limit (`GET /api/v1/key`) before spending on
+video, and keep enough for the voice.

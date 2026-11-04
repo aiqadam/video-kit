@@ -1,0 +1,13 @@
+{
+  "model": "google/veo-3.1-fast",
+  "prompt": "Close-up of a man's hands buttoning the cuff of a crisp white dress shirt, then straightening the sleeve of a navy blazer, in front of a window with soft morning light. Only hands, wrists and torso in frame. Photorealistic, shot on a 35mm cinema camera, soft natural daylight, shallow depth of field, warm neutral colour grade, calm smooth camera motion. No text, no logos, no brand labels, no faces visible.",
+  "duration": 4,
+  "resolution": "1080p",
+  "aspect_ratio": "9:16",
+  "generate_audio": false,
+  "id": "gen-vid-1793784673-R7ZsmxW1Rp1ADehBbdC3",
+  "usage": {
+    "cost": 0.4,
+    "is_byok": false
+  }
+}

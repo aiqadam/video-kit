@@ -1,0 +1,8 @@
+{
+  "text": "Каждое утро одно и то же: шкаф забит, а надеть нечего.",
+  "provider": "local",
+  "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+  "hash": "d55d0b5e09d7703a",
+  "duration": 4.87,
+  "words": []
+}
