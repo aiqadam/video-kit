@@ -134,6 +134,20 @@ whole number of its bars. The voice is Gemini TTS, softened with `voiceTone`.
 node kit.mjs render qatnov
 ```
 
+`videos/naryad/` is a 48-second vertical ad for a startup concept: «Наряд», an app that
+says every morning what to wear to work and a service that delivers the week's outfits and
+swaps them for clean ones. A Monday morning in an iPhone (a notification, the weather and
+the calendar, an outfit, a swipe for another, "Надеваю"), then the courier, a rail of five
+outfits, the weekly loop. Russian narration with subtitles, made for free on the machine
+with Qwen3-TTS, every line cloned from one reference take so the voice stays the same.
+Footage from Mixkit, two clips generated with Google Veo through OpenRouter; a CC BY
+track; scenes are whole bars of it. The service does not exist yet, and the end card says
+so.
+
+```bash
+node kit.mjs render naryad
+```
+
 ## Commands
 
 ```
@@ -164,15 +178,18 @@ The kit is MIT, with these exceptions:
 - `videos/*/assets/fonts/` are fonts under the SIL Open Font License, with the license
   next to them.
 - `videos/*/assets/voice/` are voice files made for those examples: Google Gemini TTS in
-  `kit-promo` and `qatnov`, Kokoro 82M locally in `zero-budget`; their use follows each
-  provider's terms.
+  `kit-promo` and `qatnov`, Kokoro 82M locally in `zero-budget`, Qwen3-TTS locally in `naryad`; their use
+  follows each provider's terms.
 - `videos/qatnov/assets/music/` is a track generated with Google Lyria through OpenRouter;
   its use follows the provider's terms.
+- `videos/naryad/assets/footage/` are two clips generated with Google Veo through
+  OpenRouter (the prompts are next to them); their use follows the provider's terms.
 - `videos/kit-promo/assets/brand/` is the AI Qadam logo: a brand asset, not open source,
   used under the [AI Qadam Brand Usage Policy](https://brand.aiqadam.org/brand-use.html).
   Do not reuse it in your own videos.
 - Footage, images and music of the examples are not in the repository: `sources.json`
-  lists them with their own licenses (Pexels License, CC BY 4.0, CC0, public domain).
+  lists them with their own licenses (Pexels License, Mixkit License, CC BY 4.0, CC0,
+  public domain).
 
 The kit itself is MIT. It installs HyperFrames (Apache-2.0), ffmpeg via `ffmpeg-static` and
 `@ffprobe-installer/ffprobe` (the ffmpeg binaries are GPL; they are downloaded at
@@ -181,6 +198,7 @@ command the kit runs. The examples' footage, music, fonts and logo are credited 
 `videos/<name>/assets/sources.json` and `CREDITS.md`. What you render is yours;
 check the licenses of the media and voices you add. The examples' voice files were made
 with Google Gemini TTS through OpenRouter (kit-promo, qatnov) and with Kokoro 82M offline
-(zero-budget), the qatnov music with Google Lyria through OpenRouter; they are not covered
+(zero-budget) and Qwen3-TTS offline (naryad), the qatnov music with Google Lyria and the
+naryad footage in `assets/footage/` with Google Veo through OpenRouter; they are not covered
 by the MIT license, and their use follows each provider's terms. For your own video, make
 the voice and music again with your own key or a local engine.

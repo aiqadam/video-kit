@@ -1,0 +1,8 @@
+{
+  "text": "«Наряд». Начните с базовых образов — это бесплатно.",
+  "provider": "local",
+  "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+  "hash": "f2b38a10e92a8596",
+  "duration": 3.763,
+  "words": []
+}

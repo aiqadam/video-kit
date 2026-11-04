@@ -1,0 +1,13 @@
+{
+  "model": "google/veo-3.1-fast",
+  "prompt": "A bright minimalist apartment hallway. A light wooden clothes rail holds five complete office outfits on wooden hangers, evenly spaced: navy blazer with white shirt, grey knit with black trousers, camel coat with a cream sweater, light blue shirt with beige chinos, black blazer with a striped shirt. Slow lateral dolly along the rail. No people. Photorealistic, shot on a 35mm cinema camera, soft natural daylight, shallow depth of field, warm neutral colour grade, calm smooth camera motion. No text, no logos, no brand labels, no faces visible.",
+  "duration": 4,
+  "resolution": "1080p",
+  "aspect_ratio": "9:16",
+  "generate_audio": false,
+  "id": "gen-vid-1793784673-IThv5SU9jyBv5xy3emfH",
+  "usage": {
+    "cost": 0.4,
+    "is_byok": false
+  }
+}

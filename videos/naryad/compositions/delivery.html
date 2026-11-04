@@ -1,0 +1,174 @@
+<template>
+  <div id="root" data-composition-id="delivery">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font), sans-serif;
+      }
+      #root .shot {
+        position: absolute;
+        inset: 0;
+      }
+      #root .kicker {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      #root .display {
+        font-family: var(--display), serif;
+        font-weight: 600;
+        line-height: 1.04;
+        letter-spacing: -0.01em;
+      }
+      #root .display .accent {
+        font-style: italic;
+        color: var(--accent);
+      }
+      #root .cap {
+        position: absolute;
+        left: 80px;
+        top: 140px;
+        width: 920px;
+      }
+      #root .cap .display {
+        margin-top: 18px;
+        font-size: 96px;
+      }
+      #root .card {
+        position: absolute;
+        left: 70px;
+        top: 560px;
+        width: 940px;
+        height: 1140px;
+        border-radius: 44px;
+        overflow: hidden;
+        background: #ddd;
+        box-shadow: 0 40px 90px rgba(27, 26, 23, 0.25);
+      }
+      #root .clip {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #delivery-note {
+        position: absolute;
+        left: 110px;
+        right: 110px;
+        top: 760px;
+        padding: 34px 36px;
+        border-radius: 40px;
+        background: rgba(250, 248, 244, 0.97);
+        box-shadow: 0 30px 70px rgba(27, 26, 23, 0.3);
+        display: flex;
+        gap: 26px;
+        z-index: 40;
+      }
+      #delivery-note .appic {
+        width: 96px;
+        height: 96px;
+        border-radius: 24px;
+        background: #c8553d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+      }
+      #delivery-note .hd {
+        display: flex;
+        justify-content: space-between;
+        font-size: 28px;
+        color: #7b736a;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+      #delivery-note b {
+        display: block;
+        margin-top: 6px;
+        font-size: 38px;
+        line-height: 1.15;
+      }
+      #delivery-note span.tx {
+        display: block;
+        margin-top: 6px;
+        font-size: 32px;
+        color: #4a443d;
+        line-height: 1.3;
+      }
+      #root .sub {
+        position: absolute;
+        left: 60px;
+        right: 60px;
+        bottom: 300px;
+        text-align: center;
+        z-index: 60;
+      }
+      #root .sub span {
+        display: inline-block;
+        padding: 12px 26px;
+        border-radius: 16px;
+        background: rgba(20, 18, 15, 0.8);
+        color: #fff;
+        font-size: 36px;
+        font-weight: 500;
+        line-height: 1.3;
+      }
+    </style>
+    <div class="cap">
+      <div class="kicker" id="delivery-kicker">Воскресенье</div>
+      <div class="display" id="delivery-title">Образы на неделю — к вашей двери</div>
+    </div>
+    <div class="card" id="delivery-card">
+      <div class="shot" id="delivery-a">
+        <div class="kit-fill" id="delivery-a-cam"><video id="delivery-v1" class="clip" src="assets/fetched/clips/42130-720.mp4" style="object-position: 52% 50%" data-start="0" data-duration="2.88" data-track-index="1" muted playsinline></video></div>
+      </div>
+      <div class="shot" id="delivery-b">
+        <div class="kit-fill" id="delivery-b-cam"><video id="delivery-v2" class="clip" src="assets/fetched/clips/31155-720.mp4" style="object-position: 40% 50%" data-start="2.88" data-hf-media-start-basis="local" data-duration="3.36" data-track-index="1" muted playsinline></video></div>
+      </div>
+    </div>
+    <div id="delivery-note">
+      <div class="appic"><svg width="62" height="38" viewBox="0 0 200 120"><path d="M100 40 V31 C100 24 113 21 113 12 C113 5 107 1 100 1 C93 1 88 5 88 11 M100 40 L13 94 C4 100 8 112 18 112 H182 C192 112 196 100 187 94 Z" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div style="flex:1"><div class="hd"><span>НАРЯД</span><span>сейчас</span></div><b>Ваш гардероб на неделю доставлен</b><span class="tx">Пять образов, с понедельника по пятницу</span></div>
+    </div>
+    <div class="sub" id="delivery-sub"><span></span></div>
+    <script>
+      window.__timelines["delivery"] = kit.scene("delivery", function (t, s) {
+        var B = 2.88, C = 5.3;
+        kit.reveal(s.$("#delivery-kicker"), t, 0.05);
+        kit.words(s.$("#delivery-title"), t, 0.15, { step: 0.09, accent: ["неделю"] });
+        kit.set(s.$("#delivery-card"), { y: (1 - kit.prog(t, 0, 0.6)) * 80, opacity: kit.prog(t, 0, 0.25) });
+        kit.beat(s.$("#delivery-a"), t, -1, B);
+        kit.set(s.$("#delivery-a-cam"), { scale: 1.04 + 0.05 * (t / B) });
+        kit.beat(s.$("#delivery-b"), t, B, s.dur + 1, { enter: 1.12, last: true });
+        kit.set(s.$("#delivery-b-cam"), { scale: 1.05 + 0.04 * ((t - B) / 4.8) });
+        // the app says the box has arrived
+        var n = kit.prog(t, C, C + 0.45);
+        kit.set(s.$("#delivery-note"), { y: -80 * (1 - n), opacity: n, scale: 0.96 + 0.04 * n });
+        deliverySub(s.$("#delivery-sub"), t, s, ["05"]);
+      });
+
+      function deliverySub(el, t, s, ids) {
+        var on = null;
+        ids.forEach(function (id) {
+          var l = s.line(id);
+          if (t >= l.start - 0.15 && t < l.end + 0.4) on = id;
+        });
+        var span = el.firstElementChild;
+        if (!on) return kit.set(el, { opacity: 0 });
+        if (span.__id !== on) {
+          span.textContent = kit.t("sub." + on);
+          span.__id = on;
+        }
+        var l = s.line(on);
+        kit.set(el, { opacity: Math.min(kit.prog(t, l.start - 0.15, l.start + 0.1), 1 - kit.prog(t, l.end + 0.15, l.end + 0.4)) });
+      }
+    </script>
+  </div>
+</template>
