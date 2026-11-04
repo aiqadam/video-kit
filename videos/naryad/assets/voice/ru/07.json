@@ -1,0 +1,8 @@
+{
+  "text": "Никакой стирки, глажки и утренних сомнений. Оделись — и вперёд.",
+  "provider": "local",
+  "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+  "hash": "75feb90144310953",
+  "duration": 5.884,
+  "words": []
+}

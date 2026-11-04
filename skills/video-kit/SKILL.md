@@ -29,7 +29,8 @@ One file, `video.json`, holds all timing, and the kit derives everything else fr
    HTML from its source or screenshots and act out taps and typing ("Product screens");
    `videos/kit-promo/compositions/` does this for a terminal, files and a player;
    `videos/qatnov/compositions/` for a mobile app in an iPhone (camera moves in on each
-   tap, screens push in, notifications arrive), with footage in arch frames between.
+   tap, screens push in, notifications arrive), with footage in arch frames between;
+   `videos/naryad/compositions/` for the same in portrait, with footage in rounded cards.
    For a vertical video told in captions without a voice, read
    `videos/ottoman-empire/compositions/`: archive images that pan and push in, a year
    that rolls forward, a timeline across the top.

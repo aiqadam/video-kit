@@ -132,7 +132,7 @@ and installs the engine. The model downloads on first use and stays cached.
 | Engine | Runs on | Sounds | License of what you make |
 | ------ | ------- | ------ | ------------------------ |
 | `kokoro-mlx` (Kokoro 82M) | Apple Silicon Macs | clear, even, native US/UK English voices (`af_heart`, `am_michael`, `bf_alice`, `bm_george`, …); the same voice on every line; English only | Apache-2.0 model: commercial use allowed |
-| `qwen3-mlx` (Qwen3-TTS 1.7B VoiceDesign) | Apple Silicon Macs | close to cloud voices; the voice is described in words; 10 languages, no Uzbek. VoiceDesign invents a slightly different voice per line — use CustomVoice with a `voiceId` (Sohee, Serena, Vivian, Ono_Anna) when the voice must stay the same | Apache-2.0 model: commercial use allowed |
+| `qwen3-mlx` (Qwen3-TTS 1.7B VoiceDesign) | Apple Silicon Macs | close to cloud voices; the voice is described in words; 10 languages incl. Russian, no Uzbek. VoiceDesign invents a slightly different voice per line: make one take you like, then clone it for every line with the Base model (below) | Apache-2.0 model: commercial use allowed |
 | `phonon` (Phonon 31m / 40m, Rust runtime) | Windows, macOS, Linux, CPU | natural English (31m); French, German, Spanish, Portuguese with a 40m model (`"model": "hf://gradium/phonon-40m-fr"`); voices by name from `gradium/phonon-voices`; no Russian or Uzbek | 31m (default, English) Apache-2.0: commercial use allowed. **40m models are CC BY-NC 4.0: non-commercial only**, and gated (accept on Hugging Face, set `HF_TOKEN`) |
 | `piper` | Windows, macOS, Linux, CPU | plain but clear, very fast | per voice: `ru_RU-denis`/`dmitri` MIT with CC0 data; `ru_RU-ruslan` non-commercial; read the voice's MODEL_CARD |
 
@@ -142,9 +142,22 @@ Linux `phonon` is the natural-sounding one; Qwen3-TTS
 preset speakers are native Chinese, Korean and Japanese and carry an accent in English.
 Set `"language": "en-gb"` with `bf_*`/`bm_*` voices for British English.
 
+One voice for every line with Qwen3-TTS: make the lines with VoiceDesign, pick the take
+that sounds right, save it as the reference and switch to the Base model, which clones it:
+
+```json
+"voice": { "provider": "local", "engine": "qwen3-mlx", "language": "ru",
+           "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+           "refAudio": "assets/voice/ref/narrator.wav",
+           "refText": "the exact words said in the reference take" }
+```
+
+`refAudio` is relative to the video folder; changing it or `refText` makes every line
+again. `videos/naryad/` is voiced this way.
+
 A new engine is a folder in `tts/` with `engine.json`, `requirements.txt` and a `run.py`
 that reads one JSON request per line on stdin (`text`, `out`, `model`, `language`,
-`instructions`, `voiceId`, `speed`), writes a WAV to `out` and answers `{"ok": true}`.
+`instructions`, `voiceId`, `speed`, `refAudio`, `refText`), writes a WAV to `out` and answers `{"ok": true}`.
 `node kit.mjs tts list` and `tts setup` find it by that `engine.json` alone, so anything
 written in `docs/stack.md` or the references should list it. If a dependency has no
 wheel for the machine's Python, put `--only-binary=:all: <package>` in `requirements.txt`

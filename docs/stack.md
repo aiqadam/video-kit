@@ -52,7 +52,7 @@ it and it is not loaded into renders.
 | -------- | ----- | ----- |
 | `openrouter` | `OPENROUTER_API_KEY` | one key for many speech models: Microsoft MAI-Voice (native voices per language), Google Gemini TTS (delivery steered by words), ElevenLabs, MiniMax, Fish Audio; pay per character |
 | `elevenlabs` | `ELEVENLABS_API_KEY` | word timings; premade voices are native English; library voices need a paid plan through the API; free plan output is non-commercial |
-| `local` | Python 3.10–3.13 and `node kit.mjs tts setup <engine>` | free, offline: `kokoro-mlx` (Kokoro 82M via mlx-audio 0.6.2, Apple Silicon, Apache-2.0 model, native US/UK English voices), `qwen3-mlx` (Qwen3-TTS 1.7B via mlx-audio 0.6.2, Apple Silicon, Apache-2.0 model), `phonon` (ptts 0.6.0, MIT or Apache-2.0, any OS; Phonon 31m English Apache-2.0, 40m models CC BY-NC 4.0) or `piper` (piper-tts 1.8.0, GPL-3.0, any OS; voice licenses per voice). Engines run as separate processes; `tts/piper/run.py` is GPL-3.0-or-later because it imports piper |
+| `local` | Python 3.10–3.13 and `node kit.mjs tts setup <engine>` | free, offline: `kokoro-mlx` (Kokoro 82M via mlx-audio 0.6.2, Apple Silicon, Apache-2.0 model, native US/UK English voices), `qwen3-mlx` (Qwen3-TTS 1.7B via mlx-audio 0.6.2, Apple Silicon, Apache-2.0 model; a voice described in words, or cloned from a reference take with `refAudio`), `phonon` (ptts 0.6.0, MIT or Apache-2.0, any OS; Phonon 31m English Apache-2.0, 40m models CC BY-NC 4.0) or `piper` (piper-tts 1.8.0, GPL-3.0, any OS; voice licenses per voice). Engines run as separate processes; `tts/piper/run.py` is GPL-3.0-or-later because it imports piper |
 
 With `OPENROUTER_API_KEY` set, every take from any provider is transcribed back (Google
 Gemini 2.5 Flash through OpenRouter) and compared with the script; a mismatching take is
@@ -68,6 +68,7 @@ and silent.
 | [Pexels](https://www.pexels.com) | clips found with the agent's web search, added by number (`pexels:<id>`) through the public download link | stock video | Pexels License: free, commercial use allowed, no redistribution of the raw files, no implied endorsement |
 | [Wikimedia Commons](https://commons.wikimedia.org) | open API, no key: `media search`, `commons:File:<name>` | video, photos, audio | per file (CC0, CC BY, CC BY-SA, public domain) |
 | [incompetech.com](https://incompetech.com) | open catalogue, no key: `media search --type audio`, `incompetech:<title>` | music by mood and tempo | CC BY 4.0, credit required |
+| [Mixkit](https://mixkit.co) | clips found with the agent's web search, added by URL (`media add <video> https://assets.mixkit.co/videos/<id>/<id>-720.mp4 --license …`) | stock video | Mixkit Stock Video Free License: free, commercial use allowed, no credit required, no redistribution of the raw files |
 | [Openverse](https://openverse.org) | free registration per user (`media openverse-register`) | CC photos and audio | per file; its API has been down since 2026-10-20 |
 
 `media add` writes each item into `assets/sources.json` (url, page, author, license,
@@ -80,6 +81,7 @@ first build and makes a preview. `check` lists CC BY credits that no scene shows
 | ---- | --- |
 | music bed | `lib/audio/music.mjs`, synthesised to the video's length (`calm`, `hijaz`), when no track is given |
 | generated music | `lib/audio/generate.mjs`: `video-kit music` asks a music model on OpenRouter (Google Lyria 3 Pro by default) for a track from `music.prompt`, kept in `assets/music/` |
+| generated footage | not a kit command: a clip made from a prompt with a video model through OpenRouter (`POST /api/v1/videos`), kept with its request in `assets/footage/` (`references/media.md`) |
 | interface sounds | `lib/audio/sfx.mjs`: tap, key, pop, whoosh, success |
 | final mix | HyperFrames' Web Audio graph (voice chain, softened with `voiceTone` and levelled against the music with `voiceVolume`; music ducked under the voice), then ffmpeg loudness normalisation and a limiter |
 

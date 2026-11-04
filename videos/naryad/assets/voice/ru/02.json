@@ -1,0 +1,8 @@
+{
+  "text": "Знакомьтесь: «Наряд» — стилист в вашем телефоне.",
+  "provider": "local",
+  "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+  "hash": "0b0343dd8c64a6ca",
+  "duration": 3.542,
+  "words": []
+}

@@ -1,0 +1,208 @@
+<template>
+  <div id="root" data-composition-id="week">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font), sans-serif;
+      }
+      #root .shot {
+        position: absolute;
+        inset: 0;
+      }
+      #root .kicker {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      #root .display {
+        font-family: var(--display), serif;
+        font-weight: 600;
+        line-height: 1.04;
+        letter-spacing: -0.01em;
+      }
+      #root .display .accent {
+        font-style: italic;
+        color: var(--accent);
+      }
+      #root .clip {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #week-top {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 820px;
+        background: linear-gradient(180deg, rgba(243, 238, 230, 1) 0%, rgba(243, 238, 230, 0.97) 50%, rgba(243, 238, 230, 0) 100%);
+      }
+      #root .cap {
+        position: absolute;
+        left: 80px;
+        top: 140px;
+        width: 920px;
+      }
+      #root .cap .display {
+        margin-top: 18px;
+        font-size: 100px;
+      }
+      #week-days {
+        position: absolute;
+        left: 70px;
+        right: 70px;
+        top: 1250px;
+        display: flex;
+        justify-content: space-between;
+      }
+      #week-days div {
+        width: 172px;
+        height: 110px;
+        border-radius: 28px;
+        background: rgba(250, 248, 244, 0.95);
+        box-shadow: 0 16px 40px rgba(27, 26, 23, 0.22);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 44px;
+        font-weight: 800;
+      }
+      #week-days div.on {
+        background: #c8553d;
+        color: #fff;
+      }
+      #week-loop {
+        position: absolute;
+        left: 90px;
+        right: 90px;
+        top: 640px;
+      }
+      .step {
+        display: flex;
+        align-items: center;
+        gap: 34px;
+        padding: 30px 0;
+      }
+      .step .ic {
+        width: 128px;
+        height: 128px;
+        border-radius: 36px;
+        background: #fff;
+        box-shadow: 0 12px 30px rgba(27, 26, 23, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+      }
+      .step .w {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .step .d {
+        margin-top: 6px;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+      }
+      .rail {
+        margin-left: 63px;
+        width: 3px;
+        height: 34px;
+        background: repeating-linear-gradient(180deg, #c8553d 0 8px, transparent 8px 16px);
+        opacity: 0.6;
+      }
+      #root .sub {
+        position: absolute;
+        left: 60px;
+        right: 60px;
+        bottom: 300px;
+        text-align: center;
+        z-index: 60;
+      }
+      #root .sub span {
+        display: inline-block;
+        padding: 12px 26px;
+        border-radius: 16px;
+        background: rgba(20, 18, 15, 0.8);
+        color: #fff;
+        font-size: 36px;
+        font-weight: 500;
+        line-height: 1.3;
+      }
+    </style>
+    <div class="shot" id="week-a">
+      <div class="kit-fill" id="week-a-cam"><video id="week-v1" class="clip" src="assets/footage/rack.mp4" data-start="0" data-duration="3.84" data-track-index="1" muted playsinline></video></div>
+      <div id="week-top"></div>
+      <div class="cap">
+        <div class="kicker" id="week-a-kicker">Пн — Пт</div>
+        <div class="display" id="week-a-title">Пять образов. Ваш размер.</div>
+      </div>
+      <div id="week-days"><div id="week-d1">Пн</div><div id="week-d2">Вт</div><div id="week-d3">Ср</div><div id="week-d4">Чт</div><div id="week-d5">Пт</div></div>
+    </div>
+    <div class="shot" id="week-b">
+      <div class="cap">
+        <div class="kicker" id="week-b-kicker">Каждую неделю</div>
+        <div class="display" id="week-b-title">Стирка и глажка — на нас</div>
+      </div>
+      <div id="week-loop">
+        <div class="step" id="week-s1"><div class="ic"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#c8553d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></svg></div><div><div class="w">Воскресенье</div><div class="d">Привозим образы на неделю</div></div></div>
+        <div class="rail"></div>
+        <div class="step" id="week-s2"><div class="ic"><svg width="64" height="64" viewBox="0 0 200 120"><path d="M100 40 V31 C100 24 113 21 113 12 C113 5 107 1 100 1 C93 1 88 5 88 11 M100 40 L13 94 C4 100 8 112 18 112 H182 C192 112 196 100 187 94 Z" fill="none" stroke="#c8553d" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="w">Пн — Пт</div><div class="d">Вы носите</div></div></div>
+        <div class="rail"></div>
+        <div class="step" id="week-s3"><div class="ic"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#c8553d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.6-4.5L3 9"/><path d="M3 4v5h5"/><path d="M4 13a8 8 0 0 0 14.6 4.5L21 15"/><path d="M21 20v-5h-5"/></svg></div><div><div class="w">Следующее воскресенье</div><div class="d">Забираем, чистим, привозим новые</div></div></div>
+      </div>
+    </div>
+    <div class="sub" id="week-sub"><span></span></div>
+    <script>
+      window.__timelines["week"] = kit.scene("week", function (t, s) {
+        var B = 3.84;
+        // shot 1: the rail with the week's outfits
+        kit.beat(s.$("#week-a"), t, -1, B);
+        kit.set(s.$("#week-a-cam"), { scale: 1.02 + 0.04 * (t / B) });
+        kit.reveal(s.$("#week-a-kicker"), t, 0.05);
+        kit.words(s.$("#week-a-title"), t, 0.15, { step: 0.1, accent: ["размер"] });
+        for (var i = 1; i <= 5; i++) {
+          var a = 0.7 + (i - 1) * 0.22;
+          kit.pop(s.$("#week-d" + i), t, a, { base: 0.6 });
+          s.$("#week-d" + i).classList.toggle("on", t >= 2.0 + (i - 1) * 0.3 && t < 2.0 + i * 0.3);
+        }
+        // shot 2: the weekly loop
+        kit.beat(s.$("#week-b"), t, B, s.dur + 1, { enter: 1.1, last: true });
+        kit.reveal(s.$("#week-b-kicker"), t, B + 0.05);
+        kit.words(s.$("#week-b-title"), t, B + 0.15, { step: 0.09, accent: ["на", "нас"] });
+        kit.reveal(s.$("#week-s1"), t, B + 0.45, { y: 40 });
+        kit.reveal(s.$("#week-s2"), t, B + 0.95, { y: 40 });
+        kit.reveal(s.$("#week-s3"), t, B + 1.45, { y: 40 });
+        weekSub(s.$("#week-sub"), t, s, ["06"]);
+      });
+
+      function weekSub(el, t, s, ids) {
+        var on = null;
+        ids.forEach(function (id) {
+          var l = s.line(id);
+          if (t >= l.start - 0.15 && t < l.end + 0.4) on = id;
+        });
+        var span = el.firstElementChild;
+        if (!on) return kit.set(el, { opacity: 0 });
+        if (span.__id !== on) {
+          span.textContent = kit.t("sub." + on);
+          span.__id = on;
+        }
+        var l = s.line(on);
+        kit.set(el, { opacity: Math.min(kit.prog(t, l.start - 0.15, l.start + 0.1), 1 - kit.prog(t, l.end + 0.15, l.end + 0.4)) });
+      }
+    </script>
+  </div>
+</template>

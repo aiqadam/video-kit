@@ -1,0 +1,234 @@
+{
+  "title": "Наряд",
+  "format": "portrait",
+  "fps": 30,
+  "lang": "ru",
+  "transition": 0,
+  "maxSilence": 5,
+  "theme": {
+    "bg": "#F3EEE6",
+    "ink": "#1B1A17",
+    "muted": "rgba(27, 26, 23, 0.62)",
+    "accent": "#C8553D",
+    "navy": "#1F2A44",
+    "cream": "#F3EEE6",
+    "night": "#14120F",
+    "font": "'Kit Inter'",
+    "display": "'Playfair'"
+  },
+  "fonts": [
+    {
+      "family": "Playfair",
+      "src": "assets/fonts/playfair-display-cyrillic-wght-normal.woff2",
+      "weight": "400 900",
+      "range": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"
+    },
+    {
+      "family": "Playfair",
+      "src": "assets/fonts/playfair-display-latin-wght-normal.woff2",
+      "weight": "400 900",
+      "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "Playfair",
+      "src": "assets/fonts/playfair-display-cyrillic-wght-italic.woff2",
+      "weight": "400 900",
+      "style": "italic",
+      "range": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"
+    },
+    {
+      "family": "Playfair",
+      "src": "assets/fonts/playfair-display-latin-wght-italic.woff2",
+      "weight": "400 900",
+      "style": "italic",
+      "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    }
+  ],
+  "voice": {
+    "provider": "local",
+    "engine": "qwen3-mlx",
+    "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+    "language": "ru",
+    "refAudio": "assets/voice/ref/narrator.wav",
+    "refText": "А сами вещи вам привозят: в воскресенье курьер доставляет образы на всю неделю."
+  },
+  "voiceTone": "soft",
+  "music": {
+    "source": "file",
+    "file": "assets/fetched/music/werq.mp3",
+    "volume": 0.42,
+    "duck": 0.32
+  },
+  "sfxVolume": 0.5,
+  "strings": {
+    "ru": {
+      "sub.01": "Каждое утро одно и то же: шкаф забит, а надеть нечего.",
+      "sub.02": "Знакомьтесь: «Наряд» — стилист в вашем телефоне.",
+      "sub.03": "Утром он смотрит на погоду и ваш календарь и собирает образ на день.",
+      "sub.04": "Не нравится? Смахните — будет другой.",
+      "sub.05": "А сами вещи вам привозят: в воскресенье курьер доставляет образы на всю неделю.",
+      "sub.06": "Пять образов по вашему размеру. Через неделю забираем, чистим и привозим новые.",
+      "sub.07": "Никакой стирки, глажки и утренних сомнений. Оделись — и вперёд.",
+      "sub.08": "«Наряд». Начните с базовых образов — это бесплатно."
+    }
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "dur": 5.76,
+      "lines": [
+        {
+          "id": "01",
+          "at": 0.5,
+          "text": "Каждое утро одно и то же: шкаф забит, а надеть нечего."
+        }
+      ]
+    },
+    {
+      "id": "brand",
+      "dur": 3.84,
+      "lines": [
+        {
+          "id": "02",
+          "at": 0.25,
+          "text": "Знакомьтесь: «Наряд» — стилист в вашем телефоне."
+        }
+      ],
+      "sfx": [
+        {
+          "at": 0.05,
+          "sound": "whoosh",
+          "gain": 0.4
+        }
+      ]
+    },
+    {
+      "id": "morning",
+      "dur": 9.6,
+      "lines": [
+        {
+          "id": "03",
+          "at": 0.6,
+          "text": "Утром он смотрит на погоду и ваш календарь и собирает образ на день."
+        },
+        {
+          "id": "04",
+          "at": 6.3,
+          "text": "Не нравится? Смахните — будет другой."
+        }
+      ],
+      "sfx": [
+        {
+          "at": 1.5,
+          "sound": "tap",
+          "gain": 0.6
+        },
+        {
+          "at": 1.78,
+          "sound": "whoosh",
+          "gain": 0.25
+        },
+        {
+          "at": 6.85,
+          "sound": "whoosh",
+          "gain": 0.4
+        },
+        {
+          "at": 8.5,
+          "sound": "tap",
+          "gain": 0.6
+        },
+        {
+          "at": 8.55,
+          "sound": "success",
+          "gain": 0.5
+        }
+      ]
+    },
+    {
+      "id": "delivery",
+      "dur": 7.68,
+      "lines": [
+        {
+          "id": "05",
+          "at": 0.4,
+          "text": "А сами вещи вам привозят: в воскресенье курьер доставляет образы на всю неделю."
+        }
+      ],
+      "sfx": [
+        {
+          "at": 5.3,
+          "sound": "pop",
+          "gain": 0.5
+        }
+      ]
+    },
+    {
+      "id": "week",
+      "dur": 7.68,
+      "lines": [
+        {
+          "id": "06",
+          "at": 0.3,
+          "text": "Пять образов по вашему размеру. Через неделю забираем, чистим и привозим новые."
+        }
+      ],
+      "sfx": [
+        {
+          "at": 0.7,
+          "sound": "pop",
+          "gain": 0.3
+        },
+        {
+          "at": 0.92,
+          "sound": "pop",
+          "gain": 0.3
+        },
+        {
+          "at": 1.14,
+          "sound": "pop",
+          "gain": 0.3
+        },
+        {
+          "at": 1.36,
+          "sound": "pop",
+          "gain": 0.3
+        },
+        {
+          "at": 1.58,
+          "sound": "pop",
+          "gain": 0.3
+        }
+      ]
+    },
+    {
+      "id": "dress",
+      "dur": 5.76,
+      "lines": [
+        {
+          "id": "07",
+          "at": 0.3,
+          "text": "Никакой стирки, глажки и утренних сомнений. Оделись — и вперёд."
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "dur": 7.68,
+      "lines": [
+        {
+          "id": "08",
+          "at": 0.6,
+          "text": "«Наряд». Начните с базовых образов — это бесплатно."
+        }
+      ],
+      "sfx": [
+        {
+          "at": 1.5,
+          "sound": "pop",
+          "gain": 0.45
+        }
+      ]
+    }
+  ]
+}

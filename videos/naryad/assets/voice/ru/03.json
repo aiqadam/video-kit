@@ -1,0 +1,8 @@
+{
+  "text": "Утром он смотрит на погоду и ваш календарь и собирает образ на день.",
+  "provider": "local",
+  "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+  "hash": "b30fa72e73f45a95",
+  "duration": 4.677,
+  "words": []
+}

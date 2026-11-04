@@ -94,6 +94,9 @@ screen, drive it with `kit.cursor`, change the UI on each tap time.
   phone (`phoneCam`) that moves in on the field being typed into and out again; screens
   push in from the right (`pushScreens`), bookings arrive as banners. Its scenes repeat
   the phone's styles in each file: scenes are self-contained.
+- `videos/naryad/` does it in portrait: caption on top, the phone below it, a camera that
+  moves in on the day's context, a card swiped away for the next one; landscape stock
+  footage sits in tall rounded cards rather than being blown up to fill a 9:16 frame.
 - `videos/zero-budget/` is another: a receipt that keeps printing rows, a running total
   in a corner, a terminal and a file list — all plain HTML type, with stock clips dimmed
   behind them.

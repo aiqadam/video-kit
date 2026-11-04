@@ -1,0 +1,473 @@
+<template>
+  <div id="root" data-composition-id="morning">
+    <style>
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font), sans-serif;
+      }
+      #root .kicker {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      #root .display {
+        font-family: var(--display), serif;
+        font-weight: 600;
+        line-height: 1.04;
+        letter-spacing: -0.01em;
+      }
+      #root .display .accent {
+        font-style: italic;
+        color: var(--accent);
+      }
+      #root .cap {
+        position: absolute;
+        left: 80px;
+        top: 140px;
+        width: 920px;
+      }
+      #root .cap .display {
+        margin-top: 18px;
+        font-size: 92px;
+      }
+      #morning-glow {
+        position: absolute;
+        left: 90px;
+        top: 620px;
+        width: 900px;
+        height: 900px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(200, 85, 61, 0.16), rgba(200, 85, 61, 0) 100%);
+      }
+      #root .sub {
+        position: absolute;
+        left: 60px;
+        right: 60px;
+        bottom: 300px;
+        text-align: center;
+        z-index: 60;
+      }
+      #root .sub span {
+        display: inline-block;
+        padding: 12px 26px;
+        border-radius: 16px;
+        background: rgba(20, 18, 15, 0.8);
+        color: #fff;
+        font-size: 36px;
+        font-weight: 500;
+        line-height: 1.3;
+      }
+
+      /* phone */
+      .cam {
+        position: absolute;
+        left: 327px;
+        top: 742px;
+        width: 425px;
+        height: 884px;
+        transform-origin: 50% 50%;
+      }
+      .ph {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 425px;
+        height: 884px;
+        border-radius: 70px;
+        background: linear-gradient(135deg, #c9ccd1 0%, #6c7078 22%, #e6e8eb 48%, #777b83 74%, #c2c5ca 100%);
+        box-shadow: 0 50px 100px rgba(27, 26, 23, 0.28), 0 14px 30px rgba(27, 26, 23, 0.18);
+      }
+      .ph-side {
+        position: absolute;
+        width: 5px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, #5b5f66, #a9adb3);
+      }
+      .ph-bezel {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        width: 415px;
+        height: 874px;
+        border-radius: 65px;
+        background: #040507;
+      }
+      .ph-scr {
+        position: absolute;
+        left: 16px;
+        top: 16px;
+        width: 393px;
+        height: 852px;
+        border-radius: 54px;
+        overflow: hidden;
+        background: #f7f3ec;
+        color: #1b1a17;
+        font-family: var(--font), sans-serif;
+      }
+      .ph-island {
+        position: absolute;
+        left: 134px;
+        top: 11px;
+        width: 125px;
+        height: 37px;
+        border-radius: 20px;
+        background: #000;
+        z-index: 80;
+      }
+      .ph-status {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 54px;
+        padding: 3px 30px 0 46px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 17px;
+        font-weight: 600;
+        z-index: 70;
+      }
+      .ph-status .ic {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .ph-home {
+        position: absolute;
+        left: 129px;
+        bottom: 8px;
+        width: 135px;
+        height: 5px;
+        border-radius: 3px;
+        background: #1b1a17;
+        z-index: 80;
+      }
+      .ph-glare {
+        position: absolute;
+        inset: 0;
+        border-radius: 54px;
+        background: linear-gradient(115deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 30%);
+        pointer-events: none;
+        z-index: 90;
+      }
+      .ph .kit-cursor {
+        width: 58px;
+        height: 58px;
+        margin: -29px 0 0 -29px;
+        background: rgba(27, 26, 23, 0.16);
+        border: 3px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 6px 18px rgba(27, 26, 23, 0.3);
+        z-index: 95;
+      }
+      .scr {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 393px;
+        height: 852px;
+      }
+
+      /* lock screen */
+      #morning-lock {
+        background: linear-gradient(180deg, #3a2f28 0%, #5b4638 55%, #8a6a52 100%);
+        color: #fff;
+        text-align: center;
+      }
+      #morning-lock .date {
+        margin-top: 92px;
+        font-size: 20px;
+        font-weight: 600;
+        opacity: 0.85;
+      }
+      #morning-lock .clock {
+        font-size: 96px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+      }
+      .note {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        top: 320px;
+        padding: 14px 16px;
+        border-radius: 24px;
+        background: rgba(250, 248, 244, 0.95);
+        color: #1b1a17;
+        display: flex;
+        gap: 12px;
+        text-align: left;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+      }
+      .appic {
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+        background: #c8553d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+      }
+      .note .hd {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        color: #7b736a;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+      .note b {
+        display: block;
+        margin-top: 2px;
+        font-size: 16px;
+      }
+      .note span.tx {
+        display: block;
+        font-size: 15px;
+        color: #4a443d;
+        line-height: 1.3;
+      }
+
+      /* today screen */
+      #morning-today {
+        padding: 62px 20px 0;
+        background: #f7f3ec;
+        box-shadow: -18px 0 40px rgba(27, 26, 23, 0.12);
+      }
+      .hello {
+        margin-top: 4px;
+        font-size: 15px;
+        color: #7b736a;
+        font-weight: 600;
+      }
+      .h1 {
+        font-size: 29px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .ctx {
+        display: flex;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .ctx > div {
+        flex: 1;
+        padding: 12px 14px;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(27, 26, 23, 0.05), 0 8px 20px rgba(27, 26, 23, 0.06);
+      }
+      .ctx .big {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 24px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .ctx .sm {
+        margin-top: 2px;
+        font-size: 13px;
+        color: #6b645c;
+        line-height: 1.25;
+      }
+      .deck {
+        position: relative;
+        height: 436px;
+        margin-top: 14px;
+      }
+      .look {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 353px;
+        height: 436px;
+        border-radius: 24px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(27, 26, 23, 0.06), 0 14px 32px rgba(27, 26, 23, 0.12);
+        transform-origin: 50% 100%;
+      }
+      .look img {
+        display: block;
+        width: 353px;
+        height: 340px;
+        object-fit: cover;
+        object-position: 50% 30%;
+      }
+      .look .tag {
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        padding: 6px 11px;
+        border-radius: 12px;
+        background: rgba(27, 26, 23, 0.82);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .look .t {
+        padding: 12px 16px 0;
+        font-size: 19px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+      }
+      .look .i {
+        padding: 3px 16px 0;
+        font-size: 14px;
+        color: #6b645c;
+      }
+      .rain {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #4a443d;
+      }
+      .go {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        top: 764px;
+        height: 56px;
+        border-radius: 18px;
+        background: #c8553d;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        box-shadow: 0 10px 22px rgba(200, 85, 61, 0.32);
+      }
+      .hint {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 734px;
+        text-align: center;
+        font-size: 13px;
+        color: #8b8379;
+        font-weight: 600;
+      }
+    </style>
+    <div id="morning-glow"></div>
+    <div class="cap">
+      <div class="kicker" id="morning-kicker">07:30 · каждое утро</div>
+      <div class="display" id="morning-title">Образ под погоду и ваш день</div>
+    </div>
+    <div class="cam" id="morning-cam"><div class="ph" data-layout-ignore id="morning-phone"><div class="ph-side" style="left:-3px; top:170px; height:34px"></div><div class="ph-side" style="left:-3px; top:232px; height:62px"></div><div class="ph-side" style="left:-3px; top:306px; height:62px"></div><div class="ph-side" style="right:-3px; top:262px; height:98px"></div><div class="ph-bezel"></div><div class="ph-scr">
+      <div class="ph-island"></div>
+      <div class="ph-status" id="morning-status"><span>7:30</span><span class="ic"><svg width="19" height="12" viewBox="0 0 19 12"><rect x="0" y="8" width="3.4" height="4" rx="1" fill="currentColor"/><rect x="5" y="5.5" width="3.4" height="6.5" rx="1" fill="currentColor"/><rect x="10" y="3" width="3.4" height="9" rx="1" fill="currentColor"/><rect x="15" y="0" width="3.4" height="12" rx="1" fill="currentColor"/></svg><svg width="17" height="12" viewBox="0 0 17 12"><path d="M8.5 2.2c2.5 0 4.8 1 6.5 2.6l1.2-1.2C14.2 1.6 11.5.5 8.5.5S2.8 1.6.8 3.6L2 4.8c1.7-1.6 4-2.6 6.5-2.6zm0 3.4c1.6 0 3 .6 4.1 1.6l1.2-1.2c-1.4-1.3-3.3-2.1-5.300-2.1s-3.900.8-5.300 2.1l1.2 1.2c1.1-1 2.5-1.6 4.1-1.6zm0 3.4c.7 0 1.3.3 1.8.7L8.5 11.5 6.7 9.7c.5-.4 1.100-.7 1.8-.7z" fill="currentColor"/></svg><svg width="28" height="13" viewBox="0 0 28 13"><rect x="0.5" y="0.5" width="24" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-opacity="0.45"/><rect x="2.5" y="2.5" width="17" height="8" rx="2" fill="currentColor"/></svg></span></div>
+
+      <div class="scr" id="morning-lock">
+        <div class="date">Понедельник</div>
+        <div class="clock">7:30</div>
+        <div class="note" id="morning-note">
+          <div class="appic"><svg width="28" height="18" viewBox="0 0 200 120"><path d="M100 40 V31 C100 24 113 21 113 12 C113 5 107 1 100 1 C93 1 88 5 88 11 M100 40 L13 94 C4 100 8 112 18 112 H182 C192 112 196 100 187 94 Z" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div style="flex:1"><div class="hd"><span>НАРЯД</span><span>сейчас</span></div><b>Образ на сегодня готов</b><span class="tx">В 11:00 встреча — подобрали пиджак</span></div>
+        </div>
+      </div>
+
+      <div class="scr" id="morning-today">
+        <div class="hello">Понедельник</div>
+        <div class="h1">Доброе утро, Тимур</div>
+        <div class="ctx">
+          <div id="morning-weather"><div class="big"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c8553d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6.1 11 3.5 3.5 0 0 0 7 18z"/><path d="M9 21l1-2M13 21l1-2"/></svg>+12°</div><div class="sm">дождь после 18:00</div></div>
+          <div id="morning-cal"><div class="big"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1f2a44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>11:00</div><div class="sm">встреча с клиентом</div></div>
+        </div>
+        <div class="deck">
+          <div class="look" id="morning-look2"><img src="assets/looks/look-calm.jpg" alt=""/><div class="tag">Вариант 2</div><div class="t">Спокойно и собранно</div><div class="i">Голубая рубашка · джемпер · жакет</div></div>
+          <div class="look" id="morning-look1"><img src="assets/looks/look-meeting.jpg" alt=""/><div class="tag">Под встречу</div><div class="t">Деловой, но лёгкий</div><div class="i">Синий пиджак · белая рубашка</div></div>
+        </div>
+        <div class="rain" id="morning-rain"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f2a44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 18 0z"/><path d="M12 12v7a2 2 0 0 1-4 0"/></svg>Вечером дождь — возьмите плащ</div>
+        <div class="hint" id="morning-hint">← смахните, чтобы увидеть другой</div>
+        <div class="go" id="morning-go"><span id="morning-go-t">Надеваю</span></div>
+      </div>
+
+      <div class="kit-cursor" id="morning-cursor"></div>
+      <div class="ph-home"></div>
+      <div class="ph-glare"></div>
+    </div></div></div>
+    <div class="sub" id="morning-sub"><span></span></div>
+    <script>
+      function morningCam(el, t, keys) {
+        var ts = keys.map(function (k) { return k.t; });
+        var e = kit.ease.camera;
+        kit.set(el, {
+          scale: kit.interp(t, ts, keys.map(function (k) { return k.s; }), e),
+          x: kit.interp(t, ts, keys.map(function (k) { return k.x || 0; }), e),
+          y: kit.interp(t, ts, keys.map(function (k) { return k.y || 0; }), e),
+        });
+      }
+
+      window.__timelines["morning"] = kit.scene("morning", function (t, s) {
+        kit.reveal(s.$("#morning-kicker"), t, 0.05);
+        kit.words(s.$("#morning-title"), t, 0.15, { step: 0.09, accent: ["погоду", "день"] });
+        kit.set(s.$("#morning-phone"), { y: (1 - kit.prog(t, 0, 0.7)) * 160, opacity: kit.prog(t, 0, 0.3) });
+        morningCam(s.$("#morning-cam"), t, [
+          { t: 0, s: 1.42 }, { t: 1.9, s: 1.42 }, { t: 2.6, s: 1.95, y: 330 }, { t: 4.6, s: 1.95, y: 330 },
+          { t: 5.3, s: 1.42 }, { t: 9.6, s: 1.47 },
+        ]);
+
+        // lock screen with the notification, then the app pushes in
+        var push = kit.prog(t, 1.75, 2.2, kit.ease.out);
+        kit.set(s.$("#morning-lock"), { x: -110 * push, display: t < 2.25 ? "block" : "none" });
+        kit.set(s.$("#morning-today"), { x: 393 * (1 - push), display: t >= 1.75 ? "block" : "none" });
+        s.$("#morning-status").style.color = push > 0.5 ? "#1b1a17" : "#ffffff";
+        var note = kit.prog(t, 0.45, 0.85);
+        kit.set(s.$("#morning-note"), { y: -60 * (1 - note), opacity: note, scale: 1 });
+
+        // the day's context arrives, then the outfit
+        kit.reveal(s.$("#morning-weather"), t, 2.6, { y: 16 });
+        kit.reveal(s.$("#morning-cal"), t, 3.2, { y: 16 });
+        kit.reveal(s.$("#morning-rain"), t, 4.2, { y: 10 });
+        var lk = kit.prog(t, 2.3, 2.8);
+        kit.set(s.$("#morning-hint"), { opacity: kit.prog(t, 5.6, 6.0) * (1 - kit.prog(t, 6.8, 7.0)) });
+
+        // swipe the first outfit away (6.8–7.3), the second takes its place
+        var sw = kit.prog(t, 6.8, 7.3, kit.ease.in);
+        kit.set(s.$("#morning-look1"), { x: -520 * sw, y: 30 * sw + (1 - lk) * 40, rotate: -14 * sw, opacity: lk * (1 - kit.prog(t, 7.1, 7.3)) });
+        var up = kit.prog(t, 7.0, 7.5);
+        kit.set(s.$("#morning-look2"), { scale: 0.93 + 0.07 * up, y: 14 * (1 - up), opacity: t < 6.7 ? 0 : 1 });
+
+        var c = kit.cursor(s.$("#morning-cursor"), t, [
+          { t: 0.9, x: 300, y: 520 }, { t: 1.5, x: 200, y: 370, tap: true }, { t: 2.0, x: 240, y: 560 },
+          { t: 6.2, x: 250, y: 560 }, { t: 6.75, x: 290, y: 470 }, { t: 7.25, x: 60, y: 450 },
+          { t: 7.9, x: 190, y: 700 }, { t: 8.5, x: 196, y: 792, tap: true }, { t: 9.6, x: 230, y: 700 },
+        ], { from: 0.9 });
+        var done = t >= 8.5;
+        kit.set(s.$("#morning-go"), { scale: t > 8.3 && t < 8.9 ? 1 - 0.06 * c : 1, background: done ? "#1b1a17" : "#c8553d" });
+        s.$("#morning-go-t").textContent = done ? "Выбрано ✓" : "Надеваю";
+        morningSub(s.$("#morning-sub"), t, s, ["03", "04"]);
+      });
+
+      function morningSub(el, t, s, ids) {
+        var on = null;
+        ids.forEach(function (id) {
+          var l = s.line(id);
+          if (t >= l.start - 0.15 && t < l.end + 0.4) on = id;
+        });
+        var span = el.firstElementChild;
+        if (!on) return kit.set(el, { opacity: 0 });
+        if (span.__id !== on) {
+          span.textContent = kit.t("sub." + on);
+          span.__id = on;
+        }
+        var l = s.line(on);
+        kit.set(el, { opacity: Math.min(kit.prog(t, l.start - 0.15, l.start + 0.1), 1 - kit.prog(t, l.end + 0.15, l.end + 0.4)) });
+      }
+    </script>
+  </div>
+</template>

@@ -31,7 +31,28 @@ there). Commons and Openverse give the license and author themselves; for Pexels
 **Pexels has no open search** (new API keys are paused, and its pages are behind bot
 protection: do not try to get around it). Search with your own web tools, e.g. read
 `https://www.pexels.com/search/videos/<words>/`; the number at the end of a clip's URL is
-its id for `pexels:<id>`. The download itself is the public download link and works.
+its id for `pexels:<id>`. The download itself is the public download link and usually
+works; when it answers 403 from your machine, do not work around it: use another source.
+
+**Mixkit** (mixkit.co) has free stock video under the Mixkit Stock Video Free License
+(commercial use allowed, no credit required, no redistribution of the files). Its search
+pages read fine with web tools (`https://mixkit.co/free-stock-video/<words>/`); the id is
+the number at the end of a clip's URL, and the file is
+`https://assets.mixkit.co/videos/<id>/<id>-720.mp4` (1080 is not always public). Add it as
+a URL: `node kit.mjs media add <video> https://assets.mixkit.co/videos/<id>/<id>-720.mp4
+--license "Mixkit Stock Video Free License" --author Mixkit --page <clip page>`.
+720p is soft when it fills a portrait frame: show it in a card or crop less.
+
+**Generated footage.** When stock has no shot that fits, OpenRouter's video models
+(Google Veo 3.1, Kling, Seedance, …) make one from a prompt: `POST /api/v1/videos` with
+`model`, `prompt`, `duration`, `resolution`, `aspect_ratio` and `generate_audio: false`,
+then poll and download (`https://openrouter.ai/docs/guides/overview/multimodal/video-generation`).
+Veo 3.1 Fast is about $0.10 a second at 1080p without sound, and OpenRouter wants at least
+$1 of balance left on the key for any image or video request. Ask the person before you
+spend on it. Ask for hands, backs and objects ("no faces, no text, no logos"); keep the
+file and the request (`<clip>.json`) under `assets/footage/`, credit the model in
+`assets/CREDITS.md`, and read a few frames: models print garbled labels on clothes and
+packaging. `videos/naryad/assets/footage/` has two, with their prompts.
 
 **Openverse** search needs a free registration per user:
 `node kit.mjs media openverse-register --email you@example.org` saves the keys to `.env`
