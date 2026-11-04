@@ -51,12 +51,10 @@ for line in sys.stdin:
         req = json.loads(line)
         model_name = req.get("model") or DEFAULT_MODEL
         engine = tts(model_name, language(req, model_name))
-        opts = {}
-        if req.get("voiceId"):
-            opts["voice"] = req["voiceId"]
-        delta = duration_delta(req.get("speed"))
-        if delta:
-            opts["conditions"] = {"duration_delta": delta}
+        # In ptts 0.6.0 conditions belong to the model, not to save(): set them for every line
+        # (0 resets a previous line's speed) without reloading the model.
+        engine.set_conditions({"duration_delta": duration_delta(req.get("speed"))})
+        opts = {"voice": req["voiceId"]} if req.get("voiceId") else {}
         engine.save(req["out"], req["text"], **opts)
         print(json.dumps({"ok": True}), flush=True)
     except Exception as e:
