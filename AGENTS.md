@@ -56,7 +56,7 @@ node kit.mjs check <video> [--quick]       kit checks, then HyperFrames checks
 node kit.mjs stills <video> [scene@sec …]  PNG frames; read them before you reply
 node kit.mjs voice <video> [--force id]    voice lines (an ElevenLabs or OpenRouter key, or a local engine)
 node kit.mjs music <video> [--samples | --use name]   music generated from a description (OpenRouter key)
-node kit.mjs tts list | setup <engine>     free local voice engines (Kokoro, Qwen3-TTS, Piper)
+node kit.mjs tts list | setup <engine>     free local voice engines (Kokoro, Qwen3-TTS, Phonon, Piper)
 node kit.mjs media search <words> | add <video> <ref>   licensed footage, images, music
 node kit.mjs render <video> [--quality high]
 node kit.mjs preview <video>               live preview for the person (blocks)

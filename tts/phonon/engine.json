@@ -1,0 +1,8 @@
+{
+  "name": "phonon",
+  "about": "Phonon (gradium-ai/xn-ptts: Rust runtime, no PyTorch) on Windows, macOS and Linux, CPU (x86 needs AVX2): small, fast, streaming; English, French, German, Spanish and Portuguese; voices by name from the gradium/phonon-voices catalog (ptts --list-voices)",
+  "platforms": ["darwin-arm64", "darwin-x64", "linux-x64", "linux-arm64", "win32-x64", "win32-arm64"],
+  "python": ">=3.9,<3.14",
+  "defaultModel": "hf://gradium/phonon-31m-en",
+  "license": "ptts runtime MIT or Apache-2.0; model Phonon 31m (English) Apache-2.0: commercial use allowed. Phonon 40m and 40m multilingual (fr, de, es, pt) are CC BY-NC 4.0: non-commercial only, and gated (accept the terms on Hugging Face, then set HF_TOKEN)"
+}
