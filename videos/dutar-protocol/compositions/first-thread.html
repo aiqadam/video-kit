@@ -1,0 +1,26 @@
+<template>
+  <div data-hf-id="hf-v2vu" id="root" data-composition-id="first-thread">
+    <style>
+      #root { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+    </style>
+    <script src="assets/lib/stage.js"></script>
+    <script>
+      window.__timelines["first-thread"] = kit.scene("first-thread", function (t, s) {
+        var T = s.start + t, I = kit.interp, E = kit.ease;
+        // Bars 1-8: darkness, one teal thread drawing itself in, a light finding the pegs.
+        var cam = STAGE.shots(T, [{ t: 0, x: 615, y: 200, s: 1.7 }, { t: 8, x: 650, y: 260, s: 1.62, move: 2 }, { t: 16, x: 700, y: 330, s: 1.6 }]);
+        STAGE.render(s, T, {
+          cam: cam,
+          drive: I(T, [0, 16], [0.25, 0.45]),
+          bright: I(T, [0, 16], [0.28, 0.5]),
+          warm: 0.15,
+          cool: 0.25,
+          spot: { x: cam.x + 30, y: cam.y + 40, r: I(T, [0, 16], [260, 420]), a: 0.85 },
+          threads: { n: 1, count: 7, amp: 55, spread: 0, alpha: I(T, [0, 1.5, 4], [0.35, 0.6, 0.85]),
+                     drawX: I(T, [0, 6], [700, 2100], E.inOut), cy: I(T, [0, 16], [330, 360]) },
+          dust: 0.6,
+        });
+      });
+    </script>
+  </div>
+</template>

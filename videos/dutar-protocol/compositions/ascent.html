@@ -1,0 +1,33 @@
+<template>
+  <div data-hf-id="hf-k4d7" id="root" data-composition-id="ascent">
+    <style>
+      #root { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+    </style>
+    <script src="assets/lib/stage.js"></script>
+    <script>
+      window.__timelines["ascent"] = kit.scene("ascent", function (t, s) {
+        var T = s.start + t, I = kit.interp, E = kit.ease;
+        // Bars 56-65: the ember swells with the riser; at 112 s gold light bursts from the tear,
+        // sixteen threads fan out from the centre and the camera pulls back to the whole stage.
+        var cam = STAGE.shots(T, [{ t: 102, x: 960, y: 540, s: 1.15, move: 2 }, { t: 112, x: 960, y: 540, s: 1.0, move: 2.5 }, { t: 120, x: 1080, y: 620, s: 1.22, move: 1.2 }, { t: 130, x: 960, y: 540, s: 1.05, move: 1 }]);
+        STAGE.render(s, T, {
+          cam: cam,
+          drive: I(T, [110, 112], [0.2, 1]),
+          bright: I(T, [110, 112, 112.3, 115], [0.04, 0.2, 1.15, 1.0]),
+          warm: I(T, [110, 112, 112.3, 115, 130], [0.1, 0.1, 0.8, 0.8, 0.65]),
+          cool: I(T, [110, 112, 113], [0.4, 0.4, 0.2]),
+          spot: { x: 960, y: 540, r: 600, a: I(T, [110, 112, 112.6], [0.8, 0.8, 0]) },
+          rim: I(T, [112, 114], [0, 0.5]),
+          skin: 0.55,
+          ember: { r: I(T, [110, 112], [60, 140]), a: I(T, [110, 112, 113], [0.9, 1, 0]) },
+          burst: I(T, [112, 112.15, 114.5], [0, 1, 0]),
+          threads: { n: 16, count: 16, amp: I(T, [112, 114], [60, 160]), straight: I(T, [112, 113.5], [1, 0], E.inOut),
+                     spread: I(T, [112, 113.5], [0, 90]), lock: 0.6, mix: 0.85,
+                     alpha: I(T, [112, 112.3], [0, 0.95]), cy: I(T, [112, 116], [540, 420], E.inOut),
+                     reach: I(T, [112, 114], [0, 1100], E.out) },
+          dust: I(T, [110, 112, 112.5], [0.1, 0.1, 1]),
+        });
+      });
+    </script>
+  </div>
+</template>

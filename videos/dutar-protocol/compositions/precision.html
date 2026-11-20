@@ -1,0 +1,33 @@
+<template>
+  <div data-hf-id="hf-8ezv" id="root" data-composition-id="precision">
+    <style>
+      #root { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+    </style>
+    <script src="assets/lib/stage.js"></script>
+    <script>
+      window.__timelines["precision"] = kit.scene("precision", function (t, s) {
+        var T = s.start + t, I = kit.interp, E = kit.ease;
+        // Bars 33-51: cooler and tighter. The threads straighten into a grid, a girih lattice draws
+        // itself outward from the doira, ticks run round the drum on the eighths, the frets keep time.
+        var cam = STAGE.shots(T, [{ t: 56, x: 990, y: 560, s: 1.12, move: 1.5 }, { t: 64, x: 1150, y: 690, s: 1.35 }, { t: 72, x: 760, y: 420, s: 1.45 }, { t: 80, x: 960, y: 540, s: 1.08 }, { t: 88, x: 1180, y: 700, s: 1.5 }, { t: 96, x: 840, y: 500, s: 1.4 }, { t: 102, x: 960, y: 540, s: 1.15, move: 2 }]);
+        STAGE.render(s, T, {
+          cam: cam,
+          drive: I(T, [64, 66], [1, 0.65]),
+          bright: I(T, [64, 68], [1.0, 0.72]),
+          warm: I(T, [64, 68], [0.45, 0.1]),
+          cool: I(T, [64, 68], [0.3, 0.75]),
+          spot: { x: cam.x, y: cam.y, r: 600, a: I(T, [64, 68], [0, 0.55]) },
+          rim: I(T, [64, 68], [0.4, 0]),
+          skin: I(T, [64, 66], [0.45, 0.15]),
+          girih: { p: I(T, [70, 96], [0, 1], E.linear), a: I(T, [68, 72], [0, 0.3]) },
+          ticks: I(T, [68, 70], [0, 1]),
+          packets: I(T, [68, 70], [0, 1]),
+          frets: I(T, [84, 86], [0, 0.8]),
+          threads: { n: 12, count: 12, amp: 120, straight: I(T, [64, 68], [0, 1], E.inOut), spread: I(T, [64, 68], [60, 200], E.inOut),
+                     lock: I(T, [64, 68], [0, 1]), mix: 0, alpha: I(T, [64, 68, 72], [0.9, 0.7, 0.5]), cy: 420 },
+          dust: I(T, [64, 68], [0.8, 0.35]),
+        });
+      });
+    </script>
+  </div>
+</template>

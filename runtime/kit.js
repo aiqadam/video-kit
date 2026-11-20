@@ -294,6 +294,26 @@
     });
   }
 
+  // ── music ────────────────────────────────────────────────────────────────
+
+  // assets/kit/audio.js (made by sync from the music bed) sets window.KIT_AUDIO: per-frame
+  // values 0..255 in bands level, low, high and hit (onsets in the low band).
+  var bands = {};
+
+  /**
+   * How loud the music is at video time t, 0..1, between frames interpolated. band:
+   * 'level' (default), 'low' (kick, bass), 'high' (hi-hats, air), 'hit' (onsets, decays
+   * fast). 0 when the video has no music.
+   */
+  function audio(t, band) {
+    var A = window.KIT_AUDIO;
+    band = band || 'level';
+    if (!A || !A[band]) return 0;
+    var v = bands[band] || (bands[band] = A[band].split(',').map(Number));
+    var f = clamp(t * A.fps, 0, v.length - 1), i = Math.floor(f), j = Math.min(v.length - 1, i + 1);
+    return lerp(v[i], v[j], f - i) / 255;
+  }
+
   // ── timelines ────────────────────────────────────────────────────────────
 
   /**
@@ -361,6 +381,8 @@
    *   s.dur           the scene's length in seconds
    *   s.line(id)      a voice line {start, end, words: [{w, start, end}]}, scene-local
    *   s.word(id, w)   when word w (or its n-th occurrence: w#2) starts in line id
+   *   s.audio(t, b)   how loud the music is at scene time t (see audio above)
+   *   s.start         when the scene starts in the video
    * Returns the timeline: window.__timelines["<id>"] = kit.scene("<id>", ...).
    */
   function scene(id, render) {
@@ -369,9 +391,11 @@
     var meta = K.scenes[id] || {};
     var dur = meta.dur || (host ? parseFloat(host.getAttribute('data-duration')) : 0) || 0;
     var cache = {};
+    var start = meta.start || 0;
     var s = {
       id: id,
       dur: dur,
+      start: start,
       root: root,
       $: function (sel) {
         if (!(sel in cache)) cache[sel] = root ? root.querySelector(sel) : document.querySelector(sel);
@@ -386,6 +410,9 @@
           end: l.end - off,
           words: (l.words || []).map(function (w) { return { w: w.w, start: w.start - off, end: w.end - off }; }),
         };
+      },
+      audio: function (t, band) {
+        return audio(start + t, band);
       },
       word: function (lineId, w) {
         var l = s.line(lineId), want = String(w).toLowerCase(), nth = 1;
@@ -432,6 +459,7 @@
     beat: beat,
     cursor: cursor,
     t: tr,
+    audio: audio,
     scene: scene,
     root: root,
   };

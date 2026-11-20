@@ -148,6 +148,19 @@ so.
 node kit.mjs render naryad
 ```
 
+`videos/dutar-protocol/` is a 2:39 music video for "Dutar Protocol" by Binali, a
+cinematic electronic track with dutar and doira, generated with Google Lyria. There are
+no words: one photographed stage (generated with Google Gemini), a camera and light per
+section of the track, and threads of light drawn on a canvas that move with the music.
+The sections come from the track's measured loudness, bar by bar, not from its prompt;
+the threads read the kick, the hi-hats and the onsets through `kit.audio`, which the kit
+measures from any video's music on every build.
+[Watch it on YouTube](https://www.youtube.com/watch?v=fFYg4xB2sdw).
+
+```bash
+node kit.mjs render dutar-protocol
+```
+
 ## Commands
 
 ```
@@ -184,6 +197,9 @@ The kit is MIT, with these exceptions:
   its use follows the provider's terms.
 - `videos/naryad/assets/footage/` are two clips generated with Google Veo through
   OpenRouter (the prompts are next to them); their use follows the provider's terms.
+- `videos/dutar-protocol/assets/music/` is "Dutar Protocol" by Binali, generated with
+  Google Lyria through OpenRouter, and `assets/photos/` its artwork, generated with Google
+  Gemini; their use follows the providers' terms.
 - `videos/kit-promo/assets/brand/` is the AI Qadam logo: a brand asset, not open source,
   used under the [AI Qadam Brand Usage Policy](https://brand.aiqadam.org/brand-use.html).
   Do not reuse it in your own videos.
@@ -198,7 +214,8 @@ command the kit runs. The examples' footage, music, fonts and logo are credited 
 `videos/<name>/assets/sources.json` and `CREDITS.md`. What you render is yours;
 check the licenses of the media and voices you add. The examples' voice files were made
 with Google Gemini TTS through OpenRouter (kit-promo, qatnov) and with Kokoro 82M offline
-(zero-budget) and Qwen3-TTS offline (naryad), the qatnov music with Google Lyria and the
-naryad footage in `assets/footage/` with Google Veo through OpenRouter; they are not covered
+(zero-budget) and Qwen3-TTS offline (naryad), the qatnov and dutar-protocol music with Google Lyria, the
+naryad footage in `assets/footage/` with Google Veo through OpenRouter and the dutar-protocol
+artwork with Google Gemini; they are not covered
 by the MIT license, and their use follows each provider's terms. For your own video, make
 the voice and music again with your own key or a local engine.

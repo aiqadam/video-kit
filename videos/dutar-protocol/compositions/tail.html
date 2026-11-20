@@ -1,0 +1,40 @@
+<template>
+  <div data-hf-id="hf-olhz" id="root" data-composition-id="tail">
+    <style>
+      #root { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+      #tail-card { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); text-align: center; color: var(--ink); }
+      #tail-artist { font-family: var(--display); font-weight: 500; font-size: 30px; letter-spacing: 0.5em; margin-right: -0.5em; color: var(--accent); }
+      #tail-name { font-family: var(--display); font-weight: 200; font-size: 92px; letter-spacing: 0.16em; margin-right: -0.16em; margin-top: 14px; white-space: nowrap; }
+    </style>
+    <div data-hf-id="hf-ypn8" id="tail-card" class="stage-over">
+      <div data-hf-id="hf-aar6" id="tail-artist">BINALI</div>
+      <div data-hf-id="hf-m31f" id="tail-name">DUTAR PROTOCOL</div>
+    </div>
+    <script src="assets/lib/stage.js"></script>
+    <script>
+      window.__timelines["tail"] = kit.scene("tail", function (t, s) {
+        var T = s.start + t, I = kit.interp, E = kit.ease;
+        // Bars 76-80: the threads leave one by one as the sound decays; the last one goes out with
+        // the tail and the title holds on black to the end.
+        var cam = STAGE.shots(T, [{ t: 146, x: 1130, y: 680, s: 1.28, move: 1.5 }, { t: 152, x: 1000, y: 580, s: 1.08, move: 4 }]);
+        STAGE.render(s, T, {
+          cam: cam,
+          drive: I(T, [150, 155], [0.9, 0]),
+          bright: I(T, [150, 155], [1.0, 0], E.in),
+          warm: 0.5,
+          cool: 0.35,
+          spot: { x: 1100, y: 640, r: I(T, [150, 156], [700, 300]), a: I(T, [150, 153], [0, 0.9]) },
+          rim: I(T, [150, 154], [0.5, 0]),
+          skin: I(T, [150, 152], [0.6, 0]),
+          halo: I(T, [150, 154], [0.6, 0]),
+          threads: { n: 16, count: 16, amp: 110, spread: 120, lock: 1, mix: 0.85, inter: 1, alpha: 0.95, cy: 420,
+                     ring: 1, ringRot: 0.25 * (T - 134),
+                     fade: function (i) { var a = 150 + (15 - i) * 0.26; return 1 - kit.prog(T, a, a + 0.8, E.linear); } },
+          dust: I(T, [150, 155], [1, 0]),
+        });
+        kit.reveal(s.$("#tail-artist"), T, 155.4, { len: 1.2, y: 10 });
+        kit.reveal(s.$("#tail-name"), T, 155.8, { len: 1.4, y: 16 });
+      });
+    </script>
+  </div>
+</template>

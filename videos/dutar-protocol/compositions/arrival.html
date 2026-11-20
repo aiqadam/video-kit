@@ -1,0 +1,30 @@
+<template>
+  <div data-hf-id="hf-1cds" id="root" data-composition-id="arrival">
+    <style>
+      #root { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+    </style>
+    <script src="assets/lib/stage.js"></script>
+    <script>
+      window.__timelines["arrival"] = kit.scene("arrival", function (t, s) {
+        var T = s.start + t, I = kit.interp, E = kit.ease;
+        // Bars 66-75: two bars hang (the threads stop, the dust still glitters), then the threads
+        // wrap the doira in a ring, gold and teal alternating, inside a slowly turning star.
+        var cam = STAGE.shots(T, [{ t: 120, x: 1080, y: 620, s: 1.22, move: 1.2 }, { t: 130, x: 960, y: 540, s: 1.05, move: 1 }, { t: 138, x: 1080, y: 640, s: 1.18, move: 2 }, { t: 146, x: 1130, y: 680, s: 1.28, move: 1.5 }, { t: 152, x: 1000, y: 580, s: 1.08, move: 4 }]);
+        STAGE.render(s, T, {
+          cam: cam,
+          drive: I(T, [130, 130.3, 134, 134.3], [1, 0, 0, 0.9]),
+          bright: I(T, [130, 130.5, 134, 134.5], [1.0, 0.8, 0.8, 1.0]),
+          warm: I(T, [130, 134], [0.65, 0.5]),
+          cool: I(T, [130, 134], [0.2, 0.35]),
+          rim: 0.5,
+          skin: I(T, [130, 132], [0.55, 0.6]),
+          halo: I(T, [136, 140], [0, 0.6]),
+          threads: { n: 16, count: 16, amp: I(T, [130, 134], [160, 110]), spread: I(T, [134, 138], [90, 120]),
+                     lock: I(T, [134, 138], [0.6, 1]), mix: 0.85, inter: I(T, [134, 138], [0, 1]), alpha: 0.95, cy: 420,
+                     ring: I(T, [134, 140], [0, 1], E.linear), ringRot: 0.25 * Math.max(0, T - 134) },
+          dust: 1,
+        });
+      });
+    </script>
+  </div>
+</template>
