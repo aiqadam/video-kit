@@ -59,6 +59,8 @@ Times are seconds inside the scene. `el` is an element, usually `s.$("#id")`.
 | `kit.camera(world, t, [{t, x, y, s}])` | virtual camera over a larger layer |
 | `kit.cursor(el, t, [{t, x, y, tap}], {from})` | moves a finger or pointer; returns how pressed it is (0–1) |
 | `kit.t("key")` | on-screen string for the current language |
+| `s.audio(t, band)`, `kit.audio(T, band)` | how loud the music is at scene time `t` (or video time `T`), 0–1: `level`, `low` (kick, bass), `high` (hi-hats, air), `hit` (onsets, falls fast) |
+| `s.start` | when the scene starts in the video, for scenes that share one clock (`T = s.start + t`) |
 
 Elements with `data-t="key"` (or `data-t-html`) are filled from the strings of the
 rendered language when the scene loads.
@@ -128,6 +130,16 @@ With a music bed, the music is the clock. Find the beat (`npx hyperframes beats`
 video folder writes the beat times), set `music.start` so a downbeat falls at 0, and
 make every scene and shot a whole number of bars (at 86 BPM a bar is 4 × 60 / 86 =
 2.791 s). `videos/tutun-lounge/` is cut this way: one shot a bar, words on the beat.
+
+## Moving with the music
+
+`sync` measures the music bed on every frame and writes it to `assets/kit/audio.js`;
+`s.audio(t, "low")` is then the kick under this frame. Use it to scale what already
+moves (a line's amplitude, a glow on the beat, dust that brightens with the hi-hats), not
+to make things appear: structure still comes from the bars. The values are measured, so a
+frame renders the same every time. `videos/dutar-protocol/` is a music video built this
+way: one lit stage drawn by a shared `assets/lib/stage.js`, eight scenes that each set the
+light, camera and threads for one section of the track, cut on its measured form.
 
 ## Portrait and square
 

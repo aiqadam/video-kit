@@ -83,6 +83,7 @@ first build and makes a preview. `check` lists CC BY credits that no scene shows
 | generated music | `lib/audio/generate.mjs`: `video-kit music` asks a music model on OpenRouter (Google Lyria 3 Pro by default) for a track from `music.prompt`, kept in `assets/music/` |
 | generated footage | not a kit command: a clip made from a prompt with a video model through OpenRouter (`POST /api/v1/videos`), kept with its request in `assets/footage/` (`references/media.md`) |
 | interface sounds | `lib/audio/sfx.mjs`: tap, key, pop, whoosh, success |
+| music for the picture | `lib/audio/envelope.mjs`: on every sync, the bed's loudness per frame (level, low, high, onsets) measured with ffmpeg into `assets/kit/audio.js`; scenes read it with `kit.audio` / `s.audio` |
 | final mix | HyperFrames' Web Audio graph (voice chain, softened with `voiceTone` and levelled against the music with `voiceVolume`; music ducked under the voice), then ffmpeg loudness normalisation and a limiter |
 
 ## License of this repository

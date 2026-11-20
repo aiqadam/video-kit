@@ -34,6 +34,9 @@ One file, `video.json`, holds all timing, and the kit derives everything else fr
    For a vertical video told in captions without a voice, read
    `videos/ottoman-empire/compositions/`: archive images that pan and push in, a year
    that rolls forward, a timeline across the top.
+   For a music video with no words, read `videos/dutar-protocol/compositions/`: one
+   photographed stage, a camera and light per section of the track, threads drawn on a
+   canvas that move with the music (`s.audio`).
 5. **Look** (`references/review.md`). `node kit.mjs check <name>`, fix every error, then
    `node kit.mjs stills <name>` and read the PNGs. Repeat until the frames are right.
 6. **Voice and sound** (`references/voice-and-sound.md`). The narration tells the story
