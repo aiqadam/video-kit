@@ -1,0 +1,31 @@
+{
+  "title": "Binali - Dutar Protocol: music video drawn over one lit stage (example)",
+  "format": "landscape",
+  "fps": 30,
+  "lang": "en",
+  "transition": 0,
+  "maxSilence": 5,
+  "theme": {
+    "bg": "#050505",
+    "ink": "#f2ece2",
+    "muted": "rgba(242, 236, 226, 0.6)",
+    "accent": "#f2c48a",
+    "teal": "#5fd6c8"
+  },
+  "music": {
+    "source": "file",
+    "file": "assets/music/dutar-protocol.mp3",
+    "start": 0.085,
+    "volume": 1
+  },
+  "scenes": [
+    { "id": "first-thread", "dur": 16, "lines": [] },
+    { "id": "awaken", "dur": 32, "lines": [] },
+    { "id": "drop", "dur": 16, "lines": [] },
+    { "id": "precision", "dur": 38, "lines": [] },
+    { "id": "break", "dur": 8, "lines": [] },
+    { "id": "ascent", "dur": 20, "lines": [] },
+    { "id": "arrival", "dur": 20, "lines": [] },
+    { "id": "tail", "dur": 9.05, "lines": [] }
+  ]
+}

@@ -1,0 +1,33 @@
+<template>
+  <div data-hf-id="hf-0tgm" id="root" data-composition-id="break">
+    <style>
+      #root { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+    </style>
+    <script src="assets/lib/stage.js"></script>
+    <script>
+      window.__timelines["break"] = kit.scene("break", function (t, s) {
+        var T = s.start + t, I = kit.interp, E = kit.ease;
+        // Bars 52-55: the lattice fades, the threads close into one line, the line tears in the
+        // middle and the stage goes dark; only an ember stays in the tear (near silence at 108 s).
+        var cam = STAGE.shots(T, [{ t: 96, x: 840, y: 500, s: 1.4 }, { t: 102, x: 960, y: 540, s: 1.15, move: 2 }, { t: 112, x: 960, y: 540, s: 1.0, move: 2.5 }]);
+        STAGE.render(s, T, {
+          cam: cam,
+          drive: I(T, [102, 104], [0.65, 0.2]),
+          bright: I(T, [102, 104, 107.5], [0.72, 0.3, 0.04]),
+          warm: 0.1,
+          cool: I(T, [102, 107.5], [0.75, 0.4]),
+          spot: { x: cam.x, y: 540, r: 600, a: I(T, [102, 104], [0.55, 0.8]) },
+          girih: { p: 1, a: I(T, [102, 104], [0.3, 0]) },
+          ticks: I(T, [102, 103], [1, 0]),
+          packets: I(T, [102, 103], [1, 0]),
+          frets: I(T, [102, 103], [0.8, 0]),
+          threads: { n: 12, count: 12, amp: 120, straight: 1, spread: I(T, [102, 104], [200, 0], E.inOut),
+                     lock: 1, mix: I(T, [102, 106], [0, 0.9]), alpha: I(T, [102, 104, 105.5, 107.5], [0.5, 0.9, 0.9, 0]),
+                     cy: I(T, [102, 104], [420, 540], E.inOut), gapHalf: I(T, [104, 107.5], [0, 700], E.in) },
+          ember: { r: I(T, [104, 107.5, 110], [0, 30, 60]), a: I(T, [104, 105, 110], [0, 0.8, 0.9]) },
+          dust: I(T, [102, 106], [0.35, 0.1]),
+        });
+      });
+    </script>
+  </div>
+</template>

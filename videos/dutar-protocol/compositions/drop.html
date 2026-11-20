@@ -1,0 +1,37 @@
+<template>
+  <div data-hf-id="hf-t2mi" id="root" data-composition-id="drop">
+    <style>
+      #root { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+      #drop-title { position: absolute; right: 150px; bottom: 230px; text-align: right; color: var(--ink); }
+      #drop-artist { font-family: var(--display); font-weight: 500; font-size: 30px; letter-spacing: 0.5em; margin-right: -0.5em; color: var(--accent); }
+      #drop-name { font-family: var(--display); font-weight: 200; font-size: 92px; letter-spacing: 0.16em; margin-right: -0.16em; margin-top: 14px; white-space: nowrap; }
+    </style>
+    <div data-hf-id="hf-x019" id="drop-title" class="stage-over">
+      <div data-hf-id="hf-jtd1" id="drop-artist">BINALI</div>
+      <div data-hf-id="hf-o9u4" id="drop-name">DUTAR PROTOCOL</div>
+    </div>
+    <script src="assets/lib/stage.js"></script>
+    <script>
+      window.__timelines["drop"] = kit.scene("drop", function (t, s) {
+        var T = s.start + t, I = kit.interp, E = kit.ease;
+        // Bars 25-32: the drop. Full light, the camera pulls back to the whole stage, twelve threads,
+        // the doira's skin answers the kick. The title holds for four bars.
+        var cam = STAGE.shots(T, [{ t: 40, x: 880, y: 600, s: 1.3 }, { t: 48, x: 960, y: 540, s: 1.0, move: 1.6 }, { t: 56, x: 990, y: 560, s: 1.12, move: 1.5 }, { t: 64, x: 1150, y: 690, s: 1.35 }]);
+        STAGE.render(s, T, {
+          cam: cam,
+          drive: I(T, [48, 48.4], [0.2, 1]),
+          bright: I(T, [48, 48.4], [0.1, 1.0]),
+          warm: I(T, [48, 48.6], [0.2, 0.45]),
+          cool: I(T, [48, 48.6], [0.25, 0.3]),
+          spot: { x: 960, y: 540, r: 900, a: I(T, [48, 48.6], [0.8, 0]) },
+          rim: I(T, [48, 50], [0.1, 0.4]),
+          skin: 0.45,
+          threads: { n: I(T, [48, 48.6], [1, 12]), count: 12, amp: I(T, [48, 49], [95, 120]), spread: I(T, [48, 49], [40, 60]), alpha: I(T, [48, 48.6], [0.5, 0.9]), cy: 420 },
+          dust: I(T, [48, 49], [0.6, 0.8]),
+        });
+        kit.reveal(s.$("#drop-artist"), T, 49.0, { len: 0.8, y: 14, until: 56.6, outLen: 1 });
+        kit.reveal(s.$("#drop-name"), T, 49.4, { len: 1.0, y: 22, until: 56.6, outLen: 1 });
+      });
+    </script>
+  </div>
+</template>
